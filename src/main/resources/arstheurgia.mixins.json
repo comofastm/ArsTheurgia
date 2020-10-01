@@ -4,8 +4,7 @@
   "package": "team.comofas.arstheurgia.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-  ],
-  "client": [
+    "AbstractFurnaceBlockEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

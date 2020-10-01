@@ -5,13 +5,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
-import team.comofas.arstheurgia.blocks.RitualBlock;
+//import team.comofas.arstheurgia.blocks.RitualBlock;
 import team.comofas.arstheurgia.ArsUtils;
 
 
 public class ArsBlocks {
 
-    public static final Block RITUALCENTER = new RitualBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
+    public static final Block RITUALCENTER = new Block(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
 
     public static void registerAll() {
         registerBlock(RITUALCENTER, "ritual_block");
