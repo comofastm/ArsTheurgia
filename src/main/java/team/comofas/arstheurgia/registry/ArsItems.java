@@ -12,21 +12,15 @@ public class ArsItems {
 
     public static final Item COOKED_CLAY_TABLET = new Item(new FabricItemSettings().group(ItemGroup.MISC));
     public static final Item CLAY_TABLET = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-
+    public static final Item RITUAL_CENTER_ITEM = new BlockItem(ArsBlocks.RITUALCENTER, new FabricItemSettings().group(ItemGroup.MISC));
 
     public static void registerAll() {
         registerItem(COOKED_CLAY_TABLET, "cooked_clay_tablet");
         registerItem(CLAY_TABLET, "clay_tablet");
-        registerBlockItem(ArsBlocks.RITUALCENTER,"ritual_block", ItemGroup.MISC);
+        registerItem(RITUAL_CENTER_ITEM,"ritual_block");
     }
 
     public static Item registerItem(Item item, String name) {
         return Registry.register(Registry.ITEM, ArsUtils.getIdentifier(name), item);
     }
-
-    public static BlockItem registerBlockItem(Block block, String name, ItemGroup itemgroup) {
-        BlockItem item = ArsUtils.getBlockItem(name, itemgroup);
-        return Registry.register(Registry.ITEM, ArsUtils.getIdentifier(name), item);
-    }
-
 }

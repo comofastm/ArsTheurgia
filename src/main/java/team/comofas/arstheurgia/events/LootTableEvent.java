@@ -14,7 +14,6 @@ public class LootTableEvent {
 
     public static void register() {
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
-            System.out.println(id.getPath());
             if (DESERT_PYRAMID_ID.equals(id)) {
                 FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
                         .rolls(ConstantLootTableRange.create(1))

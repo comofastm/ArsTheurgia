@@ -14,9 +14,9 @@ public class ArsBlocks {
     public static final Block RITUALCENTER = new RitualBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
 
     public static void registerAll() {
-        Registry.register(Registry.BLOCK, ArsUtils.getIdentifier("ritual_block"), RITUALCENTER);
+        registerBlock(RITUALCENTER, "ritual_block");
     }
-    public static Item registerBlock(Item item, String name) {
-        return Registry.register(Registry.ITEM, ArsUtils.getIdentifier(name), item);
+    public static Block registerBlock(Block block, String name) {
+        return Registry.register(Registry.BLOCK, ArsUtils.getIdentifier(name), block);
     }
 }
