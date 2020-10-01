@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "arstheurgia:clay_tablet"
+    "item": "arstheurgia:written_clay_tablet"
   },
   "result": "arstheurgia:cooked_clay_tablet",
   "experience": 0.35,
