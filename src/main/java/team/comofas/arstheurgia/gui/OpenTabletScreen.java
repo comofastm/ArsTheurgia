@@ -30,8 +30,8 @@ public class OpenTabletScreen extends Screen {
 
         for (int j = 0; j < lines.size(); j++) {
 
-            float var10003 = (float)(i + 36);
-            this.textRenderer.draw(matrices, lines.get(j), var10003, (float)(32 + j * 9), 0);
+            float xPos = i + 36;
+            this.textRenderer.draw(matrices, lines.get(j), xPos, (float)(32 + j * 9), 0);
         }
 
     }
