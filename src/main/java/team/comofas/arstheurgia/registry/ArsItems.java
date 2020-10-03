@@ -12,10 +12,12 @@ import team.comofas.arstheurgia.ritual.rituals.CreeperSummon;
 public class ArsItems {
 
     public static final Item CLAY_TABLET = new Item(new FabricItemSettings().group(ItemGroup.MISC));
+    public static final Item DICTIONARY = new Item(new FabricItemSettings().group(ItemGroup.MISC));
     public static final Item RITUAL_CENTER_ITEM = new BlockItem(ArsBlocks.RITUALCENTER, new FabricItemSettings().group(ItemGroup.MISC));
 
     public static void registerAll() {
         registerItem(CLAY_TABLET, "clay_tablet");
+        registerItem(DICTIONARY, "dictionary");
         registerItem(RITUAL_CENTER_ITEM,"ritual_block");
         CreeperSummon.INSTANCE.registerItems("creeper");
     }
