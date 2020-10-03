@@ -11,15 +11,19 @@ import net.minecraft.world.World;
 import team.comofas.arstheurgia.gui.OpenTabletScreen;
 
 public class OpenableTablet extends Item {
-    public OpenableTablet(Settings settings) {
+
+    public String ritualName;
+
+    public OpenableTablet(Settings settings, String ritualName) {
         super(settings);
+        this.ritualName = ritualName;
     }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         if (user instanceof ClientPlayerEntity) {
-            MinecraftClient.getInstance().openScreen(new OpenTabletScreen());
+            MinecraftClient.getInstance().openScreen(new OpenTabletScreen(itemStack));
         }
 
         return TypedActionResult.method_29237(itemStack, world.isClient());

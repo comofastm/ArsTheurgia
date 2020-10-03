@@ -34,7 +34,7 @@ public class Ritual {
     public void registerItems(String name) {
         writtenClayTablet = new Item(new FabricItemSettings().group(ItemGroup.MISC));
         tabletPart = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-        cookedClayTablet = new OpenableTablet(new FabricItemSettings().group(ItemGroup.MISC));
+        cookedClayTablet = new OpenableTablet(new FabricItemSettings().group(ItemGroup.MISC), name);
 
         allTabletParts.add(tabletPart);
 
