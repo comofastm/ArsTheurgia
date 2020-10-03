@@ -22,10 +22,6 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-    // Patchouli
-    modCompileOnly "vazkii.patchouli:Patchouli:1.16.2-44-FABRIC:api"
-    modImplementation "vazkii.patchouli:Patchouli:1.16.2-44-FABRIC"
 }
 
 processResources {

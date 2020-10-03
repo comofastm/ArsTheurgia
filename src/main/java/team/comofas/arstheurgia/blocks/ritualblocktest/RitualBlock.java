@@ -32,7 +32,7 @@ public class RitualBlock extends Block implements BlockEntityProvider {
         if (!world.isClient) {
             blockentity.addIndex();
             player.sendMessage(new LiteralText(""+blockentity.getIndex()), false);
-            Ritual.callRitual(new CreeperSummon(), state, world, pos, player, hand, hit);
+            Ritual.callRitual(CreeperSummon.INSTANCE, state, world, pos, player, hand, hit);
         }
 
         return ActionResult.SUCCESS;

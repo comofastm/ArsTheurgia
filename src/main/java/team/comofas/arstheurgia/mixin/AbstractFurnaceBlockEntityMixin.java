@@ -13,7 +13,7 @@ import team.comofas.arstheurgia.registry.ArsItems;
 public class AbstractFurnaceBlockEntityMixin {
 
 
-    @Shadow protected DefaultedList<ItemStack> inventory;
+    /*@Shadow protected DefaultedList<ItemStack> inventory;
 
     @ModifyVariable(method = "craftRecipe", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/recipe/Recipe;getOutput()Lnet/minecraft/item/ItemStack;"), ordinal = 1)
     private ItemStack modifyOutput(ItemStack itemStack2) {
@@ -24,6 +24,6 @@ public class AbstractFurnaceBlockEntityMixin {
 
         return itemStack2;
 
-    }
+    }*/
 
 }

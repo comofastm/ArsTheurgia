@@ -17,6 +17,8 @@ import team.comofas.arstheurgia.ritual.utils.RitualUtils;
 
 public class CreeperSummon extends Ritual {
 
+    public static final CreeperSummon INSTANCE = new CreeperSummon();
+
     public CreeperSummon() { }
     @Override
     public void onCall(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {

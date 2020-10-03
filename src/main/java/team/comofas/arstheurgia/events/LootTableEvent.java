@@ -7,6 +7,7 @@ import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.util.Identifier;
 import team.comofas.arstheurgia.registry.ArsItems;
+import team.comofas.arstheurgia.ritual.Ritual;
 
 public class LootTableEvent {
 
@@ -18,7 +19,7 @@ public class LootTableEvent {
                 FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
                         .rolls(ConstantLootTableRange.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.25F))
-                        .withEntry(ItemEntry.builder(ArsItems.COOKED_CLAY_TABLET).build());
+                        .withEntry(ItemEntry.builder(Ritual.allTabletParts.get(0)).build());
 
                 supplier.pool(poolBuilder);
             }
