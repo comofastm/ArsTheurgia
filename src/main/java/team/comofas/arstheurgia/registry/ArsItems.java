@@ -19,7 +19,7 @@ public class ArsItems {
         registerItem(CLAY_TABLET, "clay_tablet");
         registerItem(DICTIONARY, "dictionary");
         registerItem(RITUAL_CENTER_ITEM,"ritual_block");
-        CreeperSummon.INSTANCE.registerItems("creeper");
+        CreeperSummon.INSTANCE.registerItems();
     }
 
     public static Item registerItem(Item item, String name) {

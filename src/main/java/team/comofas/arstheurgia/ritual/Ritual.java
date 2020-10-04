@@ -16,7 +16,9 @@ import team.comofas.arstheurgia.ritual.rituals.CreeperSummon;
 import team.comofas.arstheurgia.ritual.utils.RitualUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static team.comofas.arstheurgia.registry.ArsItems.registerItem;
 
@@ -29,18 +31,26 @@ public class Ritual {
     public Item cookedClayTablet;
 
     public static List<Item> allTabletParts = new ArrayList<>();
+    public static Map<String, Ritual> ritualsByName = new HashMap<>();
+
+    public String ritualName;
+
+    public Ritual(String name) {
+        this.ritualName = name;
+        ritualsByName.put(name, this);
+    }
 
 
-    public void registerItems(String name) {
+    public void registerItems() {
         writtenClayTablet = new Item(new FabricItemSettings().group(ItemGroup.MISC));
         tabletPart = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-        cookedClayTablet = new OpenableTablet(new FabricItemSettings().group(ItemGroup.MISC), name);
+        cookedClayTablet = new OpenableTablet(new FabricItemSettings().group(ItemGroup.MISC), this.ritualName);
 
         allTabletParts.add(tabletPart);
 
-        registerItem(writtenClayTablet, "written_clay_tablet_" + name);
-        registerItem(tabletPart, "tablet_part_" + name);
-        registerItem(cookedClayTablet, "cooked_clay_tablet_" + name);
+        registerItem(writtenClayTablet, "written_clay_tablet_" + this.ritualName);
+        registerItem(tabletPart, "tablet_part_" + this.ritualName);
+        registerItem(cookedClayTablet, "cooked_clay_tablet_" + this.ritualName);
     }
 
     public static void callRitual(Ritual rt, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
