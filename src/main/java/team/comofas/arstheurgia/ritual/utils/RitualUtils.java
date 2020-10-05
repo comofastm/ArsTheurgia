@@ -2,14 +2,15 @@ package team.comofas.arstheurgia.ritual.utils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+import java.util.function.Function;
+
 public class RitualUtils {
-    public static boolean SquareCoordinates(Block block, int r, int c, int offset, World world, BlockPos pos) {
-        boolean isValid = true;
+
+    public static boolean SquareCoordinates(Function<BlockPos.Mutable, Boolean> function, int r, int c, BlockPos pos) {
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         mutable.setY(pos.getY());
         int co = Math.floorMod(c, 4*(r*2));
@@ -34,51 +35,53 @@ public class RitualUtils {
                 break;
             default: break;
         }
-        BlockState blockState = world.getBlockState(mutable);
-        if (!blockState.isOf(block)) {
-            isValid = false;
-        }
-        return isValid;
+
+        return function.apply(mutable);
     }
-    public static boolean FoldSquare(Block block, int r, int offset, int o, World world, BlockPos pos) {
+    public static boolean FoldSquare(Function<BlockPos.Mutable, Boolean> function, int r, int o, BlockPos pos) {
         boolean isValid = true;
         int perimeter = 4*(r*2);
         int steps = perimeter/o;
+        System.out.println("foldsquare");
         for (int i = 0; i < perimeter; i=i+steps) {
-            if (!(SquareCoordinates(block, r, i, offset, world, pos))) {
+
+            if (!(SquareCoordinates(function, r, i, pos))) {
                 isValid = false;
             }
+            System.out.println(isValid);
+
         }
         return isValid;
     }
-    public static boolean SquareIterate(Block block, int r, World world, BlockPos pos) {
+    public static boolean SquareIterate(Function<BlockPos.Mutable, Boolean> function, int r, BlockPos pos) {
         boolean isValid = true;
+        System.out.println("squareiterate");
         for (int x = -r; x <= r; x++) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             //-z
             mutable.set(pos).move(Direction.NORTH, r).move(Direction.EAST, x);
-            BlockState blockState = world.getBlockState(mutable);
-            if (!blockState.isOf(block)) {
+            if (!function.apply(mutable)) {
                 isValid = false;
             }
+            System.out.println(isValid);
             //+z
             mutable.set(pos).move(Direction.SOUTH, r).move(Direction.EAST, x);
-            blockState = world.getBlockState(mutable);
-            if (!blockState.isOf(block)) {
+            if (!function.apply(mutable)) {
                 isValid = false;
             }
+            System.out.println(isValid);
             //-x
             mutable.set(pos).move(Direction.WEST, r).move(Direction.SOUTH, x);
-            blockState = world.getBlockState(mutable);
-            if (!blockState.isOf(block)) {
+            if (!function.apply(mutable)) {
                 isValid = false;
             }
+            System.out.println(isValid);
             //+x
             mutable.set(pos).move(Direction.EAST, r).move(Direction.SOUTH, x);
-            blockState = world.getBlockState(mutable);
-            if (!blockState.isOf(block)) {
+            if (!function.apply(mutable)) {
                 isValid = false;
             }
+            System.out.println(isValid);
         }
         return isValid;
     }

@@ -25,11 +25,19 @@ public class CreeperSummon extends Ritual {
 
     @Override
     public void onCall(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (RitualUtils.FoldSquare(Blocks.TORCH, 3, 0, 4, world, pos)) {
-            if (RitualUtils.SquareIterate(Blocks.REDSTONE_WIRE, 2, world, pos)) {
+        if (RitualUtils.FoldSquare((mutable) -> {
+                BlockState blockState = world.getBlockState(mutable);
+                return blockState.isOf(Blocks.TORCH);
+            }, 3, 4, pos)) {
+
+            if (RitualUtils.SquareIterate((mutable) -> {
+                BlockState blockState = world.getBlockState(mutable);
+                return blockState.isOf(Blocks.REDSTONE_WIRE);
+            }, 2, pos)) {
                 player.sendMessage(new LiteralText("it does work"), true);
                 EntityType.CREEPER.spawn((ServerWorld) world, null, null, null, pos, SpawnReason.MOB_SUMMONED, true, true);
             }
+
         }
     }
 }
