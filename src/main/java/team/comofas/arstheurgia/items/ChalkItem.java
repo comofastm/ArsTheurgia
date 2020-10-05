@@ -47,7 +47,11 @@ public class ChalkItem extends Item {
         if (!inverse) {
             current.putInt("index", (index+1)%length);
         } else {
-            current.putInt("index", (index-1)%length);
+            if (index > 0) {
+                current.putInt("index", (index-1)%length);
+            } else {
+                current.putInt("index", 0);
+            }
         }
     }
 
