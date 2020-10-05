@@ -23,22 +23,22 @@ import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
+import team.comofas.arstheurgia.registry.ArsBlocks;
 
 import java.util.Collection;
 import java.util.Random;
 
 public class ChalkItem extends Item {
 
-    int length = 4;
+    int length = 2;
 
     public ChalkItem(Item.Settings settings) { super(settings); }
 
     private Block getBlockItem(int index) {
         switch (index) {
-            case 0: return Blocks.OBSIDIAN;
-            case 1: return Blocks.ACACIA_FENCE;
-            case 2: return Blocks.ACACIA_SLAB;
-            default: return Blocks.YELLOW_CONCRETE;
+            case 0: return ArsBlocks.XDCHALK;
+            case 1: return Blocks.OBSIDIAN;
+            default: return Blocks.AIR;
         }
     }
 
