@@ -15,7 +15,7 @@ public class ArsItems {
     public static final Item CLAY_TABLET = new Item(new FabricItemSettings().group(ItemGroup.MISC));
     public static final Item DICTIONARY = new Item(new FabricItemSettings().group(ItemGroup.MISC));
     public static final Item RITUAL_CENTER_ITEM = new BlockItem(ArsBlocks.RITUALCENTER, new FabricItemSettings().group(ItemGroup.MISC));
-    public static final ChalkItem CHALK_ITEM = new ChalkItem(new FabricItemSettings().group(ItemGroup.MISC).maxDamage(230));
+    public static final ChalkItem CHALK_ITEM = new ChalkItem(new FabricItemSettings().group(ItemGroup.MISC).maxDamage(70));
 
     public static void registerAll() {
         registerItem(CLAY_TABLET, "clay_tablet");
