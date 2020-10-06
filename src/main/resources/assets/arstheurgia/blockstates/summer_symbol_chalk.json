@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "facing=north": { "model": "arstheurgia:block/summer_symbol_chalk" },
+    "facing=east":  { "model": "arstheurgia:block/summer_symbol_chalk", "y":  90},
+    "facing=south": { "model": "arstheurgia:block/summer_symbol_chalk", "y": 180 },
+    "facing=west":  { "model": "arstheurgia:block/summer_symbol_chalk", "y": 270 }
+  }
+}
+

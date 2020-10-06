@@ -1,6 +1,6 @@
 {
   "parent": "arstheurgia:block/chalk_block",
   "textures": {
-    "line": "arstheurgia:block/xd_chalk"
+    "line": "arstheurgia:block/spring_symbol_chalk"
   }
 }

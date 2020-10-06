@@ -1,8 +1,5 @@
 {
   "ambientocclusion": false,
-  "textures": {
-    "line": "arstheurgia:block/xd_chalk"
-  },
   "elements": [
     {   "from": [ 0, 0, 0 ],
       "to": [ 16, 0, 16 ],

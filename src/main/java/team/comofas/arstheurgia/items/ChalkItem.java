@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Property;
 import net.minecraft.text.Text;
@@ -23,21 +24,27 @@ import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
+import team.comofas.arstheurgia.ArsTheurgia;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
 import java.util.Collection;
 import java.util.Random;
 
+import static net.minecraft.block.HorizontalFacingBlock.FACING;
+
 public class ChalkItem extends Item {
 
-    int length = 2;
+    int length = 5;
 
     public ChalkItem(Item.Settings settings) { super(settings); }
 
     private Block getBlockItem(int index) {
         switch (index) {
-            case 0: return ArsBlocks.XDCHALK;
-            case 1: return Blocks.OBSIDIAN;
+            case 0: return ArsBlocks.ASYRIEL_SIGIL;
+            case 1: return ArsBlocks.SPRING_SYMBOL;
+            case 2: return ArsBlocks.SUMMER_SYMBOL;
+            case 3: return ArsBlocks.AUTUMN_SYMBOL;
+            case 4: return ArsBlocks.WINTER_SYMBOL;
             default: return Blocks.AIR;
         }
     }
@@ -50,7 +57,7 @@ public class ChalkItem extends Item {
             if (index > 0) {
                 current.putInt("index", (index-1)%length);
             } else {
-                current.putInt("index", 0);
+                current.putInt("index", 3);
             }
         }
     }
@@ -79,13 +86,13 @@ public class ChalkItem extends Item {
     private void place(BlockPos placePos, PlayerEntity player, WorldAccess world, boolean update, ItemStack stack, @Nullable BlockHitResult hit) {
         CompoundTag compoundTag = stack.getOrCreateSubTag("Index");
         if (update) {
-            world.setBlockState(placePos.offset(hit.getSide()), getBlockItem(compoundTag.getInt("index")).getDefaultState(), 3);
+            world.setBlockState(placePos.offset(hit.getSide()), getBlockItem(compoundTag.getInt("index")).getDefaultState().with(FACING, player.getHorizontalFacing()), 3);
             stack.setCount(1);
             stack.damage(1, new Random(), (ServerPlayerEntity) player);
+            world.playSound(null, placePos, ArsTheurgia.CHALK, SoundCategory.BLOCKS, 1f, 1f);
         } else {
             cycle(compoundTag, player.isSneaking());
             player.sendMessage(Text.of(""+compoundTag.getInt("index")), true);
-            System.out.println("hehe");
         }
 
     }

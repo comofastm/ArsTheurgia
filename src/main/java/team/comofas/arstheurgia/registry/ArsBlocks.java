@@ -16,16 +16,24 @@ import team.comofas.arstheurgia.blocks.RitualBlockEntity;
 public class ArsBlocks {
 
     public static final Block RITUALCENTER = new RitualBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
-    public static final Block XDCHALK = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
+    public static final Block ASYRIEL_SIGIL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block SPRING_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block SUMMER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block AUTUMN_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block WINTER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static BlockEntityType<RitualBlockEntity> RITUALBLOCK_ENTITY;
 
     public static void registerAll() {
-        registerBlock(XDCHALK, "xd_chalk");
-        BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.XDCHALK, RenderLayer.getCutout());
-        registerBlock(RITUALCENTER, "ritual_block");
+        registerBlock(ASYRIEL_SIGIL, "asyriel_sigil_chalk", true);
+        registerBlock(SPRING_SYMBOL, "spring_symbol_chalk", true);
+        registerBlock(SUMMER_SYMBOL, "summer_symbol_chalk", true);
+        registerBlock(AUTUMN_SYMBOL, "autumn_symbol_chalk", true);
+        registerBlock(WINTER_SYMBOL, "winter_symbol_chalk", true);
+        registerBlock(RITUALCENTER, "ritual_block", false);
         RITUALBLOCK_ENTITY = registerBlockEntity(RITUALCENTER, "ritual_block");
     }
-    public static Block registerBlock(Block block, String name) {
+    public static Block registerBlock(Block block, String name, boolean isCutout) {
+        if (isCutout) { BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutout()); }
         return Registry.register(Registry.BLOCK, ArsUtils.getIdentifier(name), block);
     }
     public static BlockEntityType registerBlockEntity(Block block, String name) {

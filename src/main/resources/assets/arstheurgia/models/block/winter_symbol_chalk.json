@@ -1,0 +1,6 @@
+{
+  "parent": "arstheurgia:block/chalk_block",
+  "textures": {
+    "line": "arstheurgia:block/winter_symbol_chalk"
+  }
+}

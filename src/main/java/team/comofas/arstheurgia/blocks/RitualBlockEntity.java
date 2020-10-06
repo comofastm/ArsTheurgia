@@ -9,7 +9,7 @@ import team.comofas.arstheurgia.registry.ArsBlocks;
 
 // BlockEntity class for blocks that implement a Ritual. Can be extended but should suffice for general block use. (Index usage is assumed.)
 
-public class RitualBlockEntity extends BlockEntity {
+public class  RitualBlockEntity extends BlockEntity {
     private int index = 0;
 
     public RitualBlockEntity() {
