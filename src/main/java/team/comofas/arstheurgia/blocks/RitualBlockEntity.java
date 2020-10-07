@@ -2,7 +2,7 @@ package team.comofas.arstheurgia.blocks;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
@@ -11,6 +11,7 @@ import team.comofas.arstheurgia.registry.ArsBlocks;
 
 public class  RitualBlockEntity extends BlockEntity {
     private int index = 0;
+    private ItemStack placedItem;
 
     public RitualBlockEntity() {
         super(ArsBlocks.RITUALBLOCK_ENTITY);
@@ -27,6 +28,15 @@ public class  RitualBlockEntity extends BlockEntity {
     public void fromTag(BlockState state, CompoundTag tag) {
         super.fromTag(state, tag);
         index = tag.getInt("index");
+    }
+
+    public ItemStack getPlacedItem() {
+        return placedItem;
+    }
+
+    public void setPlacedItem(ItemStack placedItem) {
+        this.placedItem = placedItem;
+        markDirty();
     }
 
     public int getIndex() {

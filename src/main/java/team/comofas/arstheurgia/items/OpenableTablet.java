@@ -1,14 +1,12 @@
 package team.comofas.arstheurgia.items;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import team.comofas.arstheurgia.gui.OpenTabletScreen;
+import team.comofas.arstheurgia.gui.GuiUtils;
 
 public class OpenableTablet extends Item {
 
@@ -22,8 +20,8 @@ public class OpenableTablet extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        if (user instanceof ClientPlayerEntity) {
-            MinecraftClient.getInstance().openScreen(new OpenTabletScreen(itemStack));
+        if (world.isClient) {
+            GuiUtils.openTabletScreen(itemStack);
         }
 
         return TypedActionResult.method_29237(itemStack, world.isClient());
