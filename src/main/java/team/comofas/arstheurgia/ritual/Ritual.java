@@ -1,6 +1,7 @@
 package team.comofas.arstheurgia.ritual;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,6 +34,8 @@ public class Ritual {
     public static List<Item> allTabletParts = new ArrayList<>();
     public static Map<String, Ritual> ritualsByName = new HashMap<>();
 
+
+    public Map<Block, List<BlockPos>> validBlocks = new HashMap<>();
     public String ritualName;
 
     public Ritual(String name) {

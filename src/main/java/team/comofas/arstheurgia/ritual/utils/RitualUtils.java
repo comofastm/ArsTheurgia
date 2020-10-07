@@ -6,11 +6,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 public class RitualUtils {
 
-    public static boolean SquareCoordinates(Function<BlockPos.Mutable, Boolean> function, int r, int c, BlockPos pos) {
+    public static BlockPos SquareCoordinates(int r, int c, BlockPos pos) {
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         mutable.setY(pos.getY());
         int co = Math.floorMod(c, 4*(r*2));
@@ -36,53 +38,40 @@ public class RitualUtils {
             default: break;
         }
 
-        return function.apply(mutable);
+        return mutable;
     }
-    public static boolean FoldSquare(Function<BlockPos.Mutable, Boolean> function, int r, int o, BlockPos pos) {
-        boolean isValid = true;
+    public static List<BlockPos> FoldSquare(int r, int o, BlockPos pos) {
         int perimeter = 4*(r*2);
         int steps = perimeter/o;
-        System.out.println("foldsquare");
+
+        List<BlockPos> validBlocks = new ArrayList<>();
+
         for (int i = 0; i < perimeter; i=i+steps) {
-
-            if (!(SquareCoordinates(function, r, i, pos))) {
-                isValid = false;
-            }
-            System.out.println(isValid);
-
+            validBlocks.add(SquareCoordinates(r, i, pos));
         }
-        return isValid;
+        return validBlocks;
     }
-    public static boolean SquareIterate(Function<BlockPos.Mutable, Boolean> function, int r, BlockPos pos) {
-        boolean isValid = true;
-        System.out.println("squareiterate");
+    public static List<BlockPos> SquareIterate(int r, BlockPos pos) {
+        List<BlockPos> blocks = new ArrayList<>();
         for (int x = -r; x <= r; x++) {
             BlockPos.Mutable mutable = new BlockPos.Mutable();
             //-z
             mutable.set(pos).move(Direction.NORTH, r).move(Direction.EAST, x);
-            if (!function.apply(mutable)) {
-                isValid = false;
-            }
-            System.out.println(isValid);
+            blocks.add(mutable.toImmutable());
+
             //+z
             mutable.set(pos).move(Direction.SOUTH, r).move(Direction.EAST, x);
-            if (!function.apply(mutable)) {
-                isValid = false;
-            }
-            System.out.println(isValid);
+            blocks.add(mutable.toImmutable());
+
             //-x
             mutable.set(pos).move(Direction.WEST, r).move(Direction.SOUTH, x);
-            if (!function.apply(mutable)) {
-                isValid = false;
-            }
-            System.out.println(isValid);
+            blocks.add(mutable.toImmutable());
+
             //+x
             mutable.set(pos).move(Direction.EAST, r).move(Direction.SOUTH, x);
-            if (!function.apply(mutable)) {
-                isValid = false;
-            }
-            System.out.println(isValid);
+            blocks.add(mutable.toImmutable());
+
         }
-        return isValid;
+        return blocks;
     }
 }
