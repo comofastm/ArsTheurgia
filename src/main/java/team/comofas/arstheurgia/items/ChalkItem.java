@@ -25,44 +25,58 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import team.comofas.arstheurgia.ArsTheurgia;
+import team.comofas.arstheurgia.blocks.ChalkBlock;
+import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
-import java.util.Collection;
-import java.util.Random;
+import java.util.*;
 
 import static net.minecraft.block.HorizontalFacingBlock.FACING;
 
 public class ChalkItem extends Item {
 
-    int length = 5;
+    private List ChalkList = new ArrayList();;
 
     public ChalkItem(Item.Settings settings) { super(settings); }
 
-    private Block getBlockItem(int index) {
-        switch (index) {
-            case 0: return ArsBlocks.ASYRIEL_SIGIL;
-            case 1: return ArsBlocks.SPRING_SYMBOL;
-            case 2: return ArsBlocks.SUMMER_SYMBOL;
-            case 3: return ArsBlocks.AUTUMN_SYMBOL;
-            case 4: return ArsBlocks.WINTER_SYMBOL;
-            default: return Blocks.AIR;
+    private void getPlayerChalkList(PlayerEntity player) {
+        List temp = new ArrayList();;
+        Iterator it = ChalkBlock.getChalk().iterator();
+
+        while (it.hasNext()) {
+            Block block = (Block) it.next();
+            if (PlayerComponents.KNOWLEDGE.get(player).hasKnowledge(block.getTranslationKey())) {
+                temp.add(block);
+
+            }
         }
+        ChalkList = temp;
+    }
+
+    private Block getBlockItem(int index) {
+        return (Block) ChalkList.get(index);
     }
 
     private void cycle(CompoundTag current, boolean inverse) {
         int index = current.getInt("index");
-        if (!inverse) {
-            current.putInt("index", (index+1)%length);
-        } else {
-            if (index > 0) {
-                current.putInt("index", (index-1)%length);
+        int length = ChalkList.size();
+        if (length != 0) {
+            if (!inverse) {
+                current.putInt("index", (index+1)%length);
             } else {
-                current.putInt("index", 3);
+                if (index > 0) {
+                    current.putInt("index", (index-1)%length);
+                } else {
+                    current.putInt("index", length-1);
+                }
             }
+        } else {
+            current.putInt("index", 0);
         }
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        getPlayerChalkList(user);
         BlockHitResult hitResult = raycast(world, user, RaycastContext.FluidHandling.ANY);
         BlockPos blockPos = hitResult.getBlockPos();
 
@@ -92,7 +106,7 @@ public class ChalkItem extends Item {
             world.playSound(null, placePos, ArsTheurgia.CHALK, SoundCategory.BLOCKS, 1f, 1f);
         } else {
             cycle(compoundTag, player.isSneaking());
-            player.sendMessage(Text.of(""+compoundTag.getInt("index")), true);
+            player.sendMessage(Text.of(""+ChalkList.get(compoundTag.getInt("index"))), true);
         }
 
     }

@@ -3,19 +3,15 @@ package team.comofas.arstheurgia.registry;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.Material;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.util.registry.Registry;
-import team.comofas.arstheurgia.blocks.CandleBlock;
-import team.comofas.arstheurgia.blocks.ChalkBlock;
-import team.comofas.arstheurgia.blocks.RitualBlockEntityRenderer;
+import team.comofas.arstheurgia.blocks.*;
 import team.comofas.arstheurgia.blocks.ritualblocktest.RitualBlock;
 import team.comofas.arstheurgia.ArsUtils;
-import team.comofas.arstheurgia.blocks.RitualBlockEntity;
 
 
 public class ArsBlocks {
@@ -27,6 +23,13 @@ public class ArsBlocks {
     public static final Block AUTUMN_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block WINTER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block VELINHA = new CandleBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).lightLevel((state) -> 7), DustParticleEffect.RED);
+
+    public static final Block SMOOTH_MUD_BLOCK_STAIRS = new StairBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block MUD_BLOCK_BRICKS_STAIRS = new StairBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block MUD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block SMOOTH_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block MUD_BLOCK_BRICKS = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+
     public static BlockEntityType<RitualBlockEntity> RITUALBLOCK_ENTITY;
 
     public static void registerAll() {
@@ -37,6 +40,13 @@ public class ArsBlocks {
         registerBlock(WINTER_SYMBOL, "winter_symbol_chalk");
         registerBlock(RITUALCENTER, "ritual_block");
         registerBlock(VELINHA, "velinha");
+
+        registerBlock(SMOOTH_MUD_BLOCK_STAIRS, "smooth_mud_block_stairs");
+        registerBlock(MUD_BLOCK_BRICKS_STAIRS, "mud_block_bricks_stairs");
+        registerBlock(MUD_BLOCK, "mud_block");
+        registerBlock(SMOOTH_MUD_BLOCK, "smooth_mud_block");
+        registerBlock(MUD_BLOCK_BRICKS, "mud_block_bricks");
+
         RITUALBLOCK_ENTITY = registerBlockEntity(RITUALCENTER, "ritual_block");
 
     }

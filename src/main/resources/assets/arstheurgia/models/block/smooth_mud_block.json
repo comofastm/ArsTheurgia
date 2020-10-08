@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "arstheurgia:block/mud_block_top",
+    "side": "arstheurgia:block/smooth_mud_block"
+  }
+}

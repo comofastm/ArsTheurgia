@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "arstheurgia:block/smooth_mud_block",
+    "top": "arstheurgia:block/smooth_mud_block",
+    "side": "arstheurgia:block/smooth_mud_block"
+  }
+}

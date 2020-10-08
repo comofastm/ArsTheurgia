@@ -41,8 +41,8 @@ public class RitualBlock extends Block implements BlockEntityProvider {
                 if (heldItem instanceof OpenableTablet) {
                     Ritual ritual = Ritual.ritualsByName.get(((OpenableTablet) heldItem).ritualName);
 
-                    player.sendMessage(new LiteralText("" + blockentity.getIndex()), false);
-
+                    PlayerComponents.KNOWLEDGE.get(player).setKnowledge("block.arstheurgia.asyriel_sigil_chalk", true);
+                    PlayerComponents.KNOWLEDGE.get(player).setKnowledge("block.arstheurgia.autumn_symbol_chalk", true);
                     Ritual.callRitual(ritual, state, world, pos, player, hand, hit);
                     return ActionResult.SUCCESS;
                 }
