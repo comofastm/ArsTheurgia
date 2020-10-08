@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import team.comofas.arstheurgia.blocks.RitualBlockEntity;
 import team.comofas.arstheurgia.items.OpenableTablet;
+import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.ritual.Ritual;
 
 public class RitualBlock extends Block implements BlockEntityProvider {
@@ -36,15 +37,18 @@ public class RitualBlock extends Block implements BlockEntityProvider {
         if (!world.isClient) {
             blockentity.addIndex();
 
-            if (heldItem instanceof OpenableTablet) {
-                Ritual ritual = Ritual.ritualsByName.get(((OpenableTablet)heldItem).ritualName);
+            if (PlayerComponents.KNOWLEDGE.get(player).hasKnowledge("creeper")) {
+                if (heldItem instanceof OpenableTablet) {
+                    Ritual ritual = Ritual.ritualsByName.get(((OpenableTablet) heldItem).ritualName);
 
-                player.sendMessage(new LiteralText(""+blockentity.getIndex()), false);
+                    player.sendMessage(new LiteralText("" + blockentity.getIndex()), false);
 
-                Ritual.callRitual(ritual, state, world, pos, player, hand, hit);
-                return ActionResult.SUCCESS;
+                    Ritual.callRitual(ritual, state, world, pos, player, hand, hit);
+                    return ActionResult.SUCCESS;
+                }
+            } else {
+                player.sendMessage(new LiteralText("first " + PlayerComponents.KNOWLEDGE.get(player).hasKnowledge("creeper") + " " + player.getEntityId()), false);
             }
-
         }
 
         if (heldItem.asItem() != Items.AIR) {

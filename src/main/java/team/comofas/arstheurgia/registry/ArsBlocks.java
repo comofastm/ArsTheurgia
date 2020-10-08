@@ -8,7 +8,9 @@ import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
+import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.util.registry.Registry;
+import team.comofas.arstheurgia.blocks.CandleBlock;
 import team.comofas.arstheurgia.blocks.ChalkBlock;
 import team.comofas.arstheurgia.blocks.RitualBlockEntityRenderer;
 import team.comofas.arstheurgia.blocks.ritualblocktest.RitualBlock;
@@ -24,6 +26,7 @@ public class ArsBlocks {
     public static final Block SUMMER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block AUTUMN_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block WINTER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block VELINHA = new CandleBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).lightLevel((state) -> 7), DustParticleEffect.RED);
     public static BlockEntityType<RitualBlockEntity> RITUALBLOCK_ENTITY;
 
     public static void registerAll() {
@@ -33,6 +36,7 @@ public class ArsBlocks {
         registerBlock(AUTUMN_SYMBOL, "autumn_symbol_chalk");
         registerBlock(WINTER_SYMBOL, "winter_symbol_chalk");
         registerBlock(RITUALCENTER, "ritual_block");
+        registerBlock(VELINHA, "velinha");
         RITUALBLOCK_ENTITY = registerBlockEntity(RITUALCENTER, "ritual_block");
 
     }

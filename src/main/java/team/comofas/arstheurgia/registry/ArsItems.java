@@ -16,12 +16,14 @@ public class ArsItems {
     public static final Item DICTIONARY = new Item(new FabricItemSettings().group(ItemGroup.MISC));
     public static final Item RITUAL_CENTER_ITEM = new BlockItem(ArsBlocks.RITUALCENTER, new FabricItemSettings().group(ItemGroup.MISC));
     public static final ChalkItem CHALK_ITEM = new ChalkItem(new FabricItemSettings().group(ItemGroup.MISC).maxDamage(70));
+    public static final Item GEBEL_KNIFE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 
     public static void registerAll() {
         registerItem(CLAY_TABLET, "clay_tablet");
         registerItem(DICTIONARY, "dictionary");
         registerItem(RITUAL_CENTER_ITEM,"ritual_block");
         registerItem(CHALK_ITEM, "chalk");
+        registerItem(GEBEL_KNIFE, "gebel_knife");
         CreeperSummon.INSTANCE.registerItems();
     }
 

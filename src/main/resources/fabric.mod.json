@@ -14,6 +14,9 @@
   "icon": "assets/arstheurgia/icon.png",
   "environment": "*",
   "entrypoints": {
+    "cardinal-components-entity": [
+      "team.comofas.arstheurgia.player.PlayerComponents"
+    ],
     "main": [
       "team.comofas.arstheurgia.ArsTheurgia"
     ],
@@ -24,6 +27,12 @@
   "mixins": [
     "arstheurgia.mixins.json"
   ],
+  "custom": {
+    "cardinal-components": [
+      "arstheurgia:evil",
+      "arstheurgia:knowledge"
+    ]
+  },
   "depends": {
     "fabricloader": ">=0.10.0+build.208",
     "fabric": "*",
