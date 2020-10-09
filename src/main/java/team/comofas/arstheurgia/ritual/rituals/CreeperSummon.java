@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -14,6 +15,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import team.comofas.arstheurgia.registry.ArsEffects;
 import team.comofas.arstheurgia.ritual.Ritual;
 import team.comofas.arstheurgia.ritual.utils.RitualUtils;
 
@@ -52,6 +54,7 @@ public class CreeperSummon extends Ritual {
         if (isValid) {
             player.sendMessage(new LiteralText("it does work"), true);
             EntityType.CREEPER.spawn((ServerWorld) world, null, null, null, pos, SpawnReason.MOB_SUMMONED, true, true);
+            player.addStatusEffect(new StatusEffectInstance(ArsEffects.PAZUZU_BLESSING, 69696, 1, true, false));
         }
 
     }
