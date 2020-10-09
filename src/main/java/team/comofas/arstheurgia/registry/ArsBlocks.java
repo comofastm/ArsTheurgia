@@ -1,12 +1,8 @@
 package team.comofas.arstheurgia.registry;
 
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.util.registry.Registry;
 import team.comofas.arstheurgia.blocks.*;
@@ -25,11 +21,12 @@ public class ArsBlocks {
     public static final Block VELINHA = new CandleBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).lightLevel((state) -> 7), DustParticleEffect.RED);
     public static final Block FLOUR = new FlourBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
 
-    public static final Block SMOOTH_MUD_BLOCK_STAIRS = new StairBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block MUD_BLOCK_BRICKS_STAIRS = new StairBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block SMOOTH_MUD_BLOCK_STAIRS = new ATStairsBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block MUD_BLOCK_BRICKS_STAIRS = new ATStairsBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block MUD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block SMOOTH_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block MUD_BLOCK_BRICKS = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block MUD_BLOCK_BRICKS_SLAB = new ATSlabBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
 
     public static BlockEntityType<RitualBlockEntity> RITUALBLOCK_ENTITY;
 
@@ -48,6 +45,7 @@ public class ArsBlocks {
         registerBlock(MUD_BLOCK, "mud_block");
         registerBlock(SMOOTH_MUD_BLOCK, "smooth_mud_block");
         registerBlock(MUD_BLOCK_BRICKS, "mud_block_bricks");
+        registerBlock(MUD_BLOCK_BRICKS_SLAB, "mud_block_bricks_slab");
 
         RITUALBLOCK_ENTITY = registerBlockEntity(RITUALCENTER, "ritual_block");
 
