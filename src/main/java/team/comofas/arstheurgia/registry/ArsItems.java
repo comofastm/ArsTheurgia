@@ -28,6 +28,7 @@ public class ArsItems {
 
     public static final ChalkItem CHALK_ITEM = new ChalkItem(new FabricItemSettings().group(ItemGroup.MISC).maxDamage(70));
     public static final Item GEBEL_KNIFE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
+    public static final Item FLOUR = new BlockItem(ArsBlocks.FLOUR, new FabricItemSettings().group(ItemGroup.MISC));
 
     public static void registerAll() {
         registerItem(CLAY_TABLET, "clay_tablet");
@@ -35,6 +36,7 @@ public class ArsItems {
         registerItem(RITUAL_CENTER_ITEM,"ritual_block");
         registerItem(CHALK_ITEM, "chalk");
         registerItem(GEBEL_KNIFE, "gebel_knife");
+        registerItem(FLOUR, "flour");
 
         registerItem(SMOOTH_MUD_BLOCK_STAIRS, "smooth_mud_block_stairs");
         registerItem(MUD_BLOCK_BRICKS_STAIRS, "mud_block_bricks_stairs");

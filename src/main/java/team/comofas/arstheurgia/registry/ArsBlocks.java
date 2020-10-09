@@ -23,6 +23,7 @@ public class ArsBlocks {
     public static final Block AUTUMN_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block WINTER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block VELINHA = new CandleBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).lightLevel((state) -> 7), DustParticleEffect.RED);
+    public static final Block FLOUR = new FlourBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
 
     public static final Block SMOOTH_MUD_BLOCK_STAIRS = new StairBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block MUD_BLOCK_BRICKS_STAIRS = new StairBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.METAL).hardness(1.0f));
@@ -40,6 +41,7 @@ public class ArsBlocks {
         registerBlock(WINTER_SYMBOL, "winter_symbol_chalk");
         registerBlock(RITUALCENTER, "ritual_block");
         registerBlock(VELINHA, "velinha");
+        registerBlock(FLOUR, "flour");
 
         registerBlock(SMOOTH_MUD_BLOCK_STAIRS, "smooth_mud_block_stairs");
         registerBlock(MUD_BLOCK_BRICKS_STAIRS, "mud_block_bricks_stairs");
