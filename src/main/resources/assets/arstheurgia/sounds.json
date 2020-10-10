@@ -4,5 +4,16 @@
       "arstheurgia:chalk1",
       "arstheurgia:chalk2"
     ]
+  },
+  "ritual_fail": {
+    "sounds": [
+      "arstheurgia:ritual_fail"
+    ]
+  },
+  "magic_chime": {
+    "sounds": [
+      "arstheurgia:magic_chime",
+      "arstheurgia:magic_chime2"
+    ]
   }
 }

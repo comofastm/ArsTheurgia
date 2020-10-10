@@ -30,7 +30,8 @@
   "custom": {
     "cardinal-components": [
       "arstheurgia:evil",
-      "arstheurgia:knowledge"
+      "arstheurgia:knowledge",
+      "arstheurgia:ritualtime"
     ]
   },
   "depends": {
