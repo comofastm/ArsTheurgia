@@ -3,18 +3,17 @@ package team.comofas.arstheurgia.ritual;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import team.comofas.arstheurgia.items.OpenableTablet;
-import team.comofas.arstheurgia.ritual.rituals.CreeperSummon;
-import team.comofas.arstheurgia.ritual.utils.RitualUtils;
+import team.comofas.arstheurgia.player.PlayerComponents;
+import team.comofas.arstheurgia.registry.ArsSounds;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,9 +36,18 @@ public class Ritual {
 
     public Map<Block, List<BlockPos>> validBlocks = new HashMap<>();
     public String ritualName;
+    public int cooldown;
+    public int oldTime;
 
-    public Ritual(String name) {
+    protected boolean isValid = false;
+    protected BlockState state;
+    protected PlayerEntity player;
+    protected BlockHitResult hit;
+
+
+    public Ritual(String name, int cooldown) {
         this.ritualName = name;
+        this.cooldown = cooldown;
         ritualsByName.put(name, this);
     }
 
@@ -56,9 +64,35 @@ public class Ritual {
         registerItem(cookedClayTablet, "cooked_clay_tablet_" + this.ritualName);
     }
 
-    public static void callRitual(Ritual rt, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        rt.onCall(state, world, pos, player, hand, hit);
+    public void onCooldownFail() {
+        player.getEntityWorld().playSound(null, hit.getBlockPos(), ArsSounds.RITUAL_FAIL, SoundCategory.AMBIENT, 1f, 1f);
     }
 
-    public void onCall(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) { }
+    public boolean checkRitual() { return true; }
+
+    public void fromUse(BlockState state, PlayerEntity player, BlockHitResult hit) {
+        this.player = player;
+        this.state = state;
+        this.hit = hit;
+    }
+
+    public static boolean callRitual(Ritual rt, BlockState state, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        rt.oldTime = PlayerComponents.RITUALTIME.get(player).getInt(rt.ritualName);
+        rt.fromUse(state, player, hit);
+        BlockPos pos = hit.getBlockPos();
+        World world = player.getEntityWorld();
+        boolean check = rt.checkRitual();
+
+        if (check) {
+            if (world.getTime() - rt.oldTime > rt.cooldown) {
+                rt.onCall(hand);
+                PlayerComponents.RITUALTIME.get(player).setInt(rt.ritualName);
+            } else {
+                rt.onCooldownFail();
+            }
+        }
+        return check;
+    }
+
+    public void onCall(Hand hand) { }
 }

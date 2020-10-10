@@ -28,6 +28,7 @@ import team.comofas.arstheurgia.ArsTheurgia;
 import team.comofas.arstheurgia.blocks.ChalkBlock;
 import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.registry.ArsBlocks;
+import team.comofas.arstheurgia.registry.ArsSounds;
 
 import java.util.*;
 
@@ -103,7 +104,7 @@ public class ChalkItem extends Item {
             world.setBlockState(placePos.offset(hit.getSide()), getBlockItem(compoundTag.getInt("index")).getDefaultState().with(FACING, player.getHorizontalFacing()), 3);
             stack.setCount(1);
             stack.damage(1, new Random(), (ServerPlayerEntity) player);
-            world.playSound(null, placePos, ArsTheurgia.CHALK, SoundCategory.BLOCKS, 1f, 1f);
+            world.playSound(null, placePos, ArsSounds.CHALK, SoundCategory.BLOCKS, 1f, 1f);
         } else {
             cycle(compoundTag, player.isSneaking());
             player.sendMessage(Text.of(""+ChalkList.get(compoundTag.getInt("index"))), true);

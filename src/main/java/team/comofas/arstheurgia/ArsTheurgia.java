@@ -7,13 +7,13 @@ import team.comofas.arstheurgia.events.LootTableEvent;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 import team.comofas.arstheurgia.registry.ArsEffects;
 import team.comofas.arstheurgia.registry.ArsItems;
+import team.comofas.arstheurgia.registry.ArsSounds;
 
 public class ArsTheurgia implements ModInitializer {
-    public static SoundEvent CHALK = new SoundEvent(ArsUtils.getIdentifier("chalk"));
 
     @Override
     public void onInitialize() {
-        Registry.register(Registry.SOUND_EVENT, ArsUtils.getIdentifier("chalk"), CHALK);
+        ArsSounds.registerAll();
         ArsBlocks.registerAll();
         ArsItems.registerAll();
         ArsEffects.registerAll();
