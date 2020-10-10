@@ -1,0 +1,14 @@
+{
+    "textures": {
+        "particle": "arstheurgia:block/flour_dust_dot"
+    },
+    "elements": [
+        {   "from": [ 0, 1, 8 ],
+            "to": [ 16, 1, 16 ],
+            "faces": {
+                "up": { "uv": [ 0, 8, 16, 16 ], "texture": "#line"},
+                "down": { "uv": [ 0, 16, 16, 8 ], "texture": "#line"}
+            }
+        }
+    ]
+}
