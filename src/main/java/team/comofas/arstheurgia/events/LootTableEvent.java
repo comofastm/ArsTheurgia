@@ -2,10 +2,19 @@ package team.comofas.arstheurgia.events;
 
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.Items;
 import net.minecraft.loot.ConstantLootTableRange;
+import net.minecraft.loot.condition.EntityPropertiesLootCondition;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.predicate.PlayerPredicate;
+import net.minecraft.predicate.entity.EntityEquipmentPredicate;
+import net.minecraft.predicate.entity.EntityPredicate;
+import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.util.Identifier;
+import team.comofas.arstheurgia.ArsUtils;
 import team.comofas.arstheurgia.registry.ArsItems;
 import team.comofas.arstheurgia.ritual.Ritual;
 
@@ -15,6 +24,8 @@ public class LootTableEvent {
 
     public static void register() {
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
+            System.out.println(id);
+
             if (DESERT_PYRAMID_ID.equals(id)) {
                 FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
                         .rolls(ConstantLootTableRange.create(1))
