@@ -1,5 +1,8 @@
 package team.comofas.arstheurgia.ritual.rituals;
 
+import io.netty.buffer.Unpooled;
+import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
+import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -7,8 +10,10 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.LiteralText;
@@ -16,6 +21,8 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import team.comofas.arstheurgia.ArsTheurgia;
+import team.comofas.arstheurgia.blocks.CeramicAltarBlock;
 import team.comofas.arstheurgia.blocks.CeramicAltarBlockEntity;
 import team.comofas.arstheurgia.blocks.RitualBlockEntity;
 import team.comofas.arstheurgia.registry.ArsBlocks;
@@ -27,6 +34,7 @@ import team.comofas.arstheurgia.ritual.utils.RitualUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class PazuzuBlessing extends Ritual {
 
@@ -107,12 +115,28 @@ public class PazuzuBlessing extends Ritual {
             return;
         }
 
+        Stream<PlayerEntity> watchingPlayers = PlayerStream.watching(player.getEntityWorld(),hit.getBlockPos());
+        PacketByteBuf passedData = new PacketByteBuf(Unpooled.buffer());
+
+        passedData.writeBlockPos(hit.getBlockPos());
+
+        for (BlockEntity entity : ritualBlocks) {
+            if (entity != null)
+                player.getEntityWorld().removeBlock(entity.getPos(), false);
+        }
+
+
+        watchingPlayers.forEach(player ->
+                ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, ArsTheurgia.CONSUME_ITEM_PARTICLE, passedData));
+
         player.getEntityWorld().playSound(null, hit.getBlockPos(), ArsSounds.RITUAL_CHIME, SoundCategory.AMBIENT, 1f, 1f);
         player.addStatusEffect(new StatusEffectInstance(ArsEffects.PAZUZU_BLESSING, 69696, 1, true, false));
     }
 
     public boolean hasNecessaryItems() {
         boolean hasNecessaryItems = true;
+
+
 
         for (BlockEntity entity : ritualBlocks) {
 
@@ -132,6 +156,8 @@ public class PazuzuBlessing extends Ritual {
                             hasNecessaryItems = false;
                         }
                     }
+                } else {
+                    hasNecessaryItems = false;
                 }
             }
 

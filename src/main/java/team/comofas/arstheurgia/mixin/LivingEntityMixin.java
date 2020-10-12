@@ -21,7 +21,7 @@ public abstract class LivingEntityMixin {
 
     @Inject(method = "dropLoot", at = @At("HEAD"))
     public void dropBile(DamageSource source, boolean causedByPlayer, CallbackInfo ci) {
-        if (causedByPlayer) {
+        if (source.getAttacker() instanceof PlayerEntity) {
             PlayerEntity attacker = (PlayerEntity) source.getAttacker();
             Item item = attacker.inventory.getMainHandStack().getItem();
 

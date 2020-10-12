@@ -18,8 +18,6 @@ public class CeramicAltarBlockEntity extends BlockEntity {
     public CompoundTag toTag(CompoundTag tag) {
         super.toTag(tag);
         tag.putInt("index", index);
-        tag.put("item", placedItem.toTag(new CompoundTag()));
-
         return tag;
     }
 
@@ -27,7 +25,6 @@ public class CeramicAltarBlockEntity extends BlockEntity {
     public void fromTag(BlockState state, CompoundTag tag) {
         super.fromTag(state, tag);
         index = tag.getInt("index");
-        placedItem = ItemStack.fromTag(tag.getCompound("item"));
     }
 
     public ItemStack getPlacedItem() {
@@ -37,6 +34,7 @@ public class CeramicAltarBlockEntity extends BlockEntity {
     public void setPlacedItem(ItemStack placedItem) {
         this.placedItem = placedItem;
         markDirty();
+        System.out.println(this.placedItem);
     }
 
     public int getIndex() {

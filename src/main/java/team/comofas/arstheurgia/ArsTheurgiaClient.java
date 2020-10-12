@@ -3,7 +3,12 @@ package team.comofas.arstheurgia;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
+import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import team.comofas.arstheurgia.blocks.CeramicAltarBlockEntityRenderer;
 import team.comofas.arstheurgia.blocks.RitualBlockEntityRenderer;
 import team.comofas.arstheurgia.registry.ArsBlocks;
@@ -19,5 +24,19 @@ public class ArsTheurgiaClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.SUMMER_SYMBOL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.WINTER_SYMBOL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.FLOUR, RenderLayer.getCutout());
+
+        ClientSidePacketRegistry.INSTANCE.register(ArsTheurgia.CONSUME_ITEM_PARTICLE,
+                (packetContext, attachedData) -> {
+                    BlockPos pos = attachedData.readBlockPos();
+                    packetContext.getTaskQueue().execute(() -> {
+    
+                        MinecraftClient.getInstance().particleManager.addParticle(
+                                ParticleTypes.TOTEM_OF_UNDYING, pos.getX(), pos.getY(), pos.getZ(),
+                                0, 0.1, 0
+                        );
+
+
+                    });
+                });
     }
 }

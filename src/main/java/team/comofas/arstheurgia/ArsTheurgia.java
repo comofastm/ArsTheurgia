@@ -3,6 +3,7 @@ package team.comofas.arstheurgia;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.minecraft.structure.StructurePieceType;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.GenerationStep;
@@ -16,8 +17,12 @@ import team.comofas.arstheurgia.structures.RuinGenerator;
 
 public class ArsTheurgia implements ModInitializer {
 
+    public static final Identifier CONSUME_ITEM_PARTICLE = ArsUtils.getIdentifier("consume_item");
+
     @Override
     public void onInitialize() {
+
+
 
         ArsSounds.registerAll();
         ArsBlocks.registerAll();
