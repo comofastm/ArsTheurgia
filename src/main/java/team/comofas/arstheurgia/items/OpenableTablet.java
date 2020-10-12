@@ -2,17 +2,23 @@ package team.comofas.arstheurgia.items;
 
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.LecternBlock;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.LiteralText;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import team.comofas.arstheurgia.ArsTheurgia;
 import team.comofas.arstheurgia.gui.GuiUtils;
 import team.comofas.arstheurgia.player.PlayerComponents;
+
+import java.awt.print.Book;
 
 public class OpenableTablet extends Item {
 
@@ -40,5 +46,10 @@ public class OpenableTablet extends Item {
         return TypedActionResult.method_29237(itemStack, world.isClient());
 
     }
+
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        return ActionResult.FAIL;
+    }
+
 }
 

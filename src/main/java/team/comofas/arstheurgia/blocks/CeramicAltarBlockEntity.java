@@ -6,15 +6,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
-
-// BlockEntity class for blocks that implement a Ritual. Can be extended but should suffice for general block use. (Index usage is assumed.)
-
-public class  RitualBlockEntity extends BlockEntity {
+public class CeramicAltarBlockEntity extends BlockEntity {
     private int index = 0;
     private ItemStack placedItem;
 
-    public RitualBlockEntity() {
-        super(ArsBlocks.RITUALBLOCK_ENTITY);
+    public CeramicAltarBlockEntity() {
+        super(ArsBlocks.CERAMIC_ALTAR_ENTITY);
     }
 
     @Override

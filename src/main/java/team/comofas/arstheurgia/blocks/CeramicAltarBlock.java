@@ -1,6 +1,8 @@
-package team.comofas.arstheurgia.blocks.ritualblocktest;
+package team.comofas.arstheurgia.blocks;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -14,20 +16,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import team.comofas.arstheurgia.blocks.RitualBlockEntity;
+import team.comofas.arstheurgia.blocks.ritualblocktest.RitualBlock;
 import team.comofas.arstheurgia.items.OpenableTablet;
 import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.ritual.Ritual;
 
-public class RitualBlock extends Block implements BlockEntityProvider {
+public class CeramicAltarBlock extends Block implements BlockEntityProvider {
 
-    public RitualBlock(Settings settings) {
+    public CeramicAltarBlock(Settings settings) {
         super(settings);
     }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        RitualBlockEntity blockentity = (RitualBlockEntity) world.getBlockEntity(pos);
+        CeramicAltarBlockEntity blockentity = (CeramicAltarBlockEntity) world.getBlockEntity(pos);
 
 
         Item heldItem = player.getStackInHand(hand).getItem();
@@ -79,6 +81,6 @@ public class RitualBlock extends Block implements BlockEntityProvider {
 
     @Override
     public @Nullable BlockEntity createBlockEntity(BlockView world) {
-        return new RitualBlockEntity();
+        return new CeramicAltarBlockEntity();
     }
 }

@@ -31,7 +31,6 @@ public class CreeperSummon extends Ritual {
     public CreeperSummon(String name, int cooldown) {
         super(name, cooldown);
         validBlocks.put(Blocks.TORCH, RitualUtils.FoldSquare(3, 4, new BlockPos(0, 0, 0)));
-        System.out.println(RitualUtils.SquareIterate(2, new BlockPos(0, 0, 0)));
         validBlocks.put(Blocks.REDSTONE_WIRE, RitualUtils.SquareIterate(2, new BlockPos(0, 0, 0)));
     }
 
@@ -55,8 +54,6 @@ public class CreeperSummon extends Ritual {
 
     @Override
     public void onCall(Hand hand) {
-        this.player = player;
-        this.state = state;
 
         World world = this.player.getEntityWorld();
         BlockPos pos = this.hit.getBlockPos();

@@ -3,6 +3,7 @@ package team.comofas.arstheurgia.ritual;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -43,6 +44,7 @@ public class Ritual {
     protected BlockState state;
     protected PlayerEntity player;
     protected BlockHitResult hit;
+    protected List<BlockEntity> ritualBlocks = new ArrayList<>();
 
 
     public Ritual(String name, int cooldown) {
@@ -81,6 +83,7 @@ public class Ritual {
         rt.fromUse(state, player, hit);
         BlockPos pos = hit.getBlockPos();
         World world = player.getEntityWorld();
+        System.out.println("bb");
         boolean check = rt.checkRitual();
 
         if (check) {
