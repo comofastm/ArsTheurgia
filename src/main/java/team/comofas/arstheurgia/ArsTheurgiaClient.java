@@ -31,8 +31,8 @@ public class ArsTheurgiaClient implements ClientModInitializer {
                     packetContext.getTaskQueue().execute(() -> {
     
                         MinecraftClient.getInstance().particleManager.addParticle(
-                                ParticleTypes.TOTEM_OF_UNDYING, pos.getX(), pos.getY(), pos.getZ(),
-                                0, 0.1, 0
+                                ParticleTypes.EXPLOSION_EMITTER, pos.getX(), pos.getY(), pos.getZ(),
+                                0, 0, 0
                         );
 
 

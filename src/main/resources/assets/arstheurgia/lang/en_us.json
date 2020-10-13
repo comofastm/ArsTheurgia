@@ -1,5 +1,6 @@
 {
   "itemGroup.arstheurgia.items": "Ars Theurgia",
   "ritual.creeper.tablet.text": "aaaaa\nbbbbb\nccccc",
+  "ritual.pazuzu.notday": "You must perform this ritual at night.",
   "item.arstheurgia.chalk": "Chalk"
 }

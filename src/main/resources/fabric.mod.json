@@ -31,7 +31,8 @@
     "cardinal-components": [
       "arstheurgia:evil",
       "arstheurgia:knowledge",
-      "arstheurgia:ritualtime"
+      "arstheurgia:ritualtime",
+      "arstheurgia:blessing"
     ]
   },
   "depends": {
