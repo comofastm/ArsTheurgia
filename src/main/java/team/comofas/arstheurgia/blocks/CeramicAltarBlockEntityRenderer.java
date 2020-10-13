@@ -23,7 +23,7 @@ public class CeramicAltarBlockEntityRenderer extends BlockEntityRenderer<Ceramic
 
             double offset = MathHelper.sin((float) ((entity.getWorld().getTime() + tickDelta) / 8.0)) / 8.0;
 
-            matrices.translate(0.5, 1.25 + offset, 0.5);
+            matrices.translate(0.5, 0.75 + offset, 0.5);
 
             matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion((entity.getWorld().getTime() + tickDelta) * 2));
 

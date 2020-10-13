@@ -2,5 +2,20 @@
   "itemGroup.arstheurgia.items": "Ars Theurgia",
   "ritual.creeper.tablet.text": "aaaaa\nbbbbb\nccccc",
   "ritual.pazuzu.notday": "You must perform this ritual at night.",
-  "item.arstheurgia.chalk": "Chalk"
+  "item.arstheurgia.chalk": "Chalk",
+  "item.arstheurgia.dictionary": "A Concise Dictionary of Akkadian",
+  "item.arstheurgia.bile": "Bile Bottle",
+  "item.arstheurgia.gebel_knife": "Gebel Knife",
+  "item.arstheurgia.trowel": "Trowel",
+  "block.arstheurgia.flour": "Flour",
+  "block.arstheurgia.ceramic_altar": "Ceramic Altar",
+  "block.arstheurgia.table": "Ritual Table",
+  "block.arstheurgia.smooth_mud_block_stairs": "Smooth Mud Block Stairs",
+  "block.arstheurgia.mud_block_bricks_stairs": "Mud Block Bricks Stairs",
+  "block.arstheurgia.mud_block": "Mud Block",
+  "block.arstheurgia.smooth_mud_block": "Smooth Mud Block",
+  "block.arstheurgia.mud_block_bricks": "Mud Block Bricks",
+  "block.arstheurgia.mud_block_bricks_slab": "Mud Block Bricks Slab",
+
+  "effect.arstheurgia.pazuzu_blessing": "Pazuzu's Blessing"
 }
