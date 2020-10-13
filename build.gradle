@@ -18,6 +18,7 @@ repositories {
         name = "Ladysnake Libs"
         url = "https://dl.bintray.com/ladysnake/libs"
     }
+    maven { url 'https://repo.repsy.io/mvn/gandiber/geckolib' }
 }
 
 dependencies {
@@ -35,6 +36,8 @@ dependencies {
 
     modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cardinal_version}"
     include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cardinal_version}"
+
+    modImplementation "software.bernie.geckolib:fabric-1.16.2-geckolib:2.0.0:dev"
 
 }
 
