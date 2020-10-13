@@ -7,13 +7,19 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.BlockView;
 import team.comofas.arstheurgia.blocks.*;
 import team.comofas.arstheurgia.blocks.ritualblocktest.RitualBlock;
 import team.comofas.arstheurgia.ArsUtils;
 
 
 public class ArsBlocks {
+
+    private static boolean never(BlockState state, BlockView world, BlockPos pos) {
+        return false;
+    }
 
     public static final Block RITUALCENTER = new RitualBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
     public static final Block ASYRIEL_SIGIL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
@@ -39,6 +45,8 @@ public class ArsBlocks {
     public static final Block MUD_BLOCK_BRICKS_SLAB = new SlabBlock(AbstractBlock.Settings.of(Material.STONE, MaterialColor.STONE).requiresTool().strength(2.0F, 6.0F));
     public static final Block MUD_BLOCK_RAW = new FallingArcheologicalBlock(FabricBlockSettings.of(Material.SOIL).hardness(1.0f));
 
+    public static final Block DATE_TREE_LOG = new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F).sounds(BlockSoundGroup.WOOD));
+    public static final Block DATE_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).sounds(BlockSoundGroup.GRASS).nonOpaque().suffocates(ArsBlocks::never).blockVision(ArsBlocks::never));
 
 
 
@@ -66,6 +74,9 @@ public class ArsBlocks {
         registerBlock(MUD_BLOCK_BRICKS, "mud_block_bricks");
         registerBlock(MUD_BLOCK_BRICKS_SLAB, "mud_block_bricks_slab");
         registerBlock(MUD_BLOCK_RAW, "mud_block_raw");
+
+        registerBlock(DATE_TREE_LOG, "date_tree_log");
+        registerBlock(DATE_LEAVES, "date_leaves");
 
         RITUALBLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ritualblock"), BlockEntityType.Builder.create(RitualBlockEntity::new, RITUALCENTER).build(null));
         CERAMIC_ALTAR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ceramic_altar"), BlockEntityType.Builder.create(CeramicAltarBlockEntity::new, CERAMIC_ALTAR).build(null));

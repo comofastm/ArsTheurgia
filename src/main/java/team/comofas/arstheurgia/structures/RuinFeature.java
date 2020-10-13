@@ -33,12 +33,11 @@ public class RuinFeature extends StructureFeature<DefaultFeatureConfig> {
                          int chunkZ, Biome biome, DefaultFeatureConfig config) {
             int x = chunkX * 16;
             int z = chunkZ * 16;
-            int y = chunkGenerator.getHeight(x, z, Heightmap.Type.WORLD_SURFACE_WG)-8;
+            int y = chunkGenerator.getHeight(x, z, Heightmap.Type.WORLD_SURFACE_WG);
             BlockPos pos = new BlockPos(x, y, z);
             BlockRotation rotation = BlockRotation.random(this.random);
             RuinGenerator.addPieces(manager, pos, rotation, this.children);
             this.setBoundingBoxFromChildren();
-            this.boundingBox.move(0, 8, 0);
         }
     }
 }

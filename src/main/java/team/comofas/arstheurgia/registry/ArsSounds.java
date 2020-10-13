@@ -8,11 +8,17 @@ public class ArsSounds {
     public static SoundEvent CHALK = new SoundEvent(ArsUtils.getIdentifier("chalk"));
     public static SoundEvent RITUAL_FAIL = new SoundEvent(ArsUtils.getIdentifier("ritual_fail"));
     public static SoundEvent RITUAL_CHIME = new SoundEvent(ArsUtils.getIdentifier("ritual_chime"));
+    public static SoundEvent UDUG_DISAPPEAR = new SoundEvent(ArsUtils.getIdentifier("udug_disappear"));
+    public static SoundEvent UDUG_AMBIENT = new SoundEvent(ArsUtils.getIdentifier("udug_ambient"));
+    public static SoundEvent UDUG_WALKING = new SoundEvent(ArsUtils.getIdentifier("udug_walking"));
 
     public static void registerAll() {
         registerSound(CHALK);
         registerSound(RITUAL_FAIL);
         registerSound(RITUAL_CHIME);
+        registerSound(UDUG_AMBIENT);
+        registerSound(UDUG_DISAPPEAR);
+        registerSound(UDUG_WALKING);
     }
 
     public static SoundEvent registerSound(SoundEvent sound) {

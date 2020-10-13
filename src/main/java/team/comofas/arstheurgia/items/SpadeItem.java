@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import team.comofas.arstheurgia.blocks.FallingArcheologicalBlock;
@@ -23,6 +24,7 @@ public class SpadeItem extends ShovelItem {
                 PlayerEntity player = (PlayerEntity) miner;
                 if (player.getRandom().nextDouble()>0.5) {
                     player.inventory.insertStack(new ItemStack(ArsItems.DICTIONARY));
+                    stack.damage(1, player.getRandom(), (ServerPlayerEntity) player);
                 }
             }
         }

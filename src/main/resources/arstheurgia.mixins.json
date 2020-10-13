@@ -6,7 +6,8 @@
   "mixins": [
     "AbstractFurnaceBlockEntityMixin",
     "DefaultBiomeFeaturesMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
