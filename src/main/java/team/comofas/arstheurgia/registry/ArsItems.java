@@ -35,6 +35,8 @@ public class ArsItems {
     public static final Item FLOUR = new BlockItem(ArsBlocks.FLOUR, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item BILE = new BileBottleItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(Items.GLASS_BOTTLE));
 
+    public static final Item DATES = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.APPLE));
+
     public static final Item PAZUZU_FIGURINE = new BlockItem(ArsBlocks.PAZUZU_FIGURINE, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item PAZUZU_AMULET = new ArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.CHEST, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
@@ -64,6 +66,8 @@ public class ArsItems {
         registerItem(MUD_BLOCK_BRICKS, "mud_block_bricks");
         registerItem(MUD_BLOCK_BRICKS_SLAB, "mud_block_bricks_slab");
         registerItem(MUD_BLOCK_RAW, "mud_block_raw");
+
+        registerItem(DATES, "dates");
         
         CreeperSummon.INSTANCE.registerItems();
         PazuzuBlessing.INSTANCE.registerItems();

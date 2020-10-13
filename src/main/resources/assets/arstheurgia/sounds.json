@@ -15,5 +15,21 @@
       "arstheurgia:magic_chime",
       "arstheurgia:magic_chime2"
     ]
+  },
+  "udug_walking": {
+    "sounds": [
+      "arstheurgia:udug_walking1",
+      "arstheurgia:udug_walking2"
+    ]
+  },
+  "udug_ambient": {
+    "sounds": [
+      "arstheurgia:udug_ambient"
+    ]
+  },
+  "udug_disappear": {
+    "sounds": [
+      "arstheurgia:udug_disappear"
+    ]
   }
 }
