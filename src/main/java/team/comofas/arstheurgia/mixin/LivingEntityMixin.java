@@ -67,7 +67,8 @@ public abstract class LivingEntityMixin {
             PlayerEntity playerEntity = (PlayerEntity) livingEntity;
 
             if (PlayerComponents.ACTIVE_BLESSING.get(playerEntity).hasBlessing()) {
-                if (world.getTimeOfDay() > 12542) {
+
+                if (!world.isDay()) {
                     if (world.getTimeOfDay() % 60 == 0) {
                         StatusEffectInstance pazuzuEffectInstance = new StatusEffectInstance(ArsEffects.PAZUZU_BLESSING, 60, 1, true, false);
                         playerEntity.addStatusEffect(pazuzuEffectInstance);
