@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M  ",
+    "MM ",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "arstheurgia:smooth_mud_block"
+    }
+  },
+  "result": {
+    "item": "arstheurgia:smooth_mud_block_stairs",
+    "count": 4
+  }
+}
+

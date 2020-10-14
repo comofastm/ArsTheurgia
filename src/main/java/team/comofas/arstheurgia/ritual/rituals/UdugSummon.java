@@ -114,6 +114,8 @@ public class UdugSummon extends Ritual {
         PlayerComponents.KNOWLEDGE.get(player).setKnowledge("activeUdug", true);
         udug.setOwner(player);
 
+        player.getEntityWorld().playSound(null, pos, ArsSounds.CLAWS_GROW, SoundCategory.AMBIENT, 1f, 1f);
+
         player.world.spawnEntity(udug);
 
     }

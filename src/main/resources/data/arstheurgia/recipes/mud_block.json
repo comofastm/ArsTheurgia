@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " MM",
+    " MM",
+    "   "
+  ],
+  "key": {
+    "M": {
+      "item": "arstheurgia:mud_block_raw"
+    }
+  },
+  "result": {
+    "item": "arstheurgia:mud_block",
+    "count": 1
+  }
+}
+

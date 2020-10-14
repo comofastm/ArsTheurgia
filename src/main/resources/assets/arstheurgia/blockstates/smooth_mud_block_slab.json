@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "arstheurgia:block/smooth_mud_block_slab"
+    },
+    "type=double": {
+      "model": "arstheurgia:block/smooth_mud_block"
+    },
+    "type=top": {
+      "model": "arstheurgia:block/smooth_mud_block_slab_top"
+    }
+  }
+}

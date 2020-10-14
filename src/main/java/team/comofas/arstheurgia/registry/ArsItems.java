@@ -21,6 +21,7 @@ public class ArsItems {
     public static final Item MUD_BLOCK_BRICKS_STAIRS = new BlockItem(ArsBlocks.MUD_BLOCK_BRICKS_STAIRS, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item MUD_BLOCK = new BlockItem(ArsBlocks.MUD_BLOCK, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item SMOOTH_MUD_BLOCK = new BlockItem(ArsBlocks.SMOOTH_MUD_BLOCK, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item SMOOTH_MUD_BLOCK_SLAB = new BlockItem(ArsBlocks.SMOOTH_MUD_BLOCK_SLAB, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item MUD_BLOCK_BRICKS = new BlockItem(ArsBlocks.MUD_BLOCK_BRICKS, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item MUD_BLOCK_BRICKS_SLAB = new BlockItem(ArsBlocks.MUD_BLOCK_BRICKS_SLAB, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item MUD_BLOCK_RAW = new BlockItem(ArsBlocks.MUD_BLOCK_RAW, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
@@ -68,6 +69,7 @@ public class ArsItems {
         registerItem(MUD_BLOCK_BRICKS_STAIRS, "mud_block_bricks_stairs");
         registerItem(MUD_BLOCK, "mud_block");
         registerItem(SMOOTH_MUD_BLOCK, "smooth_mud_block");
+        registerItem(SMOOTH_MUD_BLOCK_SLAB, "smooth_mud_block_slab");
         registerItem(MUD_BLOCK_BRICKS, "mud_block_bricks");
         registerItem(MUD_BLOCK_BRICKS_SLAB, "mud_block_bricks_slab");
         registerItem(MUD_BLOCK_RAW, "mud_block_raw");

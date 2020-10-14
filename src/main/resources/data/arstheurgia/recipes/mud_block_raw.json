@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SDS",
+    "DBD",
+    "SDS"
+  ],
+  "key": {
+    "S": {
+      "tag": "minecraft:sand"
+    },
+    "D": {
+      "item": "minecraft:dirt"
+    },
+    "B": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+    "item": "arstheurgia:mud_block_raw",
+    "count": 8
+  }
+}
+
