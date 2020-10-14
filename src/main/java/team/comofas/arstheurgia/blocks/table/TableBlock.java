@@ -38,8 +38,6 @@ public class TableBlock extends Block implements BlockEntityProvider {
 
         ItemStack placedItem = blockentity.getPlacedItem();
 
-        System.out.println("thing "+placedItem);
-
         if (!world.isClient) {
             if (heldItem instanceof OpenableTablet) {
                 if (PlayerComponents.KNOWLEDGE.get(player).hasKnowledge(((OpenableTablet) heldItem).ritualName)) {

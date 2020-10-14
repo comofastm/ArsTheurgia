@@ -20,7 +20,6 @@ import team.comofas.arstheurgia.registry.ArsBlocks;
 import java.util.stream.Stream;
 
 public class TableBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
-    private int index = 0;
     private ItemStack placedItem;
 
     public TableBlockEntity() {

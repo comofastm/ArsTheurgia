@@ -8,7 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
 public class CeramicAltarBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
-    private int index = 0;
+
     private ItemStack placedItem;
 
     public CeramicAltarBlockEntity() {
