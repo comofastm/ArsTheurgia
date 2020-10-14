@@ -18,7 +18,7 @@ import team.comofas.arstheurgia.registry.*;
 
 public class ArsTheurgia implements ModInitializer {
 
-    public static final EntityType<UdugEntity> CUBE = Registry.register(
+    public static final EntityType<UdugEntity> UDUG = Registry.register(
             Registry.ENTITY_TYPE,
             ArsUtils.getIdentifier("udug"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, UdugEntity::new).dimensions(EntityDimensions.fixed(0.75f, 0.75f)).build()
@@ -43,11 +43,11 @@ public class ArsTheurgia implements ModInitializer {
         ArsStructures.registerAll();
         LootTableEvent.register();
 
-        FabricDefaultAttributeRegistry.register(CUBE, UdugEntity.createMobAttributes());
+        FabricDefaultAttributeRegistry.register(UDUG, UdugEntity.createMobAttributes());
 
         FabricDefaultAttributeRegistry.register(LAMASSU, LamassuEntity.createMobAttributes());
 
-        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.CUBE, (dispatcher, context) -> {
+        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.UDUG, (dispatcher, context) -> {
             return new UdugEntityRenderer(dispatcher);
         });
 

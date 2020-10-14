@@ -84,7 +84,6 @@ public class Ritual {
         rt.fromUse(state, player, hit);
         BlockPos pos = hit.getBlockPos();
         World world = player.getEntityWorld();
-        System.out.println("bb");
         boolean check = rt.checkRitual();
 
         if (check) {
@@ -112,7 +111,6 @@ public class Ritual {
                     World world = player.getEntityWorld();
 
                     BlockState blockState = world.getBlockState(p.add(hit.getBlockPos()));
-
 
                     if (!blockState.isOf(entry.getKey())) {
                         isValid = false;

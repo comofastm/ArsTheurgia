@@ -9,6 +9,7 @@ import team.comofas.arstheurgia.items.*;
 import team.comofas.arstheurgia.ritual.rituals.CreeperSummon;
 import team.comofas.arstheurgia.ritual.rituals.PazuzuBlessing;
 import team.comofas.arstheurgia.ritual.rituals.SamasPurification;
+import team.comofas.arstheurgia.ritual.rituals.UdugSummon;
 
 public class ArsItems {
 
@@ -81,6 +82,7 @@ public class ArsItems {
         CreeperSummon.INSTANCE.registerItems();
         PazuzuBlessing.INSTANCE.registerItems();
         SamasPurification.INSTANCE.registerItems();
+        UdugSummon.INSTANCE.registerItems();
 
 
     }
