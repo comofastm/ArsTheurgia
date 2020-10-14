@@ -5,11 +5,10 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.registry.Registry;
 import team.comofas.arstheurgia.ArsUtils;
-import team.comofas.arstheurgia.items.BileBottleItem;
-import team.comofas.arstheurgia.items.ChalkItem;
-import team.comofas.arstheurgia.items.SpadeItem;
+import team.comofas.arstheurgia.items.*;
 import team.comofas.arstheurgia.ritual.rituals.CreeperSummon;
 import team.comofas.arstheurgia.ritual.rituals.PazuzuBlessing;
+import team.comofas.arstheurgia.ritual.rituals.SamasPurification;
 
 public class ArsItems {
 
@@ -40,6 +39,10 @@ public class ArsItems {
     public static final Item PAZUZU_FIGURINE = new BlockItem(ArsBlocks.PAZUZU_FIGURINE, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item PAZUZU_AMULET = new ArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.CHEST, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
+    public static final Item WATERSKIN = new WaterskinItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item WATERSKIN_FILLED = new FilledWaterskinItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+
+
 
     public static void registerAll() {
         registerItem(CLAY_TABLET, "clay_tablet");
@@ -68,9 +71,13 @@ public class ArsItems {
         registerItem(MUD_BLOCK_RAW, "mud_block_raw");
 
         registerItem(DATES, "dates");
+
+        registerItem(WATERSKIN, "waterskin");
+        registerItem(WATERSKIN_FILLED, "filled_waterskin");
         
         CreeperSummon.INSTANCE.registerItems();
         PazuzuBlessing.INSTANCE.registerItems();
+        SamasPurification.INSTANCE.registerItems();
 
 
     }

@@ -1,4 +1,4 @@
-package team.comofas.arstheurgia.blocks;
+package team.comofas.arstheurgia.blocks.table;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -6,18 +6,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
-public class CeramicAltarBlockEntity extends BlockEntity {
+public class TableBlockEntity extends BlockEntity {
     private int index = 0;
     private ItemStack placedItem;
 
-    public CeramicAltarBlockEntity() {
-        super(ArsBlocks.CERAMIC_ALTAR_ENTITY);
+    public TableBlockEntity() {
+        super(ArsBlocks.TABLE_BLOCK_ENTITY);
     }
+
+    // TODO put item in tag to save
 
     @Override
     public CompoundTag toTag(CompoundTag tag) {
         super.toTag(tag);
         tag.putInt("index", index);
+
         return tag;
     }
 
@@ -34,7 +37,6 @@ public class CeramicAltarBlockEntity extends BlockEntity {
     public void setPlacedItem(ItemStack placedItem) {
         this.placedItem = placedItem;
         markDirty();
-        System.out.println(this.placedItem);
     }
 
     public int getIndex() {

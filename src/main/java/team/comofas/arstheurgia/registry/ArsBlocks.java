@@ -2,17 +2,19 @@ package team.comofas.arstheurgia.registry;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.particle.DustParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 import team.comofas.arstheurgia.blocks.*;
+import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlock;
+import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlockEntity;
 import team.comofas.arstheurgia.blocks.ritualblocktest.RitualBlock;
 import team.comofas.arstheurgia.ArsUtils;
+import team.comofas.arstheurgia.blocks.table.TableBlock;
+import team.comofas.arstheurgia.blocks.table.TableBlockEntity;
 
 
 public class ArsBlocks {
@@ -39,7 +41,7 @@ public class ArsBlocks {
     public static final Block SMOOTH_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block MUD_BLOCK_BRICKS = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
 
-    public static final Block TABLE = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block TABLE = new TableBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block CERAMIC_ALTAR = new CeramicAltarBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
 
     public static final Block MUD_BLOCK_BRICKS_SLAB = new SlabBlock(AbstractBlock.Settings.of(Material.STONE, MaterialColor.STONE).requiresTool().strength(2.0F, 6.0F));
@@ -52,6 +54,8 @@ public class ArsBlocks {
 
     public static BlockEntityType<RitualBlockEntity> RITUALBLOCK_ENTITY;
     public static BlockEntityType<CeramicAltarBlockEntity> CERAMIC_ALTAR_ENTITY;
+
+    public static BlockEntityType<TableBlockEntity> TABLE_BLOCK_ENTITY;
 
     public static void registerAll() {
         registerBlock(ASYRIEL_SIGIL, "asyriel_sigil_chalk");
@@ -80,6 +84,7 @@ public class ArsBlocks {
 
         RITUALBLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ritualblock"), BlockEntityType.Builder.create(RitualBlockEntity::new, RITUALCENTER).build(null));
         CERAMIC_ALTAR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ceramic_altar"), BlockEntityType.Builder.create(CeramicAltarBlockEntity::new, CERAMIC_ALTAR).build(null));
+        TABLE_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("table"), BlockEntityType.Builder.create(TableBlockEntity::new, TABLE).build(null));
 
     }
     public static Block registerBlock(Block block, String name) {

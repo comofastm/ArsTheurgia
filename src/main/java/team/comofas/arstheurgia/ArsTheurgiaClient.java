@@ -8,9 +8,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import team.comofas.arstheurgia.blocks.CeramicAltarBlockEntityRenderer;
+import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlockEntityRenderer;
 import team.comofas.arstheurgia.blocks.RitualBlockEntityRenderer;
+import team.comofas.arstheurgia.blocks.table.TableBlockEntityRenderer;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
 public class ArsTheurgiaClient implements ClientModInitializer {
@@ -18,6 +18,8 @@ public class ArsTheurgiaClient implements ClientModInitializer {
     public void onInitializeClient() {
         BlockEntityRendererRegistry.INSTANCE.register(ArsBlocks.RITUALBLOCK_ENTITY, RitualBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(ArsBlocks.CERAMIC_ALTAR_ENTITY, CeramicAltarBlockEntityRenderer::new);
+
+        BlockEntityRendererRegistry.INSTANCE.register(ArsBlocks.TABLE_BLOCK_ENTITY, TableBlockEntityRenderer::new);
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.ASYRIEL_SIGIL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.AUTUMN_SYMBOL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.SPRING_SYMBOL, RenderLayer.getCutout());

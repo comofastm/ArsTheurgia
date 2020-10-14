@@ -10,6 +10,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
@@ -22,6 +24,7 @@ import team.comofas.arstheurgia.effects.ATEffect;
 import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.registry.ArsEffects;
 import team.comofas.arstheurgia.registry.ArsItems;
+import team.comofas.arstheurgia.registry.ArsSounds;
 import team.comofas.arstheurgia.ritual.rituals.PazuzuBlessing;
 
 import java.util.Iterator;
@@ -45,7 +48,7 @@ public abstract class LivingEntityMixin {
                     ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
                     if (attacker.inventory.contains(bottle)) {
                         attacker.inventory.getStack(attacker.inventory.getSlotWithStack(bottle)).decrement(1);
-
+                        ((LivingEntity)(Object)this).world.playSound(attacker, attacker.getX(), attacker.getY(), attacker.getZ(), ArsSounds.COLLECT_BILE, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                         attacker.inventory.insertStack(new ItemStack(ArsItems.BILE));
                     }
                 }
@@ -70,7 +73,7 @@ public abstract class LivingEntityMixin {
 
                 if (!world.isDay()) {
                     if (world.getTimeOfDay() % 60 == 0) {
-                        StatusEffectInstance pazuzuEffectInstance = new StatusEffectInstance(ArsEffects.PAZUZU_BLESSING, 60, 1, true, false);
+                        StatusEffectInstance pazuzuEffectInstance = new StatusEffectInstance(ArsEffects.PAZUZU_BLESSING, 60, 0, true, false);
                         playerEntity.addStatusEffect(pazuzuEffectInstance);
                     }
 

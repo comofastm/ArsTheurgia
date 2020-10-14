@@ -19,6 +19,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import team.comofas.arstheurgia.ArsTheurgia;
 import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlockEntity;
+import team.comofas.arstheurgia.blocks.table.TableBlockEntity;
 import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 import team.comofas.arstheurgia.registry.ArsEffects;
@@ -26,16 +27,14 @@ import team.comofas.arstheurgia.registry.ArsSounds;
 import team.comofas.arstheurgia.ritual.Ritual;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class PazuzuBlessing extends Ritual {
+public class SamasPurification extends Ritual {
 
-    public static final PazuzuBlessing INSTANCE = new PazuzuBlessing("pazuzu", 70);
+    public static SamasPurification INSTANCE = new SamasPurification("samas", 70);
 
-    public PazuzuBlessing(String name, int cooldown) {
+    public SamasPurification(String name, int cooldown) {
         super(name, cooldown);
 
         List<BlockPos> altarBlocks = new ArrayList<>();
@@ -49,11 +48,6 @@ public class PazuzuBlessing extends Ritual {
         for (int x = -1; x < 2; x++) {
             tableBlocks.add(new BlockPos(x, 0, 1));
         }
-
-        List<BlockPos> figurineBlocks = new ArrayList<>();
-        figurineBlocks.add(new BlockPos(0, 1, 1));
-
-        validBlocks.put(ArsBlocks.PAZUZU_FIGURINE, figurineBlocks);
 
 
         validBlocks.put(ArsBlocks.CERAMIC_ALTAR, altarBlocks);
@@ -74,7 +68,6 @@ public class PazuzuBlessing extends Ritual {
             return;
         }
 
-
         boolean hasNecessaryItems = hasNecessaryItems();
 
         if (!hasNecessaryItems) {
@@ -85,9 +78,6 @@ public class PazuzuBlessing extends Ritual {
 
         Stream<PlayerEntity> watchingPlayers = PlayerStream.watching(player.world, pos);
         PacketByteBuf passedData = new PacketByteBuf(Unpooled.buffer());
-
-
-
 
         passedData.writeBlockPos(pos);
 
@@ -107,39 +97,48 @@ public class PazuzuBlessing extends Ritual {
                 ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, ArsTheurgia.CONSUME_ITEM_PARTICLE, passedData));
 
         player.getEntityWorld().playSound(null, pos, ArsSounds.RITUAL_CHIME, SoundCategory.AMBIENT, 1f, 1f);
-        StatusEffectInstance pazuzuEffectInstance = new StatusEffectInstance(ArsEffects.PAZUZU_BLESSING, 60, 0, true, false);
 
-        PlayerComponents.ACTIVE_BLESSING.get(player).setBlessing(true);
-
-        player.addStatusEffect(pazuzuEffectInstance);
     }
 
     public boolean hasNecessaryItems() {
         boolean hasNecessaryItems = true;
 
-
-
         for (BlockEntity entity : ritualBlocks) {
 
+            BlockPos pos = entity.getPos();
+
             if (entity instanceof CeramicAltarBlockEntity) {
-                BlockPos pos = entity.getPos();
+
 
                 CeramicAltarBlockEntity ritualBlockEntity = (CeramicAltarBlockEntity) entity;
 
-                if (ritualBlockEntity.getPlacedItem() != null) {
+                if (ritualBlockEntity.getPlacedItem() != null && !ritualBlockEntity.getPlacedItem().isEmpty()) {
                     ItemStack placedItem = ritualBlockEntity.getPlacedItem();
                     if (pos.getZ() == hit.getBlockPos().getZ() && pos.getX() == hit.getBlockPos().getX()) {
-                        if (placedItem.getItem() != Items.GOLD_INGOT) {
+                        if (placedItem == null || placedItem.isEmpty() ) {
                             hasNecessaryItems = false;
                         }
                     } else {
-                        if (!placedItem.isFood()) {
+                        if (placedItem.getItem() != Items.HONEY_BOTTLE) {
                             hasNecessaryItems = false;
                         }
                     }
                 } else {
                     hasNecessaryItems = false;
                 }
+            } else if (entity instanceof TableBlockEntity) {
+
+                TableBlockEntity ritualBlockEntity = (TableBlockEntity) entity;
+                if (ritualBlockEntity.getPlacedItem() != null && !ritualBlockEntity.getPlacedItem().isEmpty()) {
+                    ItemStack placedItem = ritualBlockEntity.getPlacedItem();
+                    if (!placedItem.getItem().isFood()) {
+                        hasNecessaryItems = false;
+                    }
+                } else {
+                    hasNecessaryItems = false;
+                }
+
+
             }
 
         }
@@ -149,4 +148,3 @@ public class PazuzuBlessing extends Ritual {
     }
 
 }
-

@@ -11,6 +11,8 @@ public class ArsSounds {
     public static SoundEvent UDUG_DISAPPEAR = new SoundEvent(ArsUtils.getIdentifier("udug_disappear"));
     public static SoundEvent UDUG_AMBIENT = new SoundEvent(ArsUtils.getIdentifier("udug_ambient"));
     public static SoundEvent UDUG_WALKING = new SoundEvent(ArsUtils.getIdentifier("udug_walking"));
+    public static SoundEvent COLLECT_BILE = new SoundEvent(ArsUtils.getIdentifier("collect_bile"));
+
 
     public static void registerAll() {
         registerSound(CHALK);
@@ -19,6 +21,7 @@ public class ArsSounds {
         registerSound(UDUG_AMBIENT);
         registerSound(UDUG_DISAPPEAR);
         registerSound(UDUG_WALKING);
+        registerSound(COLLECT_BILE);
     }
 
     public static SoundEvent registerSound(SoundEvent sound) {

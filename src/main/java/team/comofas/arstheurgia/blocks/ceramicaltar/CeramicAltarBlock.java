@@ -1,4 +1,4 @@
-package team.comofas.arstheurgia.blocks;
+package team.comofas.arstheurgia.blocks.ceramicaltar;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -15,7 +15,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import team.comofas.arstheurgia.blocks.ritualblocktest.RitualBlock;
+import team.comofas.arstheurgia.blocks.RitualBlockEntity;
 import team.comofas.arstheurgia.items.OpenableTablet;
 import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.ritual.Ritual;

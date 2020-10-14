@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -95,6 +96,52 @@ public class Ritual {
             }
         }
         return check;
+    }
+
+    public boolean checkRitualWithRotation() {
+
+        for (Map.Entry<Block, List<BlockPos>> entry: this.validBlocks.entrySet()) {
+
+            List<BlockPos> blocks =  entry.getValue();
+
+            for (int i = 0; i < 4; i++) {
+
+                isValid = true;
+                for (BlockPos p : blocks) {
+
+                    World world = player.getEntityWorld();
+
+                    BlockState blockState = world.getBlockState(p.add(hit.getBlockPos()));
+
+
+                    if (!blockState.isOf(entry.getKey())) {
+                        isValid = false;
+                        break;
+                    } else {
+                        ritualBlocks.add(world.getBlockEntity(p.add(hit.getBlockPos())));
+                    }
+
+                }
+
+                if (isValid) {
+                    break;
+                }
+
+                for (int j = 0; j < blocks.size(); j++) {
+                    blocks.set(j, blocks.get(j).rotate(BlockRotation.CLOCKWISE_90));
+                }
+
+            }
+
+            if (!isValid) {
+                break;
+            }
+
+        }
+
+
+
+        return isValid;
     }
 
     public void onCall(Hand hand) { }
