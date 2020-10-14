@@ -5,10 +5,12 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.registry.Registry;
 import team.comofas.arstheurgia.ArsUtils;
-import team.comofas.arstheurgia.items.*;
+import team.comofas.arstheurgia.items.BileBottleItem;
+import team.comofas.arstheurgia.items.ChalkItem;
+import team.comofas.arstheurgia.items.SharurItem;
+import team.comofas.arstheurgia.items.SpadeItem;
 import team.comofas.arstheurgia.ritual.rituals.CreeperSummon;
 import team.comofas.arstheurgia.ritual.rituals.PazuzuBlessing;
-import team.comofas.arstheurgia.ritual.rituals.SamasPurification;
 
 public class ArsItems {
 
@@ -34,14 +36,11 @@ public class ArsItems {
     public static final Item FLOUR = new BlockItem(ArsBlocks.FLOUR, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item BILE = new BileBottleItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(Items.GLASS_BOTTLE));
 
+    public static final Item SHARUR = new SharurItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
     public static final Item DATES = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.APPLE));
 
     public static final Item PAZUZU_FIGURINE = new BlockItem(ArsBlocks.PAZUZU_FIGURINE, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item PAZUZU_AMULET = new ArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.CHEST, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
-
-    public static final Item WATERSKIN = new WaterskinItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
-    public static final Item WATERSKIN_FILLED = new FilledWaterskinItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
-
 
 
     public static void registerAll() {
@@ -69,15 +68,12 @@ public class ArsItems {
         registerItem(MUD_BLOCK_BRICKS, "mud_block_bricks");
         registerItem(MUD_BLOCK_BRICKS_SLAB, "mud_block_bricks_slab");
         registerItem(MUD_BLOCK_RAW, "mud_block_raw");
+        registerItem(SHARUR, "sharur");
 
         registerItem(DATES, "dates");
-
-        registerItem(WATERSKIN, "waterskin");
-        registerItem(WATERSKIN_FILLED, "filled_waterskin");
         
         CreeperSummon.INSTANCE.registerItems();
         PazuzuBlessing.INSTANCE.registerItems();
-        SamasPurification.INSTANCE.registerItems();
 
 
     }
