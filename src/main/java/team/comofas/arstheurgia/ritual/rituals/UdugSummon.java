@@ -70,10 +70,8 @@ public class UdugSummon extends Ritual {
             return;
         }
 
-
         boolean hasNecessaryItems = hasNecessaryItems();
 
-        System.out.println("aaaaa");
 
         if (!hasNecessaryItems) {
             return;
@@ -86,15 +84,12 @@ public class UdugSummon extends Ritual {
 
         passedData.writeBlockPos(pos);
 
-        System.out.println("bbbb");
 
         for (BlockEntity entity : ritualBlocks) {
             if (entity != null)
                 if (!entity.getPos().equals(hit.getBlockPos()))
                     player.world.removeBlock(entity.getPos(), false);
         }
-
-
 
         Entity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, this.player.world);
         lightningEntity.teleport(pos.getX(), pos.getY(), pos.getZ());
@@ -115,7 +110,10 @@ public class UdugSummon extends Ritual {
 
         UdugEntity udug = new UdugEntity(ArsTheurgia.UDUG, player.world);
         udug.teleport(pos.getX(), pos.getY(), pos.getZ());
-        System.out.println(udug.getPos());
+
+        PlayerComponents.KNOWLEDGE.get(player).setKnowledge("activeUdug", true);
+        udug.setOwner(player);
+
         player.world.spawnEntity(udug);
 
     }
