@@ -75,11 +75,15 @@ public abstract class LivingEntityMixin {
                     if (world.getTimeOfDay() % 60 == 0) {
                         StatusEffectInstance pazuzuEffectInstance = new StatusEffectInstance(ArsEffects.PAZUZU_BLESSING, 60, 0, true, false);
                         playerEntity.addStatusEffect(pazuzuEffectInstance);
+
                     }
 
 
                 } else {
                     PlayerComponents.ACTIVE_BLESSING.get(playerEntity).setBlessing(false);
+                    PlayerComponents.KNOWLEDGE.maybeGet(playerEntity).ifPresent(value -> {
+                        value.setKnowledge("activeUdug", false);
+                    });
                 }
             }
 
