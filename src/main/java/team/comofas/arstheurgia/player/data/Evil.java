@@ -6,7 +6,7 @@ import team.comofas.arstheurgia.player.PlayerComponents;
 
 public class Evil implements EvilManager {
 
-    int evil = 0;
+    private int evil = 0;
 
     private final PlayerEntity player;
 

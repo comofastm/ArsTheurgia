@@ -9,8 +9,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import team.comofas.arstheurgia.entity.AnzuEntity;
 import team.comofas.arstheurgia.entity.LamassuEntity;
 import team.comofas.arstheurgia.entity.UdugEntity;
+import team.comofas.arstheurgia.entity.anzu.AnzuEntityRenderer;
 import team.comofas.arstheurgia.entity.lamassu.LamassuEntityRenderer;
 import team.comofas.arstheurgia.entity.udug.UdugEntityRenderer;
 import team.comofas.arstheurgia.events.LootTableEvent;
@@ -30,6 +32,12 @@ public class ArsTheurgia implements ModInitializer {
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, LamassuEntity::new).dimensions(EntityDimensions.fixed(0.75f, 0.75f)).build()
     );
 
+    public static final EntityType<AnzuEntity> ANZU = Registry.register(
+            Registry.ENTITY_TYPE,
+            ArsUtils.getIdentifier("anzu"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AnzuEntity::new).dimensions(EntityDimensions.fixed(0.75f, 0.75f)).build()
+    );
+
     public static final Identifier CONSUME_ITEM_PARTICLE = ArsUtils.getIdentifier("consume_item");
     public static final Identifier UPDATE_BLOCK_ENTITY = ArsUtils.getIdentifier("update_block_entity");
 
@@ -47,13 +55,13 @@ public class ArsTheurgia implements ModInitializer {
 
         FabricDefaultAttributeRegistry.register(LAMASSU, LamassuEntity.createMobAttributes());
 
-        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.UDUG, (dispatcher, context) -> {
-            return new UdugEntityRenderer(dispatcher);
-        });
+        FabricDefaultAttributeRegistry.register(ANZU, AnzuEntity.createMobAttributes());
 
-        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.LAMASSU, (dispatcher, context) -> {
-            return new LamassuEntityRenderer(dispatcher);
-        });
+        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.UDUG, (dispatcher, context) -> new UdugEntityRenderer(dispatcher));
+
+        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.LAMASSU, (dispatcher, context) -> new LamassuEntityRenderer(dispatcher));
+
+        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.ANZU, (dispatcher, context) -> new AnzuEntityRenderer(dispatcher));
 
     }
 }

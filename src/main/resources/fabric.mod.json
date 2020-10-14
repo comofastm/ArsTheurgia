@@ -32,7 +32,8 @@
       "arstheurgia:evil",
       "arstheurgia:knowledge",
       "arstheurgia:ritualtime",
-      "arstheurgia:blessing"
+      "arstheurgia:blessing",
+      "arstheurgia:dry"
     ]
   },
   "depends": {

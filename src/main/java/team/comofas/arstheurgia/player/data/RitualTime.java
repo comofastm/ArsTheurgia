@@ -1,5 +1,6 @@
 package team.comofas.arstheurgia.player.data;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
 import team.comofas.arstheurgia.player.PlayerComponents;
@@ -8,10 +9,10 @@ public class RitualTime implements RitualTimeManager {
 
     CompoundTag ritualtime = new CompoundTag();
 
-    private final PlayerEntity player;
+    private final Entity player;
 
 
-    public RitualTime(PlayerEntity player) { this.player = player;}
+    public RitualTime(Entity player) { this.player = player;}
 
     @Override
     public int getInt(String key) {
