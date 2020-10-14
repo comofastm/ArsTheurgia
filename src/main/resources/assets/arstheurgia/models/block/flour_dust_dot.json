@@ -1,6 +1,7 @@
 {
     "textures": {
-        "line": "arstheurgia:block/flour_dust_dot"
+        "line": "arstheurgia:block/flour_dust_dot",
+        "particle": "arstheurgia:block/flour_dust_dot"
     },
     "elements": [
         {   "from": [ 0, 1, 0 ],

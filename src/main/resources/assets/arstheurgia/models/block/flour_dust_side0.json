@@ -1,6 +1,7 @@
 {
     "parent": "arstheurgia:block/flour_dust_side",
     "textures": {
-        "line": "arstheurgia:block/flour_dust_line0"
+        "line": "arstheurgia:block/flour_dust_line0",
+        "particle": "arstheurgia:block/flour_dust_line0"
     }
 }
