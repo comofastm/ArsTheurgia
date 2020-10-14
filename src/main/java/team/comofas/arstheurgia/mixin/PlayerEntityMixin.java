@@ -18,7 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.registry.ArsItems;
 import team.comofas.arstheurgia.registry.ArsSounds;
-import team.comofas.arstheurgia.sounds.ATMovingSound;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
