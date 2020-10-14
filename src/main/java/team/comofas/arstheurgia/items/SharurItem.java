@@ -29,6 +29,7 @@ public class SharurItem extends Item {
             double y = user.getRotationVector().y;
             double z = user.getRotationVector().z;
             user.addVelocity(1 * x, 1 * y, 1 * z);
+            user.getEntityWorld().playSound(null, user.getBlockPos(), ArsSounds.MACE_PULL, SoundCategory.PLAYERS, 1f, 1f);
             return new TypedActionResult<>(ActionResult.SUCCESS, user.getStackInHand(hand));
         } else {
             return new TypedActionResult<>(ActionResult.FAIL, user.getStackInHand(hand));
