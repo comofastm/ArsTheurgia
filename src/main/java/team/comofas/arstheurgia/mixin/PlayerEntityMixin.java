@@ -40,7 +40,7 @@ public class PlayerEntityMixin {
                 entity.setVelocity(vec3d.multiply(1.0D, 0D, 1.0D));
                 PlayerComponents.KNOWLEDGE.get(player).setKnowledge("holdingSharur", true);
             }
-            if (!entity.isOnGround()) {
+            if (!entity.isOnGround() && vec3d.y < 0) {
                 entity.setVelocity(vec3d.multiply(1.0D, 0.6D, 1.0D));
             }
         } else {
