@@ -12,6 +12,14 @@ public class ArsSounds {
     public static SoundEvent UDUG_AMBIENT = new SoundEvent(ArsUtils.getIdentifier("udug_ambient"));
     public static SoundEvent UDUG_WALKING = new SoundEvent(ArsUtils.getIdentifier("udug_walking"));
     public static SoundEvent COLLECT_BILE = new SoundEvent(ArsUtils.getIdentifier("collect_bile"));
+    public static SoundEvent LAMASSU_WINGFLAP = new SoundEvent(ArsUtils.getIdentifier("lamassu_wingflap"));
+    public static SoundEvent CLAWS_ATTACK = new SoundEvent(ArsUtils.getIdentifier("claws_attack"));
+    public static SoundEvent LAMASSU_AMBIENT = new SoundEvent(ArsUtils.getIdentifier("lamassu_ambient"));
+    public static SoundEvent ANZU_WINGFLAP = new SoundEvent(ArsUtils.getIdentifier("anzu_wingflap"));
+    public static SoundEvent CLAWS_GROW = new SoundEvent(ArsUtils.getIdentifier("claws_grow"));
+    public static SoundEvent MACE_PULL = new SoundEvent(ArsUtils.getIdentifier("mace_pull"));
+    public static SoundEvent MACE_SPIN = new SoundEvent(ArsUtils.getIdentifier("mace_spin"));
+    public static SoundEvent IMHULLU_WIND = new SoundEvent(ArsUtils.getIdentifier("imhullu_wind"));
 
 
     public static void registerAll() {
@@ -22,6 +30,14 @@ public class ArsSounds {
         registerSound(UDUG_DISAPPEAR);
         registerSound(UDUG_WALKING);
         registerSound(COLLECT_BILE);
+        registerSound(LAMASSU_WINGFLAP);
+        registerSound(LAMASSU_AMBIENT);
+        registerSound(ANZU_WINGFLAP);
+        registerSound(CLAWS_ATTACK);
+        registerSound(CLAWS_GROW);
+        registerSound(MACE_PULL);
+        registerSound(MACE_SPIN);
+        registerSound(IMHULLU_WIND);
     }
 
     public static SoundEvent registerSound(SoundEvent sound) {

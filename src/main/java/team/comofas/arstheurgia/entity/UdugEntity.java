@@ -40,6 +40,7 @@ public class UdugEntity extends TameableEntity implements IAnimatedEntity {
     public UdugEntity(EntityType<UdugEntity> entityType, World world) {
         super(entityType, world);
         this.setTamed(true);
+        this.setInvulnerable(true);
         this.manager = new EntityAnimationManager();
         this.controller = new EntityAnimationController(this, "walkController", 20, this::animationPredicate);
         this.manager.addAnimationController(controller);
@@ -49,10 +50,13 @@ public class UdugEntity extends TameableEntity implements IAnimatedEntity {
         return EntityGroup.UNDEAD;
     }
 
-    @Override
     public boolean damage(DamageSource source, float amount) {
         this.playSound(ArsSounds.UDUG_AMBIENT, 0.15F, 1.0F);
-        return false;
+        if (this.isInvulnerableTo(source)) {
+            return false;
+        } else {
+            return super.damage(source, amount);
+        }
     }
 
     public void baseTick() {

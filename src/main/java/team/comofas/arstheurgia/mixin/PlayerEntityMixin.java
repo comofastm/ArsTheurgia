@@ -1,12 +1,14 @@
 package team.comofas.arstheurgia.mixin;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.sound.EntityTrackingSoundInstance;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -15,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.registry.ArsItems;
+import team.comofas.arstheurgia.registry.ArsSounds;
+import team.comofas.arstheurgia.sounds.ATMovingSound;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {
@@ -43,7 +47,7 @@ public class PlayerEntityMixin {
             if (!entity.isOnGround() && vec3d.y < 0) {
                 entity.setVelocity(vec3d.multiply(1.0D, 0.6D, 1.0D));
             }
-        } else {
+            } else {
             if (PlayerComponents.KNOWLEDGE.get(player).hasKnowledge("holdingSharur")) { PlayerComponents.KNOWLEDGE.get(player).setKnowledge("holdingSharur", false); }
         }
     }
