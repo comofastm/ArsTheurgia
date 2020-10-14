@@ -32,6 +32,7 @@ public class ArsItems {
     public static final ChalkItem CHALK_ITEM = new ChalkItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(70));
 
     public static final Item GEBEL_KNIFE = new SwordItem(ToolMaterials.STONE, 3, -2.4F, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
+    public static final Item MACE = new SwordItem(ToolMaterials.IRON, 9, -3.2F, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
     public static final Item TROWEL = new SpadeItem(ToolMaterials.IRON, 3, -2.4F, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(250));
     public static final Item FLOUR = new BlockItem(ArsBlocks.FLOUR, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item BILE = new BileBottleItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(Items.GLASS_BOTTLE));
@@ -73,6 +74,8 @@ public class ArsItems {
         registerItem(MUD_BLOCK_BRICKS, "mud_block_bricks");
         registerItem(MUD_BLOCK_BRICKS_SLAB, "mud_block_bricks_slab");
         registerItem(MUD_BLOCK_RAW, "mud_block_raw");
+
+        registerItem(MACE, "mace");
         registerItem(SHARUR, "sharur");
         registerItem(IMHULLU, "imhullu");
 

@@ -26,8 +26,10 @@ public class PlayerEntityMixin {
     @Inject(method = "attack", at = @At("HEAD"))
     public void attack(Entity target, CallbackInfo ci) {
         LivingEntity livingtarget = (LivingEntity) target;
+        Entity entity = (Entity)(Object)this;
         if (target.isAttackable()) {
             if (PlayerComponents.KNOWLEDGE.get(this).hasKnowledge("activeUdug")) {
+                entity.getEntityWorld().playSound(null, entity.getBlockPos(), ArsSounds.CLAWS_ATTACK, SoundCategory.PLAYERS, 1f, 1f);
                 livingtarget.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 900, 3, true, true));
             }
         }

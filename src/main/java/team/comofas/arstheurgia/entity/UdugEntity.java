@@ -65,11 +65,13 @@ public class UdugEntity extends TameableEntity implements IAnimatedEntity {
         if (!this.world.isClient()) {
             if (this.world.getAmbientDarkness() < 4) {
                 if (this.isAlive()) {
-                    PlayerComponents.KNOWLEDGE.maybeGet(this.getOwner()).ifPresent(value -> {
-                        value.setKnowledge("activeUdug", false);
-                    });
-                    this.playSound(ArsSounds.UDUG_DISAPPEAR, 0.5F, 1.0F);
-                    this.remove();
+                    if (world.getTimeOfDay() % 60 == 0) {
+                        PlayerComponents.KNOWLEDGE.maybeGet(this.getOwner()).ifPresent(value -> {
+                            value.setKnowledge("activeUdug", false);
+                        });
+                        this.playSound(ArsSounds.UDUG_DISAPPEAR, 0.5F, 1.0F);
+                        this.remove();
+                    }
                 }
             }
         }
