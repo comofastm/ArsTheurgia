@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import team.comofas.arstheurgia.ArsUtils;
@@ -54,8 +55,8 @@ public class OpenTabletScreen extends Screen {
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.client.getTextureManager().bindTexture(BOOK_TEXTURE);
-        int i = (this.width - (292)) / 2;
-        drawTexture(matrices, i, 2, 0, 0, 292, 180, 292, 180);
+        int i = (this.width - (438)) / 2;
+        drawTexture(matrices, i, 2, 0, 0, 438, 270, 438, 270);
 
         if (!this.client.player.inventory.contains(new ItemStack(ArsItems.DICTIONARY))) {
             this.textRenderer.draw(matrices, new LiteralText("sekret"), (float) i, 32F, 0);
@@ -70,16 +71,19 @@ public class OpenTabletScreen extends Screen {
             for (Map.Entry<Block, List<BlockPos>> entry: this.ritual.validBlocks.entrySet()) {
                 for (BlockPos pos : entry.getValue()) {
                     if (pos.getY() == 0)
-                        itemRenderer.renderGuiItemIcon(new ItemStack(entry.getKey()), (int) ((pos.getX()*18) + (float) i + 210), (pos.getZ()*18)+70);
+                        itemRenderer.renderGuiItemIcon(new ItemStack(entry.getKey()), (int) ((pos.getX()*18) + (float) i + 320), (pos.getZ()*18)+150);
 
                 }
             }
 
             RenderSystem.popMatrix();
 
+            this.textRenderer.draw(matrices, new TranslatableText("ritual.text.configuration"), (float) i + 16 + 204, (float)(32 + 9), 0);
+
+
             for (int j = 0; j < lines.size(); j++) {
 
-                this.textRenderer.draw(matrices, lines.get(j), (float) i + 16, (float)(32 + j * 9), 0);
+                this.textRenderer.draw(matrices, lines.get(j), (float) i + 20, (float)(16 + j * 9), 0);
             }
         }
 

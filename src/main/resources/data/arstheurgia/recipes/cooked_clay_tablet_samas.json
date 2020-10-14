@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "arstheurgia:written_clay_tablet_samas"
+  },
+  "result": "arstheurgia:cooked_clay_tablet_samas",
+  "experience": 0.35,
+  "cookingtime": 200
+}

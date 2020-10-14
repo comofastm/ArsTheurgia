@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arstheurgia:tablet_part_samas"
+    },
+    {
+      "item": "arstheurgia:tablet_part_samas"
+    },
+    {
+      "item": "arstheurgia:tablet_part_samas"
+    },
+    {
+      "item": "arstheurgia:clay_tablet"
+    }
+  ],
+  "result": {
+    "item": "arstheurgia:written_clay_tablet_samas"
+  }
+}

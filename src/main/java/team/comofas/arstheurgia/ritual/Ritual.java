@@ -13,8 +13,12 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import team.comofas.arstheurgia.ArsTheurgia;
 import team.comofas.arstheurgia.items.OpenableTablet;
+import team.comofas.arstheurgia.items.TabletPartItem;
+import team.comofas.arstheurgia.items.UncookedTabletItem;
 import team.comofas.arstheurgia.player.PlayerComponents;
+import team.comofas.arstheurgia.registry.ArsItemGroup;
 import team.comofas.arstheurgia.registry.ArsSounds;
 
 import java.util.ArrayList;
@@ -56,9 +60,9 @@ public class Ritual {
 
 
     public void registerItems() {
-        writtenClayTablet = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-        tabletPart = new Item(new FabricItemSettings().group(ItemGroup.MISC));
-        cookedClayTablet = new OpenableTablet(new FabricItemSettings().group(ItemGroup.MISC), this.ritualName);
+        writtenClayTablet = new UncookedTabletItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP), this.ritualName);
+        tabletPart = new TabletPartItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP),  this.ritualName);
+        cookedClayTablet = new OpenableTablet(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP), this.ritualName);
 
         allTabletParts.add(tabletPart);
 
