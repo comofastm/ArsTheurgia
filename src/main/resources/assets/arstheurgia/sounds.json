@@ -27,6 +27,48 @@
       "arstheurgia:udug_ambient"
     ]
   },
+  "lamassu_wingflap": {
+    "sounds": [
+      "arstheurgia:lamassu_wingflap1",
+      "arstheurgia:lamassu_wingflap2"
+    ]
+  },
+  "claws_attack": {
+    "sounds": [
+      "arstheurgia:claws_attack"
+    ]
+  },
+  "anzu_wingflap": {
+    "sounds": [
+      "arstheurgia:anzu_wingflap1",
+      "arstheurgia:anzu_wingflap2"
+    ]
+  },
+  "lamassu_ambient": {
+    "sounds": [
+      "arstheurgia:lamassu_ambient"
+    ]
+  },
+  "claws_grow": {
+    "sounds": [
+      "arstheurgia:claws_grow"
+    ]
+  },
+  "mace_pull": {
+    "sounds": [
+      "arstheurgia:mace_pull"
+    ]
+  },
+  "mace_spin": {
+    "sounds": [
+      "arstheurgia:mace_spin"
+    ]
+  },
+  "imhullu_wind": {
+    "sounds": [
+      "arstheurgia:imhullu_wind"
+    ]
+  },
   "udug_disappear": {
     "sounds": [
       "arstheurgia:udug_disappear"
