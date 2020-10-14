@@ -36,7 +36,7 @@ public class ArsItems {
     public static final Item BILE = new BileBottleItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(Items.GLASS_BOTTLE));
 
     public static final Item SHARUR = new SharurItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
-    //public static final Item IMHULLU = new ImhulluItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
+    public static final Item IMHULLU = new ImhulluItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
     public static final Item DATES = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.APPLE));
 
     public static final Item PAZUZU_FIGURINE = new BlockItem(ArsBlocks.PAZUZU_FIGURINE, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
@@ -72,7 +72,7 @@ public class ArsItems {
         registerItem(MUD_BLOCK_BRICKS_SLAB, "mud_block_bricks_slab");
         registerItem(MUD_BLOCK_RAW, "mud_block_raw");
         registerItem(SHARUR, "sharur");
-        //registerItem(IMHULLU, "imhullu");
+        registerItem(IMHULLU, "imhullu");
 
         registerItem(DATES, "dates");
 

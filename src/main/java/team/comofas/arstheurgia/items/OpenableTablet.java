@@ -35,11 +35,10 @@ public class OpenableTablet extends Item {
         if (world.isClient) {
             GuiUtils.openTabletScreen(itemStack);
         } else {
-            System.out.println("oi "+itemStack.getItem().getName().getString());
             if (itemStack.getItem().getName().getString().startsWith("item.arstheurgia.cooked_clay_tablet_")) {
-                System.out.println("this is "+PlayerComponents.KNOWLEDGE.get(user).hasKnowledge(this.ritualName));
+
                 PlayerComponents.KNOWLEDGE.get(user).setKnowledge(this.ritualName, true);
-                user.sendMessage(new LiteralText("já sabes"), false);
+
             }
         }
 

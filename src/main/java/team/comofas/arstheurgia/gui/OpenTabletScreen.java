@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.resource.language.I18n;
@@ -17,6 +18,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import team.comofas.arstheurgia.ArsUtils;
 import team.comofas.arstheurgia.items.OpenableTablet;
 import team.comofas.arstheurgia.registry.ArsItems;
 import team.comofas.arstheurgia.ritual.Ritual;
@@ -29,7 +31,7 @@ import java.util.Map;
 
 public class OpenTabletScreen extends Screen {
 
-    public static final Identifier BOOK_TEXTURE = new Identifier("textures/gui/book.png");
+    public static final Identifier BOOK_TEXTURE = ArsUtils.getIdentifier("textures/gui/tablet_big.png");
 
     List<Text> lines = new ArrayList<>();
 
@@ -52,13 +54,11 @@ public class OpenTabletScreen extends Screen {
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.client.getTextureManager().bindTexture(BOOK_TEXTURE);
-        int i = (this.width - 192) / 2;
-        this.drawTexture(matrices, i, 2, 0, 0, 192, 192);
-
-        float xPos = i + 36;
+        int i = (this.width - (292)) / 2;
+        drawTexture(matrices, i, 2, 0, 0, 292, 180, 292, 180);
 
         if (!this.client.player.inventory.contains(new ItemStack(ArsItems.DICTIONARY))) {
-            this.textRenderer.draw(matrices, new LiteralText("sekret"), xPos, 32F, 0);
+            this.textRenderer.draw(matrices, new LiteralText("sekret"), (float) i, 32F, 0);
         }
         else {
 
@@ -69,10 +69,8 @@ public class OpenTabletScreen extends Screen {
 
             for (Map.Entry<Block, List<BlockPos>> entry: this.ritual.validBlocks.entrySet()) {
                 for (BlockPos pos : entry.getValue()) {
-                    /*if (entry.getKey() == Blocks.REDSTONE_WIRE) {
-                        System.out.println(pos);
-                    }*/
-                    itemRenderer.renderGuiItemIcon(new ItemStack(entry.getKey()), (int) ((pos.getX()*16)+xPos), (pos.getZ()*16) + 128);
+                    if (pos.getY() == 0)
+                        itemRenderer.renderGuiItemIcon(new ItemStack(entry.getKey()), (int) ((pos.getX()*18) + (float) i + 210), (pos.getZ()*18)+70);
 
                 }
             }
@@ -81,7 +79,7 @@ public class OpenTabletScreen extends Screen {
 
             for (int j = 0; j < lines.size(); j++) {
 
-                this.textRenderer.draw(matrices, lines.get(j), xPos, (float)(32 + j * 9), 0);
+                this.textRenderer.draw(matrices, lines.get(j), (float) i + 16, (float)(32 + j * 9), 0);
             }
         }
 
