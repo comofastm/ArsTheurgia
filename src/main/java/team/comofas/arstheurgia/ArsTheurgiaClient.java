@@ -4,12 +4,15 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlockEntityRenderer;
 import team.comofas.arstheurgia.blocks.RitualBlockEntityRenderer;
+import team.comofas.arstheurgia.blocks.table.TableBlockEntity;
 import team.comofas.arstheurgia.blocks.table.TableBlockEntityRenderer;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
@@ -40,5 +43,7 @@ public class ArsTheurgiaClient implements ClientModInitializer {
 
                     });
                 });
+
+
     }
 }

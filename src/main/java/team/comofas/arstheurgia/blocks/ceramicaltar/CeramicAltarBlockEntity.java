@@ -1,12 +1,13 @@
 package team.comofas.arstheurgia.blocks.ceramicaltar;
 
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
-public class CeramicAltarBlockEntity extends BlockEntity {
+public class CeramicAltarBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
     private int index = 0;
     private ItemStack placedItem;
 
@@ -17,14 +18,25 @@ public class CeramicAltarBlockEntity extends BlockEntity {
     @Override
     public CompoundTag toTag(CompoundTag tag) {
         super.toTag(tag);
-        tag.putInt("index", index);
+        if (placedItem == null) {
+            tag.put("item", ItemStack.EMPTY.toTag(new CompoundTag()));
+        } else {
+            tag.put("item", placedItem.toTag(new CompoundTag()));
+        }
+
+
         return tag;
     }
 
     @Override
     public void fromTag(BlockState state, CompoundTag tag) {
         super.fromTag(state, tag);
-        index = tag.getInt("index");
+        if (tag.getCompound("item").isEmpty()) {
+            return;
+        }
+
+        setPlacedItem(ItemStack.fromTag(tag.getCompound("item")));
+
     }
 
     public ItemStack getPlacedItem() {
@@ -34,20 +46,16 @@ public class CeramicAltarBlockEntity extends BlockEntity {
     public void setPlacedItem(ItemStack placedItem) {
         this.placedItem = placedItem;
         markDirty();
-        System.out.println(this.placedItem);
     }
 
-    public int getIndex() {
-        return index;
+
+    @Override
+    public void fromClientTag(CompoundTag compoundTag) {
+        fromTag(this.world.getBlockState(this.pos), compoundTag);
     }
 
-    public void addIndex() {
-        index++;
-        markDirty();
-    }
-
-    public void resetIndex() {
-        index = 0;
-        markDirty();
+    @Override
+    public CompoundTag toClientTag(CompoundTag compoundTag) {
+        return toTag(compoundTag);
     }
 }

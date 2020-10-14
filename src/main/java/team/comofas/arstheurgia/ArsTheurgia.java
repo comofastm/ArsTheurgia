@@ -31,6 +31,7 @@ public class ArsTheurgia implements ModInitializer {
     );
 
     public static final Identifier CONSUME_ITEM_PARTICLE = ArsUtils.getIdentifier("consume_item");
+    public static final Identifier UPDATE_BLOCK_ENTITY = ArsUtils.getIdentifier("update_block_entity");
 
     @Override
     public void onInitialize() {

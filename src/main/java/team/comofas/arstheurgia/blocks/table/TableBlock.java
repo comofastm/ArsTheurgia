@@ -1,5 +1,6 @@
 package team.comofas.arstheurgia.blocks.table;
 
+import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -37,8 +38,9 @@ public class TableBlock extends Block implements BlockEntityProvider {
 
         ItemStack placedItem = blockentity.getPlacedItem();
 
+        System.out.println("thing "+placedItem);
+
         if (!world.isClient) {
-            blockentity.addIndex();
             if (heldItem instanceof OpenableTablet) {
                 if (PlayerComponents.KNOWLEDGE.get(player).hasKnowledge(((OpenableTablet) heldItem).ritualName)) {
 

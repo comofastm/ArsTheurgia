@@ -1,25 +1,43 @@
 package team.comofas.arstheurgia.blocks.table;
 
+import io.netty.buffer.Unpooled;
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
+import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
+import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
+import org.jetbrains.annotations.Nullable;
+import team.comofas.arstheurgia.ArsTheurgia;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
-public class TableBlockEntity extends BlockEntity {
+import java.util.stream.Stream;
+
+public class TableBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
     private int index = 0;
     private ItemStack placedItem;
 
     public TableBlockEntity() {
         super(ArsBlocks.TABLE_BLOCK_ENTITY);
+        markDirty();
     }
 
-    // TODO put item in tag to save
 
     @Override
     public CompoundTag toTag(CompoundTag tag) {
         super.toTag(tag);
-        tag.putInt("index", index);
+        if (placedItem == null) {
+            tag.put("item", ItemStack.EMPTY.toTag(new CompoundTag()));
+        } else {
+            tag.put("item", placedItem.toTag(new CompoundTag()));
+        }
+
 
         return tag;
     }
@@ -27,7 +45,12 @@ public class TableBlockEntity extends BlockEntity {
     @Override
     public void fromTag(BlockState state, CompoundTag tag) {
         super.fromTag(state, tag);
-        index = tag.getInt("index");
+        if (tag.getCompound("item").isEmpty()) {
+            return;
+        }
+
+        setPlacedItem(ItemStack.fromTag(tag.getCompound("item")));
+
     }
 
     public ItemStack getPlacedItem() {
@@ -39,17 +62,13 @@ public class TableBlockEntity extends BlockEntity {
         markDirty();
     }
 
-    public int getIndex() {
-        return index;
+    @Override
+    public void fromClientTag(CompoundTag compoundTag) {
+        fromTag(this.world.getBlockState(this.pos), compoundTag);
     }
 
-    public void addIndex() {
-        index++;
-        markDirty();
-    }
-
-    public void resetIndex() {
-        index = 0;
-        markDirty();
+    @Override
+    public CompoundTag toClientTag(CompoundTag compoundTag) {
+        return toTag(compoundTag);
     }
 }

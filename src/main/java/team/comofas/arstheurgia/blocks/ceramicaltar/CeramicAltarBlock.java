@@ -41,7 +41,6 @@ public class CeramicAltarBlock extends Block implements BlockEntityProvider {
         ItemStack placedItem = blockentity.getPlacedItem();
 
         if (!world.isClient) {
-            blockentity.addIndex();
             if (heldItem instanceof OpenableTablet) {
                 if (PlayerComponents.KNOWLEDGE.get(player).hasKnowledge(((OpenableTablet) heldItem).ritualName)) {
 
