@@ -1,24 +1,22 @@
 package team.comofas.arstheurgia.entity;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.Fertilizable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Items;
+import net.minecraft.fluid.WaterFluid;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -30,13 +28,11 @@ import software.bernie.geckolib.manager.EntityAnimationManager;
 import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.registry.ArsSounds;
 
-public class LamassuEntity extends TameableEntity implements IAnimatedEntity {
+public class AnzuEntity extends TameableEntity implements IAnimatedEntity {
 
     private final EntityAnimationManager manager;
     private final EntityAnimationController controller;
-    public float prevFlapProgress;
-    public float flapSpeed = 1.0F;
-    public float flapProgress;
+    private long cooldown = 100;
 
     private <E extends Entity> boolean animationPredicate(AnimationTestEvent<E> event) {
         if (event.isWalking()) {
@@ -47,7 +43,7 @@ public class LamassuEntity extends TameableEntity implements IAnimatedEntity {
         }
     }
 
-    public LamassuEntity(EntityType<LamassuEntity> entityType, World world) {
+    public AnzuEntity(EntityType<AnzuEntity> entityType, World world) {
         super(entityType, world);
         this.setTamed(true);
         this.manager = new EntityAnimationManager();
@@ -56,17 +52,39 @@ public class LamassuEntity extends TameableEntity implements IAnimatedEntity {
     }
 
     public EntityGroup getGroup() {
-        return EntityGroup.UNDEAD;
-    }
-
-    @Override
-    public boolean damage(DamageSource source, float amount) {
-        this.playSound(ArsSounds.UDUG_AMBIENT, 0.15F, 1.0F);
-        return false;
+        return EntityGroup.DEFAULT;
     }
 
     public void baseTick() {
         super.baseTick();
+        BlockPos pos = new BlockPos.Mutable(this.getX(), this.getY(), this.getZ());
+        BlockState blockState = world.getBlockState(pos);
+
+
+        if (blockState.getBlock() instanceof Fertilizable) {
+            int dry = PlayerComponents.DRY.get(this).getDry();
+            if (dry > 0) {
+                Fertilizable fertilizable = (Fertilizable) blockState.getBlock();
+                if (fertilizable.isFertilizable(world, pos, blockState, world.isClient)) {
+                    if (world instanceof ServerWorld) {
+                        if (fertilizable.canGrow(world, world.random, pos, blockState)) {
+                            PlayerComponents.DRY.get(this).removeDry();
+                            fertilizable.grow((ServerWorld) world, world.random, pos, blockState);
+                            System.out.println(PlayerComponents.DRY.get(this).getDry());
+                        }
+                    }
+                }
+            }
+        }
+
+        if (blockState.getBlock() == Blocks.WATER) {
+            long lastUsage = PlayerComponents.RITUALTIME.get(this).getInt("lastWater");
+            if (world.getTime() - lastUsage >= cooldown) {
+                System.out.println(PlayerComponents.DRY.get(this).getDry());
+                PlayerComponents.DRY.get(this).addDry();
+                PlayerComponents.RITUALTIME.get(this).setInt("lastWater");
+            }
+        }
     }
 
     protected void playStepSound(BlockPos pos, BlockState state) {
@@ -76,10 +94,13 @@ public class LamassuEntity extends TameableEntity implements IAnimatedEntity {
 
     public void tickMovement() {
         super.tickMovement();
+
         Vec3d vec3d = this.getVelocity();
+
         if (!this.onGround && vec3d.y < 0.0D) {
             this.setVelocity(vec3d.multiply(1.0D, 0.6D, 1.0D));
         }
+
     }
 
     public boolean tryAttack(Entity target) {
@@ -87,6 +108,7 @@ public class LamassuEntity extends TameableEntity implements IAnimatedEntity {
         if (bl) {
             this.dealDamage(this, target);
         }
+
         return bl;
     }
 
@@ -100,7 +122,6 @@ public class LamassuEntity extends TameableEntity implements IAnimatedEntity {
     }
 
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        PlayerComponents.KNOWLEDGE.get(player).setKnowledge("activeLamassu", true);
         this.setOwner(player);
         return ActionResult.SUCCESS;
     }
