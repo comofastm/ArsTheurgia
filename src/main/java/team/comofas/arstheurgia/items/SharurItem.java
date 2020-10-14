@@ -16,7 +16,7 @@ public class SharurItem extends Item {
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (!world.isClient) {
+        if (!world.isClient()) {
             if (user.isSneaking()) {
                 double x = user.getRotationVector().x;
                 double y = user.getRotationVector().y;
