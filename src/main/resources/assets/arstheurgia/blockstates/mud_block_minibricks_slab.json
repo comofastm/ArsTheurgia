@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "arstheurgia:block/mud_block_minibricks_slab"
+    },
+    "type=double": {
+      "model": "arstheurgia:block/mud_block_minibricks"
+    },
+    "type=top": {
+      "model": "arstheurgia:block/mud_block_minibricks_slab_top"
+    }
+  }
+}

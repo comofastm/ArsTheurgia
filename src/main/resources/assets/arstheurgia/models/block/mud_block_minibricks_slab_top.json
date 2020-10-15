@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "arstheurgia:block/mud_block_minibricks",
+    "top": "arstheurgia:block/mud_block_minibricks",
+    "side": "arstheurgia:block/mud_block_minibricks"
+  }
+}

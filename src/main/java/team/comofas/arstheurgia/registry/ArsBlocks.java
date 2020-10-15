@@ -59,6 +59,11 @@ public class ArsBlocks {
     public static final Block WITCH_FIGURE = new MudFigureBlock(FabricBlockSettings.of(Material.SOIL).hardness(1.0f));
     public static final Block PRAYING_FIGURE = new MudFigureBlock(FabricBlockSettings.of(Material.SOIL).hardness(1.0f));
 
+    public static final Block LION_PAINTED_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));;
+    public static final Block SUN_PAINTED_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));;
+    public static final Block PAINTED_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));;
+    public static final Block MUD_BLOCK_MINIBRICKS = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));;
+    public static final Block MUD_BLOCK_MINIBRICKS_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));;
 
     public static BlockEntityType<RitualBlockEntity> RITUALBLOCK_ENTITY;
     public static BlockEntityType<CeramicAltarBlockEntity> CERAMIC_ALTAR_ENTITY;
@@ -98,6 +103,12 @@ public class ArsBlocks {
 
         registerBlock(PRAYING_FIGURE, "praying_figure");
         registerBlock(WITCH_FIGURE, "witch_figure");
+
+        registerBlock(LION_PAINTED_MUD_BLOCK, "lion_painted_mud_block");
+        registerBlock(SUN_PAINTED_MUD_BLOCK, "sun_painted_mud_block");
+        registerBlock(PAINTED_MUD_BLOCK, "painted_mud_block");
+        registerBlock(MUD_BLOCK_MINIBRICKS, "mud_block_minibricks");
+        registerBlock(MUD_BLOCK_MINIBRICKS_SLAB, "mud_block_minibricks_slab");
 
         RITUALBLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ritualblock"), BlockEntityType.Builder.create(RitualBlockEntity::new, RITUALCENTER).build(null));
         CERAMIC_ALTAR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ceramic_altar"), BlockEntityType.Builder.create(CeramicAltarBlockEntity::new, CERAMIC_ALTAR).build(null));
