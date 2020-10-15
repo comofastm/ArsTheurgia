@@ -13,7 +13,6 @@ import net.minecraft.world.BlockView;
 import team.comofas.arstheurgia.blocks.*;
 import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlock;
 import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlockEntity;
-import team.comofas.arstheurgia.blocks.ritualblocktest.RitualBlock;
 import team.comofas.arstheurgia.ArsUtils;
 import team.comofas.arstheurgia.blocks.table.TableBlock;
 import team.comofas.arstheurgia.blocks.table.TableBlockEntity;
