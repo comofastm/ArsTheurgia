@@ -90,8 +90,6 @@ public class MudBlobItem extends Item {
         CompoundTag compoundTag = stack.getOrCreateSubTag("Index");
         if (update) {
             world.setBlockState(placePos.offset(hit.getSide()), getBlockItem(compoundTag.getInt("index")).getDefaultState().with(FACING, player.getHorizontalFacing()), 3);
-            stack.setCount(1);
-            stack.damage(1, new Random(), (ServerPlayerEntity) player);
             world.playSound(null, placePos, SoundEvents.BLOCK_SOUL_SOIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
         } else {
             cycle(compoundTag, player.isSneaking());
