@@ -128,6 +128,7 @@ public class ArsItems {
         ImhulluRitual.INSTANCE.registerItems();
         BabySacrifice.INSTANCE.registerItems();
         AnzuSummon.INSTANCE.registerItems();
+        LamassuSummon.INSTANCE.registerItems();
 
 
     }

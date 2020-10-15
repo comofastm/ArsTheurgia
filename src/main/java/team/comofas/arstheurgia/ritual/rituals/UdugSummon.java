@@ -118,6 +118,9 @@ public class UdugSummon extends Ritual {
 
         player.world.spawnEntity(udug);
 
+        PlayerComponents.EVIL.get(player).setEvil(PlayerComponents.EVIL.get(player).getEvil() + 2);
+
+
     }
 
     public boolean hasNecessaryItems() {

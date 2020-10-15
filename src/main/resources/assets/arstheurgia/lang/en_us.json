@@ -7,9 +7,12 @@
   "ritual.imhullu.tablet.text": "Group 2.2\nImhullu before Marduk through Samas.\n\nThis is for warriors who are adept at the skill of air flow for a weapon to aid them in battle.\n\nFor this ritual, you will need multiple personal treasures made from precious gems.\n\nIn ritual, at night, stand before the Marduk's star and put down Samas' figure, for it will serve you as a medium to reach Marduk.\n\nBehind it, put down a 3-meter long table, on each side you will put the treasure and in the middle you shall put two hand fans made from sheep wool.\n\nOn each side of the figure, put down Mirsu, for it will serve as libation.\n\nYou have the following configuration:\n\nYou have now a weapon blessed with powers simillar to the legendary Imhullu, it makes enemies fly high up into the air.",
   "ritual.sharur.tablet.text": "Group 2.1\nSharur before Ninurta through Samas.\n\nThis is a ritual for warriors and travellers to aid their journey.\n\nFor this ritual, you will need multiple personal treasures made from precious gems.\n\nIn ritual, in daylight, stand in front of a 3-meter long table with the chosen libation at each side.\n\nAt the table's center, put down the targeted Mace you want to enchantt to Sharur's glory.\n\nIn front of the table, place down Samas' figure at the center and Mirsu as a sweet offering at each side. \n\nYou have the following configuration:\n\nRecite the tablet's incantation upon Samas's clay figure.\n\nThrough Samas, you have enchanted your weapon to carry a power similar to Sharur, which will grant you the ability to fly long distances with it.",
   "ritual.anzu.tablet.text": "Group AG.3\nAnzu before Lamashtu with Pazuzu Protection.\n\nThis is an advanced ritual, for those adept in witchcraft who have already lost their ways.\n\nFor this ritual, you will have to collect hellish Nether Wart and ocean kelp along with buckets containing lava and water.\n\nIn ritual, at night, place down a table in the center, upon which you shall put a feather.\n\nMake a flour circle, for protection and ensure you domesticate this beast, 4-meter radii long.\n\nTo properly domesticate the beast, have Lamashtu's Blessing upon you.\n\nIn front of the table, put down Pazuzu's figure.\n\nPlace onto the four corners in a 2-meter radii put down an altar, where you will put down the items in the following configuration:\n\nRecite this tablet's incantation on Pazuzu, and you shall summon the mighty Anzu lion-bird, which breathes fire and water, which will fertilize land (once recharged with water) with Abzu's power.",
+  "ritual.baby.tablet.text": "Group AG.2\nSacrifice of a new-born for Lamashtu before Pazuzu.\n\nThis is an advanced ritual, for those adept in witchcraft who have already lost their ways.\n\nFor this ritual, capture a human or living child. You will need Pazuzu's Blessing at all times and you will  need an Infused Pazuzu's Amulet, covered in Group B6.2.\n\nIn ritual, at night, place down Pazuzu's figure at the center of the ritual.\n\nBehind the figure, put down three altars, in which you will put a Bile Bottle in the middle and food in the sides.\n\nAt each corner in a 3-meter radii put down a candle.\n\nMake a flour circle, for protection within this danger, 4-meter radii long.\n\nAfter the following configuration has been done:\n\nKill the child, and after you recite the tablet's incantation onto Pazuzu's figure, you shall have Lamashtu's Blessing and control for until dawn.",
+  "ritual.lamassu.tablet.text": "Group 1.2\nLamassu before Samas.\n\nPerform the ritual in daylight.\n\nIn a 3 meters long table, put above it the figure of Samas, then place down food offerings to Samas on each side.\n\nIn front of it, put down a ceramic altar with 24 units of raw cow beef.\n\nIn each side of the ceramic altar, put down Mirsu.\n\nYou shall have the following configuration.\n\nRecite the incantation from this tablet onto Samas' figure, and Lamassu will protect you as long as his physical form is alive.",
   "ritual.pazuzu.notnight": "You must perform this ritual at night.",
   "ritual.pazuzu.notday": "You must perform this ritual during the day.",
   "rituals.remove_evil.text": "You feel less evil now.",
+  "ritual.tooevil": "You are too evil to do this ritual.",
   "ritual.baby.nosacrifice": "You have made no sacrifice.",
 
   "item.arstheurgia.chalk": "Chalk",
@@ -64,6 +67,20 @@
   "item.arstheurgia.cooked_clay_tablet_anzu.tooltip": "Group AG.3: Anzu before Lamashtu with Pazuzu Protection",
   "item.arstheurgia.tablet_part_anzu.tooltip": "Group AG.3: Anzu before Lamashtu with Pazuzu Protection",
   "item.arstheurgia.written_clay_tablet_anzu.tooltip": "Group AG.3: Anzu before Lamashtu with Pazuzu Protection",
+
+  "item.arstheurgia.written_clay_tablet_baby": "Reconstructed Clay Tablet (Uncooked)",
+  "item.arstheurgia.tablet_part_baby": "Clay Tablet Part",
+  "item.arstheurgia.cooked_clay_tablet_baby": "Reconstructed Clay Tablet",
+  "item.arstheurgia.cooked_clay_tablet_baby.tooltip": "Group AG.2: Sacrifice of a new-born for Lamashtu before Pazuzu",
+  "item.arstheurgia.tablet_part_baby.tooltip": "GGroup AG.2: Sacrifice of a new-born for Lamashtu before Pazuzu",
+  "item.arstheurgia.written_clay_tablet_baby.tooltip": "Group AG.2: Sacrifice of a new-born for Lamashtu before Pazuzu",
+
+  "item.arstheurgia.written_clay_tablet_lamassu": "Reconstructed Clay Tablet (Uncooked)",
+  "item.arstheurgia.tablet_part_lamassu": "Clay Tablet Part",
+  "item.arstheurgia.cooked_clay_tablet_lamassu": "Reconstructed Clay Tablet",
+  "item.arstheurgia.cooked_clay_tablet_lamassu.tooltip": "Group 1.2: Lamassu before Samas",
+  "item.arstheurgia.tablet_part_lamassu.tooltip": "Group 1.2: Lamassu before Samas",
+  "item.arstheurgia.written_clay_tablet_lamassu.tooltip": "Group 1.2: Lamassu before Samas",
 
   "item.arstheurgia.clay_tablet": "Clay Tablet",
   "item.arstheurgia.sharur": "Sharur",

@@ -112,6 +112,9 @@ public class AnzuSummon extends Ritual {
 
         player.world.spawnEntity(anzu);
 
+        PlayerComponents.EVIL.get(player).setEvil(PlayerComponents.EVIL.get(player).getEvil() + 2);
+
+
     }
 
     public boolean hasNecessaryItems() {

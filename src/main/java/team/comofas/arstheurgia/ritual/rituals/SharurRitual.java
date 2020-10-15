@@ -21,6 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import team.comofas.arstheurgia.ArsTheurgia;
 import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlockEntity;
 import team.comofas.arstheurgia.blocks.table.TableBlockEntity;
+import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 import team.comofas.arstheurgia.registry.ArsItems;
 import team.comofas.arstheurgia.registry.ArsSounds;
@@ -64,6 +65,11 @@ public class SharurRitual extends Ritual {
 
     @Override
     public void onCall(Hand hand) {
+
+        if (PlayerComponents.EVIL.get(player).getEvil() >= 60) {
+            player.sendMessage(new TranslatableText("ritual.tooevil"), true);
+            return;
+        }
 
         if (!player.world.isDay()) {
             player.sendMessage(new TranslatableText("ritual.pazuzu.notday"), true);

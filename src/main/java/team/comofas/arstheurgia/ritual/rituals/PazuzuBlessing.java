@@ -111,7 +111,14 @@ public class PazuzuBlessing extends Ritual {
         StatusEffectInstance pazuzuEffectInstance = new StatusEffectInstance(ArsEffects.PAZUZU_BLESSING, 60, 0, true, false);
 
         PlayerComponents.ACTIVE_BLESSING.get(player).setBlessing(true);
-        PlayerComponents.EVIL.get(player).setEvil(20);
+
+
+        if (PlayerComponents.EVIL.get(player).getEvil() < 20) {
+            PlayerComponents.EVIL.get(player).setEvil(20);
+        }
+
+        PlayerComponents.EVIL.get(player).setEvil(PlayerComponents.EVIL.get(player).getEvil() + 5);
+
 
         player.addStatusEffect(pazuzuEffectInstance);
     }

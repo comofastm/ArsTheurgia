@@ -20,10 +20,13 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import team.comofas.arstheurgia.ArsTheurgia;
+import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlock;
+import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlockEntity;
 import team.comofas.arstheurgia.blocks.table.TableBlockEntity;
+import team.comofas.arstheurgia.entity.LamassuEntity;
+import team.comofas.arstheurgia.entity.UdugEntity;
 import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.registry.ArsBlocks;
-import team.comofas.arstheurgia.registry.ArsEffects;
 import team.comofas.arstheurgia.registry.ArsItems;
 import team.comofas.arstheurgia.registry.ArsSounds;
 import team.comofas.arstheurgia.ritual.Ritual;
@@ -33,26 +36,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class BabySacrifice extends Ritual {
+public class LamassuSummon extends Ritual {
 
-    public static BabySacrifice INSTANCE = new BabySacrifice("baby", 70);
+    public static LamassuSummon INSTANCE = new LamassuSummon("lamassu", 70);
 
-    public BabySacrifice(String name, int cooldown) {
+    public LamassuSummon(String name, int cooldown) {
         super(name, cooldown);
 
-        List<BlockPos> altarBlocks = new ArrayList<>();
+        List<BlockPos> tableBlocks = new ArrayList<>();
 
         for (int x = -1; x < 2; x++) {
-            altarBlocks.add(new BlockPos(x, 0, 0));
+            tableBlocks.add(new BlockPos(x, 0, 0));
         }
 
         List<BlockPos> figurineBlocks = new ArrayList<>();
-        figurineBlocks.add(new BlockPos(0,0,1));
+        figurineBlocks.add(new BlockPos(0, 1, 0));
 
-        validBlocks.put(ArsBlocks.PAZUZU_FIGURINE, figurineBlocks);
+        List<BlockPos> altarBlocks = new ArrayList<>();
+        altarBlocks.add(new BlockPos(0, 0, 1));
+
+        List<BlockPos> mirsuBlocks = new ArrayList<>();
+        mirsuBlocks.add(new BlockPos(1, 0, 1));
+        mirsuBlocks.add(new BlockPos(-1, 0, 1));
+
         validBlocks.put(ArsBlocks.CERAMIC_ALTAR, altarBlocks);
-        validBlocks.put(ArsBlocks.VELINHA, RitualUtils.FoldSquare(3, 4, new BlockPos(0,0,0)));
-        validBlocks.put(ArsBlocks.FLOUR, RitualUtils.SquareIterate(4, new BlockPos(0,0,0)));
+        validBlocks.put(ArsBlocks.SAMAS_FIGURINE, figurineBlocks);
+        validBlocks.put(ArsBlocks.TABLE, tableBlocks);
+        validBlocks.put(ArsBlocks.MIRSU_BOWL, mirsuBlocks);
 
     }
 
@@ -64,19 +74,20 @@ public class BabySacrifice extends Ritual {
     @Override
     public void onCall(Hand hand) {
 
-        if (player.world.isDay()) {
-            player.sendMessage(new TranslatableText("ritual.pazuzu.notnight"), true);
+        if (PlayerComponents.EVIL.get(player).getEvil() >= 30) {
+            player.sendMessage(new TranslatableText("ritual.tooevil"), true);
+            return;
+        }
+
+        if (!player.world.isDay()) {
+            player.sendMessage(new TranslatableText("ritual.pazuzu.notday"), true);
             return;
         }
 
         boolean hasNecessaryItems = hasNecessaryItems();
 
-        if (!hasNecessaryItems) {
-            return;
-        }
 
-        if (player.world.getTime()-PlayerComponents.RITUALTIME.get(player).getInt("killBaby") > 200) {
-            player.sendMessage(new TranslatableText("ritual.baby.nosacrifice"), true);
+        if (!hasNecessaryItems) {
             return;
         }
 
@@ -90,39 +101,28 @@ public class BabySacrifice extends Ritual {
 
         for (BlockEntity entity : ritualBlocks) {
             if (entity != null)
-                player.world.removeBlock(entity.getPos(), false);
+                if (entity instanceof TableBlockEntity) {
+                    ((TableBlockEntity)entity).setPlacedItem(null);
+                    ((TableBlockEntity)entity).sync();
+                } else if (entity instanceof CeramicAltarBlockEntity) {
+                    ((CeramicAltarBlockEntity)entity).setPlacedItem(null);
+                    ((CeramicAltarBlockEntity)entity).sync();
+                }
         }
 
-        Entity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, this.player.world);
-        lightningEntity.teleport(pos.getX(), pos.getY(), pos.getZ());
-
-        player.world.spawnEntity(lightningEntity);
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 3, false, false));
-
 
         watchingPlayers.forEach(player ->
                 ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, ArsTheurgia.CONSUME_ITEM_PARTICLE, passedData));
 
-        if (player.inventory.armor.get(EquipmentSlot.CHEST.getEntitySlotId()).getItem() != ArsItems.PAZUZU_AMULET_INFUSED) {
-            player.damage(DamageSource.MAGIC, 2000);
-            return;
-        }
 
         player.getEntityWorld().playSound(null, pos, ArsSounds.RITUAL_CHIME, SoundCategory.AMBIENT, 1f, 1f);
 
 
-        StatusEffectInstance lamashtuEffectInstance = new StatusEffectInstance(ArsEffects.LAMASHTU_BLESSING, 60, 0, true, false);
-
-        player.addStatusEffect(lamashtuEffectInstance);
-
-        PlayerComponents.KNOWLEDGE.get(player).setKnowledge("lamashtuBlessing", true);
-
-        if (PlayerComponents.EVIL.get(player).getEvil() < 50) {
-            PlayerComponents.EVIL.get(player).setEvil(50);
-        }
-
-
-        PlayerComponents.EVIL.get(player).setEvil(PlayerComponents.EVIL.get(player).getEvil()+7);
+        LamassuEntity entity = new LamassuEntity(ArsTheurgia.LAMASSU, player.world);
+        entity.teleport(pos.getX(), pos.getY(), pos.getZ());
+        entity.setOwner(player);
+        player.world.spawnEntity(entity);
 
     }
 
@@ -131,20 +131,15 @@ public class BabySacrifice extends Ritual {
 
         for (BlockEntity entity : ritualBlocks) {
 
-            if (entity == null) {
-                continue;
-            }
-
-            BlockPos pos = entity.getPos();
-
             if (entity instanceof TableBlockEntity) {
+                BlockPos pos = entity.getPos();
 
                 TableBlockEntity ritualBlockEntity = (TableBlockEntity) entity;
 
-                if (ritualBlockEntity.getPlacedItem() != null && !ritualBlockEntity.getPlacedItem().isEmpty()) {
+                if (ritualBlockEntity.getPlacedItem() != null) {
                     ItemStack placedItem = ritualBlockEntity.getPlacedItem();
                     if (pos.getZ() == hit.getBlockPos().getZ() && pos.getX() == hit.getBlockPos().getX()) {
-                        if (placedItem.getItem() != ArsItems.BILE ) {
+                        if (ritualBlockEntity.getPlacedItem() != null && !ritualBlockEntity.getPlacedItem().isEmpty()) {
                             hasNecessaryItems = false;
                         }
                     } else {
@@ -155,6 +150,22 @@ public class BabySacrifice extends Ritual {
                 } else {
                     hasNecessaryItems = false;
                 }
+            } else if (entity instanceof CeramicAltarBlockEntity) {
+
+                CeramicAltarBlockEntity ritualBlockEntity = (CeramicAltarBlockEntity) entity;
+                if (ritualBlockEntity.getPlacedItem() != null) {
+                    ItemStack placedItem = ritualBlockEntity.getPlacedItem();
+
+                    if (placedItem.getItem() != Items.BEEF) {
+                        hasNecessaryItems = false;
+                    }
+
+                } else {
+                    hasNecessaryItems = false;
+                }
+
+
+
             }
 
         }
@@ -162,7 +173,5 @@ public class BabySacrifice extends Ritual {
         return hasNecessaryItems;
 
     }
-
-
 
 }
