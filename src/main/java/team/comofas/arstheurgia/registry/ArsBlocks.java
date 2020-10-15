@@ -51,7 +51,8 @@ public class ArsBlocks {
     public static final Block DATE_TREE_LOG = new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F).sounds(BlockSoundGroup.WOOD));
     public static final Block DATE_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).sounds(BlockSoundGroup.GRASS).nonOpaque().suffocates(ArsBlocks::never).blockVision(ArsBlocks::never));
 
-
+    public static final Block SAMAS_FIGURINE = new SamasFigurineBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block MIRSU_BOWL = new MirsuBowlBlock(FabricBlockSettings.of(Material.WOOD).hardness(1.0f));
 
     public static BlockEntityType<RitualBlockEntity> RITUALBLOCK_ENTITY;
     public static BlockEntityType<CeramicAltarBlockEntity> CERAMIC_ALTAR_ENTITY;
@@ -83,6 +84,9 @@ public class ArsBlocks {
 
         registerBlock(DATE_TREE_LOG, "date_tree_log");
         registerBlock(DATE_LEAVES, "date_leaves");
+
+        registerBlock(SAMAS_FIGURINE, "shamash");
+        registerBlock(MIRSU_BOWL, "mirsu_bowl");
 
         RITUALBLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ritualblock"), BlockEntityType.Builder.create(RitualBlockEntity::new, RITUALCENTER).build(null));
         CERAMIC_ALTAR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ceramic_altar"), BlockEntityType.Builder.create(CeramicAltarBlockEntity::new, CERAMIC_ALTAR).build(null));

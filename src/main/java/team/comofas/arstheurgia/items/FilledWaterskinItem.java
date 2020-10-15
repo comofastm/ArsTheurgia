@@ -9,6 +9,7 @@ import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -48,8 +49,7 @@ public class FilledWaterskinItem extends Item {
                 } else {
                     evilManager.setEvil(evilManager.getEvil()-10);
                 }
-
-                System.out.println(PlayerComponents.EVIL.get(player).getEvil());
+                player.sendMessage(new TranslatableText("rituals.remove_evil.text"), true);
 
 
             }

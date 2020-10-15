@@ -64,7 +64,7 @@ public class SamasPurification extends Ritual {
     public void onCall(Hand hand) {
 
         if (player.world.isDay()) {
-            player.sendMessage(new TranslatableText("ritual.pazuzu.notday"), true);
+            player.sendMessage(new TranslatableText("ritual.pazuzu.notnight"), true);
             return;
         }
 

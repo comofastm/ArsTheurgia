@@ -29,6 +29,7 @@ public class ArsTheurgiaClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.SUMMER_SYMBOL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.WINTER_SYMBOL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.FLOUR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.MIRSU_BOWL, RenderLayer.getCutout());
 
         ClientSidePacketRegistry.INSTANCE.register(ArsTheurgia.CONSUME_ITEM_PARTICLE,
                 (packetContext, attachedData) -> {

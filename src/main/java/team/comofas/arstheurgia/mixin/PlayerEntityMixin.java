@@ -25,31 +25,39 @@ public class PlayerEntityMixin {
 
     @Inject(method = "attack", at = @At("HEAD"))
     public void attack(Entity target, CallbackInfo ci) {
-        LivingEntity livingtarget = (LivingEntity) target;
-        Entity entity = (Entity)(Object)this;
-        if (target.isAttackable()) {
-            if (PlayerComponents.KNOWLEDGE.get(this).hasKnowledge("activeUdug")) {
-                entity.getEntityWorld().playSound(null, entity.getBlockPos(), ArsSounds.CLAWS_ATTACK, SoundCategory.PLAYERS, 1f, 1f);
-                livingtarget.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 900, 3, true, true));
+
+        if (target instanceof LivingEntity) {
+            LivingEntity livingtarget = (LivingEntity) target;
+            Entity entity = (Entity)(Object)this;
+            if (target.isAttackable()) {
+                if (PlayerComponents.KNOWLEDGE.get(this).hasKnowledge("activeUdug")) {
+                    entity.getEntityWorld().playSound(null, entity.getBlockPos(), ArsSounds.CLAWS_ATTACK, SoundCategory.PLAYERS, 1f, 1f);
+                    livingtarget.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 900, 3, true, true));
+                }
             }
         }
+
     }
     @Inject(method = "tickMovement", at = @At("HEAD"))
     public void tickMovement(CallbackInfo ci) {
         Entity entity = (Entity)(Object)this;
-        PlayerEntity player = (PlayerEntity) (Object) this;
-        if (this.selectedItem.getItem() == ArsItems.SHARUR) {
-            Vec3d vec3d = entity.getVelocity();
-            entity.fallDistance = 0.0F;
-            if (!(PlayerComponents.KNOWLEDGE.get(player).hasKnowledge("holdingSharur"))) {
-                entity.setVelocity(vec3d.multiply(1.0D, 0D, 1.0D));
-                PlayerComponents.KNOWLEDGE.get(player).setKnowledge("holdingSharur", true);
-            }
-            if (!entity.isOnGround() && vec3d.y < 0) {
-                entity.setVelocity(vec3d.multiply(1.0D, 0.6D, 1.0D));
-            }
+
+        if (entity instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) (Object) this;
+            if (this.selectedItem.getItem() == ArsItems.SHARUR) {
+                Vec3d vec3d = entity.getVelocity();
+                entity.fallDistance = 0.0F;
+                if (!(PlayerComponents.KNOWLEDGE.get(player).hasKnowledge("holdingSharur"))) {
+                    entity.setVelocity(vec3d.multiply(1.0D, 0D, 1.0D));
+                    PlayerComponents.KNOWLEDGE.get(player).setKnowledge("holdingSharur", true);
+                }
+                if (!entity.isOnGround() && vec3d.y < 0) {
+                    entity.setVelocity(vec3d.multiply(1.0D, 0.6D, 1.0D));
+                }
             } else {
-            if (PlayerComponents.KNOWLEDGE.get(player).hasKnowledge("holdingSharur")) { PlayerComponents.KNOWLEDGE.get(player).setKnowledge("holdingSharur", false); }
+                if (PlayerComponents.KNOWLEDGE.get(player).hasKnowledge("holdingSharur")) { PlayerComponents.KNOWLEDGE.get(player).setKnowledge("holdingSharur", false); }
+            }
         }
+
     }
 }

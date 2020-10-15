@@ -6,10 +6,7 @@ import net.minecraft.item.*;
 import net.minecraft.util.registry.Registry;
 import team.comofas.arstheurgia.ArsUtils;
 import team.comofas.arstheurgia.items.*;
-import team.comofas.arstheurgia.ritual.rituals.CreeperSummon;
-import team.comofas.arstheurgia.ritual.rituals.PazuzuBlessing;
-import team.comofas.arstheurgia.ritual.rituals.SamasPurification;
-import team.comofas.arstheurgia.ritual.rituals.UdugSummon;
+import team.comofas.arstheurgia.ritual.rituals.*;
 
 public class ArsItems {
 
@@ -47,6 +44,12 @@ public class ArsItems {
     public static final Item WATERSKIN = new WaterskinItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item WATERSKIN_FILLED = new FilledWaterskinItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
+    public static final Item SAMAS_FIGURINE = new BlockItem(ArsBlocks.SAMAS_FIGURINE, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item MIRSU_BOWL = new BlockItem(ArsBlocks.MIRSU_BOWL, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+
+    public static final Item DATE_TREE_LOG = new BlockItem(ArsBlocks.DATE_TREE_LOG, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item DATE_LEAVES = new BlockItem(ArsBlocks.DATE_LEAVES, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+
 
     public static void registerAll() {
         registerItem(CLAY_TABLET, "clay_tablet");
@@ -83,11 +86,15 @@ public class ArsItems {
 
         registerItem(WATERSKIN, "waterskin");
         registerItem(WATERSKIN_FILLED, "filled_waterskin");
+
+        registerItem(SAMAS_FIGURINE, "shamash");
+        registerItem(MIRSU_BOWL, "mirsu_bowl");
         
         CreeperSummon.INSTANCE.registerItems();
         PazuzuBlessing.INSTANCE.registerItems();
         SamasPurification.INSTANCE.registerItems();
         UdugSummon.INSTANCE.registerItems();
+        SharurRitual.INSTANCE.registerItems();
 
 
     }

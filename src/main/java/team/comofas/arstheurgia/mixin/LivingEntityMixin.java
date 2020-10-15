@@ -1,5 +1,6 @@
 package team.comofas.arstheurgia.mixin;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -61,11 +62,11 @@ public abstract class LivingEntityMixin {
     @Inject(method = "tickStatusEffects", at = @At("TAIL"))
     public void removeBlessingAtNight(CallbackInfo ci) {
 
-        LivingEntity livingEntity = (LivingEntity)(Object)this;
+        if ((Entity)(Object)this instanceof PlayerEntity) {
 
-        World world = livingEntity.world;
+            LivingEntity livingEntity = (LivingEntity)(Object)this;
 
-        if (livingEntity instanceof PlayerEntity) {
+            World world = livingEntity.world;
 
             PlayerEntity playerEntity = (PlayerEntity) livingEntity;
 

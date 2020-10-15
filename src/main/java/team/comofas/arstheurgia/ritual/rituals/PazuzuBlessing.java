@@ -70,7 +70,7 @@ public class PazuzuBlessing extends Ritual {
     public void onCall(Hand hand) {
 
         if (player.world.isDay()) {
-            player.sendMessage(new TranslatableText("ritual.pazuzu.notday"), true);
+            player.sendMessage(new TranslatableText("ritual.pazuzu.notnight"), true);
             return;
         }
 
@@ -111,6 +111,7 @@ public class PazuzuBlessing extends Ritual {
         StatusEffectInstance pazuzuEffectInstance = new StatusEffectInstance(ArsEffects.PAZUZU_BLESSING, 60, 0, true, false);
 
         PlayerComponents.ACTIVE_BLESSING.get(player).setBlessing(true);
+        PlayerComponents.EVIL.get(player).setEvil(20);
 
         player.addStatusEffect(pazuzuEffectInstance);
     }
