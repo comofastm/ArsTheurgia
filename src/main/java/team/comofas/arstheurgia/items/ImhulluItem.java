@@ -40,10 +40,14 @@ public class ImhulluItem extends Item {
                 List<LivingEntity> list = server.getEntitiesByClass(LivingEntity.class, box, (entity) -> entity != null && entity.isAlive());
                 list.stream().filter(entity -> user.distanceTo(entity) <= 5);
                 Iterator iterator = list.iterator();
+                double x = user.getRotationVector().x;
+                double y = user.getRotationVector().y;
+                double z = user.getRotationVector().z;
                 user.getEntityWorld().playSound(null, user.getBlockPos(), ArsSounds.IMHULLU_WIND, SoundCategory.PLAYERS, 1f, 1f);
                 while (iterator.hasNext()) {
                     Entity entity = (Entity) iterator.next();
-                    entity.addVelocity(0, 1, 0);
+                    entity.addVelocity(x*0.3, 1+y, z*0.3
+                    );
                 }
                 return new TypedActionResult<>(ActionResult.SUCCESS, user.getStackInHand(hand));
             } else {
