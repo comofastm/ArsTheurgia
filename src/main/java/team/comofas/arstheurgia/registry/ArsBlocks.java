@@ -26,24 +26,24 @@ public class ArsBlocks {
         return false;
     }
 
-    public static final Block RITUALCENTER = new RitualBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f));
-    public static final Block ASYRIEL_SIGIL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block SPRING_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block SUMMER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block AUTUMN_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block WINTER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block VELINHA = new CandleBlock(FabricBlockSettings.of(Material.METAL).breakInstantly().luminance((state) -> 12).sounds(BlockSoundGroup.WOOD), ParticleTypes.FLAME);
-    public static final Block FLOUR = new FlourBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block PAZUZU_FIGURINE = new FlourBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block RITUALCENTER = new RitualBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f).breakInstantly());
+    public static final Block ASYRIEL_SIGIL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).breakInstantly());
+    public static final Block SPRING_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).breakInstantly());
+    public static final Block SUMMER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).breakInstantly());
+    public static final Block AUTUMN_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).breakInstantly());
+    public static final Block WINTER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).breakInstantly());
+    public static final Block VELINHA = new CandleBlock(FabricBlockSettings.of(Material.METAL).breakInstantly().luminance((state) -> 12).sounds(BlockSoundGroup.WOOD).breakInstantly(), ParticleTypes.FLAME);
+    public static final Block FLOUR = new FlourBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).breakInstantly());
+    public static final Block PAZUZU_FIGURINE = new FlourBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).sounds(BlockSoundGroup.ANVIL));
 
-    public static final Block SMOOTH_MUD_BLOCK_STAIRS = new ATStairsBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block MUD_BLOCK_BRICKS_STAIRS = new ATStairsBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block MUD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block SMOOTH_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block MUD_BLOCK_BRICKS = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block SMOOTH_MUD_BLOCK_STAIRS = new ATStairsBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));
+    public static final Block MUD_BLOCK_BRICKS_STAIRS = new ATStairsBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));
+    public static final Block MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));
+    public static final Block SMOOTH_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));
+    public static final Block MUD_BLOCK_BRICKS = new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));
     public static final Block SMOOTH_MUD_BLOCK_SLAB = new SlabBlock(AbstractBlock.Settings.of(Material.STONE, MaterialColor.STONE).requiresTool().strength(2.0F, 6.0F));
 
-    public static final Block TABLE = new TableBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block TABLE = new TableBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(1.0f));
     public static final Block CERAMIC_ALTAR = new CeramicAltarBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
 
     public static final Block MUD_BLOCK_BRICKS_SLAB = new SlabBlock(AbstractBlock.Settings.of(Material.STONE, MaterialColor.STONE).requiresTool().strength(2.0F, 6.0F));
@@ -53,17 +53,17 @@ public class ArsBlocks {
     public static final Block DATE_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).sounds(BlockSoundGroup.GRASS).nonOpaque().suffocates(ArsBlocks::never).blockVision(ArsBlocks::never));
     public static final Block DATE_SAPLING = new ATSaplingBlock(new DateTreeSaplingGenerator(), FabricBlockSettings.of(Material.LEAVES));
 
-    public static final Block SAMAS_FIGURINE = new SamasFigurineBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block MIRSU_BOWL = new MirsuBowlBlock(FabricBlockSettings.of(Material.WOOD).hardness(1.0f));
+    public static final Block SAMAS_FIGURINE = new SamasFigurineBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).sounds(BlockSoundGroup.ANVIL));
+    public static final Block MIRSU_BOWL = new MirsuBowlBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).hardness(1.0f));
 
     public static final Block WITCH_FIGURE = new MudFigureBlock(FabricBlockSettings.of(Material.SOIL).hardness(1.0f));
     public static final Block PRAYING_FIGURE = new MudFigureBlock(FabricBlockSettings.of(Material.SOIL).hardness(1.0f));
 
-    public static final Block LION_PAINTED_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));;
-    public static final Block SUN_PAINTED_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));;
-    public static final Block PAINTED_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));;
-    public static final Block MUD_BLOCK_MINIBRICKS = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));;
-    public static final Block MUD_BLOCK_MINIBRICKS_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).hardness(4.0f));;
+    public static final Block LION_PAINTED_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));;
+    public static final Block SUN_PAINTED_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));;
+    public static final Block PAINTED_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));;
+    public static final Block MUD_BLOCK_MINIBRICKS = new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));;
+    public static final Block MUD_BLOCK_MINIBRICKS_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));;
 
     public static BlockEntityType<RitualBlockEntity> RITUALBLOCK_ENTITY;
     public static BlockEntityType<CeramicAltarBlockEntity> CERAMIC_ALTAR_ENTITY;
