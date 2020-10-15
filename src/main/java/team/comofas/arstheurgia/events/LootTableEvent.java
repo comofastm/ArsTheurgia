@@ -23,6 +23,8 @@ public class LootTableEvent {
 
     private static final Identifier DESERT_PYRAMID_ID = new Identifier("minecraft", "chests/desert_pyramid");
 
+    private static final Identifier GRASS_ID = new Identifier("minecraft", "blocks/grass");
+
     public static void register() {
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
 
@@ -35,7 +37,13 @@ public class LootTableEvent {
 
                     supplier.pool(poolBuilder);
                 }
+            } else if (GRASS_ID.equals(id)) {
+                FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                        .rolls(ConstantLootTableRange.create(1))
+                        .conditionally(RandomChanceLootCondition.builder(0.05F))
+                        .withEntry(ItemEntry.builder(ArsItems.PISTACHIO).build());
 
+                supplier.pool(poolBuilder);
             }
         });
     }

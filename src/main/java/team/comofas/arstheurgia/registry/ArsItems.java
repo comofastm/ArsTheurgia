@@ -37,6 +37,7 @@ public class ArsItems {
     public static final Item SHARUR = new SharurItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
     public static final Item IMHULLU = new ImhulluItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
     public static final Item DATES = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.APPLE));
+    public static final Item HAND_FAN = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
     public static final Item PAZUZU_FIGURINE = new BlockItem(ArsBlocks.PAZUZU_FIGURINE, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item PAZUZU_AMULET = new ArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.CHEST, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
@@ -53,6 +54,14 @@ public class ArsItems {
     public static final Item DATE_LEAVES = new BlockItem(ArsBlocks.DATE_LEAVES, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
     public static final Item VELINHA = new BlockItem(ArsBlocks.VELINHA, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+
+    public static final Item DATE_PASTE = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item MIRSU = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item MORTAR = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item PISTACHIO = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item PISTACHIO_POWDER = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item SYRUP = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.HONEY_BOTTLE));
+
 
     public static void registerAll() {
         registerItem(CLAY_TABLET, "clay_tablet");
@@ -83,6 +92,7 @@ public class ArsItems {
         registerItem(MUD_BLOCK_RAW, "mud_block_raw");
 
         registerItem(MACE, "mace");
+        registerItem(HAND_FAN, "hand_fan");
         registerItem(SHARUR, "sharur");
         registerItem(IMHULLU, "imhullu");
 
@@ -98,7 +108,13 @@ public class ArsItems {
         registerItem(MIRSU_BOWL, "mirsu_bowl");
 
         registerItem(VELINHA, "velinha");
-        
+
+        registerItem(MIRSU, "mirsu");
+        registerItem(MORTAR, "mortar");
+        registerItem(PISTACHIO, "pistachio");
+        registerItem(PISTACHIO_POWDER, "pistachio_powder");
+        registerItem(SYRUP, "syrup");
+
         CreeperSummon.INSTANCE.registerItems();
         PazuzuBlessing.INSTANCE.registerItems();
         SamasPurification.INSTANCE.registerItems();
