@@ -10,6 +10,7 @@ import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
@@ -84,8 +85,15 @@ public class SharurRitual extends Ritual {
 
         for (BlockEntity entity : ritualBlocks) {
             if (entity instanceof TableBlockEntity) {
+
                 TableBlockEntity tableBlockEntity = (TableBlockEntity) entity;
-                tableBlockEntity.setPlacedItem(null);
+
+                if (entity.getPos().equals(pos)) {
+                    tableBlockEntity.setPlacedItem(new ItemStack(ArsItems.SHARUR));
+                } else {
+                    tableBlockEntity.setPlacedItem(null);
+                }
+
                 tableBlockEntity.sync();
             }
 
