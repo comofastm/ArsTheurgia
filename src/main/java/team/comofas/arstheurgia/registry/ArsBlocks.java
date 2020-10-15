@@ -30,9 +30,7 @@ public class ArsBlocks {
     public static final Block SUMMER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block AUTUMN_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block WINTER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block VELINHA = new CandleBlock(FabricBlockSettings.of(Material.METAL).breakInstantly().luminance((state) -> {
-        return 12;
-    }).sounds(BlockSoundGroup.WOOD), ParticleTypes.FLAME);
+    public static final Block VELINHA = new CandleBlock(FabricBlockSettings.of(Material.METAL).breakInstantly().luminance((state) -> 12).sounds(BlockSoundGroup.WOOD), ParticleTypes.FLAME);
     public static final Block FLOUR = new FlourBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block PAZUZU_FIGURINE = new FlourBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
 
