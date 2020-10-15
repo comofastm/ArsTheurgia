@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer1": "arstheurgia:item/pazuzu_amulet_layer_1"
+	}
+}
