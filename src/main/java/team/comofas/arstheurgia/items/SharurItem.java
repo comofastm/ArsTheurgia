@@ -26,7 +26,9 @@ public class SharurItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (world.getTime()-PlayerComponents.RITUALTIME.get(user).getInt("lastSharur") >= 100) {
             int sharurCount = PlayerComponents.RITUALTIME.get(user).getInt("usedSharur");
-            if ((sharurCount)<8) {
+            if (PlayerComponents.RITUALTIME.get(user).getInt("lastUsedSharur") >= 100) { PlayerComponents.RITUALTIME.get(user).setInt("usedSharur", 0); }
+            if ((sharurCount)<12) {
+                PlayerComponents.RITUALTIME.get(user).setIntTime("lastUsedSharur");
                 PlayerComponents.RITUALTIME.get(user).setInt("usedSharur", sharurCount+1);
                 user.getEntityWorld().playSound(null, user.getBlockPos(), ArsSounds.MACE_PULL, SoundCategory.PLAYERS, 1f, 1f);
                 if (world.isClient()) {

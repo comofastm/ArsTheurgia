@@ -29,7 +29,7 @@ public class ArsItems {
     public static final ChalkItem CHALK_ITEM = new ChalkItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(70));
 
     public static final Item GEBEL_KNIFE = new SwordItem(ToolMaterials.STONE, 3, -2.4F, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
-    public static final Item MACE = new SwordItem(ToolMaterials.IRON, 9, -3.2F, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
+    public static final Item MACE = new SwordItem(ToolMaterials.IRON, 9, -3.5F, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
     public static final Item TROWEL = new SpadeItem(ToolMaterials.IRON, 3, -2.4F, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(250));
     public static final Item FLOUR = new BlockItem(ArsBlocks.FLOUR, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item BILE = new BileBottleItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(Items.GLASS_BOTTLE));
@@ -48,6 +48,7 @@ public class ArsItems {
     public static final Item MIRSU_BOWL = new BlockItem(ArsBlocks.MIRSU_BOWL, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
     public static final Item DATE_TREE_LOG = new BlockItem(ArsBlocks.DATE_TREE_LOG, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item DATE_SAPLING = new BlockItem(ArsBlocks.DATE_SAPLING, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item DATE_LEAVES = new BlockItem(ArsBlocks.DATE_LEAVES, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
 
@@ -83,6 +84,9 @@ public class ArsItems {
         registerItem(IMHULLU, "imhullu");
 
         registerItem(DATES, "dates");
+        registerItem(DATE_SAPLING, "date_sapling");
+        registerItem(DATE_LEAVES, "date_leaves");
+        registerItem(DATE_TREE_LOG, "date_logs");
 
         registerItem(WATERSKIN, "waterskin");
         registerItem(WATERSKIN_FILLED, "filled_waterskin");

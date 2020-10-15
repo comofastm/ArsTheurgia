@@ -1,0 +1,7 @@
+{
+  "parent": "arstheurgia:item/mace",
+  "textures": {
+    "0": "arstheurgia:item/mace",
+    "particle": "arstheurgia:item/mace"
+  }
+}
