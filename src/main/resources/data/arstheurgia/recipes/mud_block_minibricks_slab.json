@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "   ",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "arstheurgia:mud_block_minibricks"
+    }
+  },
+  "result": {
+    "item": "arstheurgia:mud_block_minibricks_slab",
+    "count": 6
+  }
+}
+

@@ -64,6 +64,12 @@ public class ArsItems {
 
     public static final Item MUD_BLOB = new MudBlobItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.HONEY_BOTTLE));
 
+    public static final Item LION_PAINTED_MUD_BLOCK = new BlockItem(ArsBlocks.LION_PAINTED_MUD_BLOCK, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item SUN_PAINTED_MUD_BLOCK = new BlockItem(ArsBlocks.SUN_PAINTED_MUD_BLOCK, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item PAINTED_MUD_BLOCK = new BlockItem(ArsBlocks.PAINTED_MUD_BLOCK, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item MUD_BLOCK_MINIBRICKS = new BlockItem(ArsBlocks.MUD_BLOCK_MINIBRICKS, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item MUD_BLOCK_MINIBRICKS_SLAB = new BlockItem(ArsBlocks.MUD_BLOCK_MINIBRICKS_SLAB, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+
 
     public static void registerAll() {
         registerItem(CLAY_TABLET, "clay_tablet");
@@ -119,6 +125,12 @@ public class ArsItems {
         registerItem(SYRUP, "syrup");
 
         registerItem(MUD_BLOB, "mud_blob");
+
+        registerItem(LION_PAINTED_MUD_BLOCK, "lion_painted_mud_block");
+        registerItem(SUN_PAINTED_MUD_BLOCK, "sun_painted_mud_block");
+        registerItem(PAINTED_MUD_BLOCK, "painted_mud_block");
+        registerItem(MUD_BLOCK_MINIBRICKS, "mud_block_minibricks");
+        registerItem(MUD_BLOCK_MINIBRICKS_SLAB, "mud_block_minibricks_slab");
 
         CreeperSummon.INSTANCE.registerItems();
         PazuzuBlessing.INSTANCE.registerItems();
