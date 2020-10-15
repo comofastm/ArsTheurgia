@@ -1,8 +1,10 @@
 package team.comofas.arstheurgia.registry;
 
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
@@ -84,6 +86,7 @@ public class ArsBlocks {
         registerBlock(DATE_TREE_LOG, "date_tree_log");
         registerBlock(DATE_LEAVES, "date_leaves");
         registerBlock(DATE_SAPLING, "date_sapling");
+        BlockRenderLayerMap.INSTANCE.putBlock(DATE_SAPLING, RenderLayer.getCutout());
 
         registerBlock(SAMAS_FIGURINE, "shamash");
         registerBlock(MIRSU_BOWL, "mirsu_bowl");
