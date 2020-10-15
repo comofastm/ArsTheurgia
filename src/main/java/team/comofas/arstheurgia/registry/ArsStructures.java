@@ -19,18 +19,18 @@ public class ArsStructures {
     public static final StructurePieceType HOUSE_RUIN = RuinGenerator.HousePiece::new;
     private static final StructureFeature<DefaultFeatureConfig> RUIN_FEATURE = new RuinFeature(DefaultFeatureConfig.CODEC);
     public static final ConfiguredStructureFeature<?, ?> RUIN_FEATURE_CONFIGURED = RUIN_FEATURE.configure(DefaultFeatureConfig.DEFAULT);
-    public static final ConfiguredFeature<?, ?> MY_TREE = Feature.TREE.configure((new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ArsBlocks.DATE_TREE_LOG.getDefaultState()), new SimpleBlockStateProvider(ArsBlocks.DATE_LEAVES.getDefaultState()), new BlobFoliagePlacer(UniformIntDistribution.of(2), UniformIntDistribution.of(0), 3), new ForkingTrunkPlacer(5, 2, 2), new TwoLayersFeatureSize(1, 0, 1))).ignoreVines().build());
+    public static final ConfiguredFeature<TreeFeatureConfig, ?> DATE_TREE = Feature.TREE.configure((new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(ArsBlocks.DATE_TREE_LOG.getDefaultState()), new SimpleBlockStateProvider(ArsBlocks.DATE_LEAVES.getDefaultState()), new BlobFoliagePlacer(UniformIntDistribution.of(2), UniformIntDistribution.of(0), 3), new ForkingTrunkPlacer(5, 2, 2), new TwoLayersFeatureSize(1, 0, 1))).ignoreVines().build());
 
     public static void registerAll() {
-        Registry.register(Registry.STRUCTURE_PIECE, ArsUtils.getIdentifier("my_piece"), HOUSE_RUIN);
-        FabricStructureBuilder.create(ArsUtils.getIdentifier("my_piece"), RUIN_FEATURE)
+        Registry.register(Registry.STRUCTURE_PIECE, ArsUtils.getIdentifier("house"), HOUSE_RUIN);
+        FabricStructureBuilder.create(ArsUtils.getIdentifier("house"), RUIN_FEATURE)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(32, 8, 12345)
                 .adjustsSurface()
                 .register();
 
-        BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, ArsUtils.getIdentifier("my_piece"),
+        BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, ArsUtils.getIdentifier("house"),
                 RUIN_FEATURE_CONFIGURED);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, ArsUtils.getIdentifier("treetest"), MY_TREE);
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, ArsUtils.getIdentifier("date_tree"), DATE_TREE);
     }
 }

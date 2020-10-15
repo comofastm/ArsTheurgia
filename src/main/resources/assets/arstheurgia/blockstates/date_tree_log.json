@@ -9,7 +9,7 @@
       "model": "arstheurgia:block/date_tree_log"
     },
     "axis=z": {
-      "model": "arstheurgia:block/date_tree_horizontal",
+      "model": "arstheurgia:block/date_tree_log_horizontal",
       "x": 90
     }
   }

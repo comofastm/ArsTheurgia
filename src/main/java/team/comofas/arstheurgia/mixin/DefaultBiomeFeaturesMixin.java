@@ -14,6 +14,6 @@ public class DefaultBiomeFeaturesMixin {
     @Inject(method = "addDesertFeatures(Lnet/minecraft/world/biome/GenerationSettings$Builder;)V", at = @At("TAIL"))
     private static void addDesertFeatures(GenerationSettings.Builder builder, CallbackInfo ci) {
         builder.structureFeature(ArsStructures.RUIN_FEATURE_CONFIGURED);
-        builder.feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, ArsStructures.MY_TREE);
+        builder.feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, ArsStructures.DATE_TREE);
     }
 }

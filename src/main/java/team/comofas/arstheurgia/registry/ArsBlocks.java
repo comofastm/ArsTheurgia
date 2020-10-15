@@ -15,6 +15,7 @@ import team.comofas.arstheurgia.blocks.ritualblocktest.RitualBlock;
 import team.comofas.arstheurgia.ArsUtils;
 import team.comofas.arstheurgia.blocks.table.TableBlock;
 import team.comofas.arstheurgia.blocks.table.TableBlockEntity;
+import team.comofas.arstheurgia.structures.DateTreeSaplingGenerator;
 
 
 public class ArsBlocks {
@@ -39,7 +40,6 @@ public class ArsBlocks {
     public static final Block MUD_BLOCK_BRICKS_STAIRS = new ATStairsBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block MUD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block SMOOTH_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
-    public static final Block SMOOTH_MUD_BLOCK_SLAB = new SlabBlock(AbstractBlock.Settings.of(Material.STONE, MaterialColor.STONE).requiresTool().strength(2.0F, 6.0F));
     public static final Block MUD_BLOCK_BRICKS = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
 
     public static final Block TABLE = new TableBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
@@ -50,9 +50,11 @@ public class ArsBlocks {
 
     public static final Block DATE_TREE_LOG = new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F).sounds(BlockSoundGroup.WOOD));
     public static final Block DATE_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).sounds(BlockSoundGroup.GRASS).nonOpaque().suffocates(ArsBlocks::never).blockVision(ArsBlocks::never));
+    public static final Block DATE_SAPLING = new ATSaplingBlock(new DateTreeSaplingGenerator(), FabricBlockSettings.of(Material.LEAVES));
 
     public static final Block SAMAS_FIGURINE = new SamasFigurineBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block MIRSU_BOWL = new MirsuBowlBlock(FabricBlockSettings.of(Material.WOOD).hardness(1.0f));
+
 
     public static BlockEntityType<RitualBlockEntity> RITUALBLOCK_ENTITY;
     public static BlockEntityType<CeramicAltarBlockEntity> CERAMIC_ALTAR_ENTITY;
@@ -77,13 +79,13 @@ public class ArsBlocks {
         registerBlock(MUD_BLOCK_BRICKS_STAIRS, "mud_block_bricks_stairs");
         registerBlock(MUD_BLOCK, "mud_block");
         registerBlock(SMOOTH_MUD_BLOCK, "smooth_mud_block");
-        registerBlock(SMOOTH_MUD_BLOCK_SLAB, "smooth_mud_block_slab");
         registerBlock(MUD_BLOCK_BRICKS, "mud_block_bricks");
         registerBlock(MUD_BLOCK_BRICKS_SLAB, "mud_block_bricks_slab");
         registerBlock(MUD_BLOCK_RAW, "mud_block_raw");
 
         registerBlock(DATE_TREE_LOG, "date_tree_log");
         registerBlock(DATE_LEAVES, "date_leaves");
+        registerBlock(DATE_SAPLING, "date_sapling");
 
         registerBlock(SAMAS_FIGURINE, "shamash");
         registerBlock(MIRSU_BOWL, "mirsu_bowl");

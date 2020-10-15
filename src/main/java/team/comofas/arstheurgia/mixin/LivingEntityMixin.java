@@ -82,9 +82,7 @@ public abstract class LivingEntityMixin {
 
                 } else {
                     PlayerComponents.ACTIVE_BLESSING.get(playerEntity).setBlessing(false);
-                    PlayerComponents.KNOWLEDGE.maybeGet(playerEntity).ifPresent(value -> {
-                        value.setKnowledge("activeUdug", false);
-                    });
+                    PlayerComponents.KNOWLEDGE.maybeGet(playerEntity).ifPresent(value -> value.setKnowledge("activeUdug", false));
                 }
             }
 
