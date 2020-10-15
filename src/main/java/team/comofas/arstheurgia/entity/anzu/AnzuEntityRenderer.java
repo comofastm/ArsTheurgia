@@ -5,6 +5,7 @@ import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
 import team.comofas.arstheurgia.entity.AnzuEntity;
 import team.comofas.arstheurgia.entity.LamassuEntity;
+import team.comofas.arstheurgia.player.PlayerComponents;
 
 public class AnzuEntityRenderer extends MobEntityRenderer<AnzuEntity, AnzuEntityModel> {
 
@@ -14,6 +15,15 @@ public class AnzuEntityRenderer extends MobEntityRenderer<AnzuEntity, AnzuEntity
 
     @Override
     public Identifier getTexture(AnzuEntity entity) {
-        return new Identifier("arstheurgia", "textures/entity/anzu.png");
+        float maxdry = 8;
+        float statenum = 2;
+        int state = (int) Math.floor((statenum/maxdry)* ((float) PlayerComponents.DRY.get(entity).getDry()));
+        if (state == 0) {
+            return new Identifier("arstheurgia", "textures/entity/anzu3.png");
+        } else if (state == 1) {
+            return new Identifier("arstheurgia", "textures/entity/anzu2.png");
+        } else {
+            return new Identifier("arstheurgia", "textures/entity/anzu.png");
+        }
     }
 }
