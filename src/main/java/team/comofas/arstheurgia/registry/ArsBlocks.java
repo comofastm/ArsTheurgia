@@ -26,7 +26,6 @@ public class ArsBlocks {
         return false;
     }
 
-    public static final Block RITUALCENTER = new RitualBlock(FabricBlockSettings.of(Material.METAL).hardness(4.0f).breakInstantly());
     public static final Block ASYRIEL_SIGIL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).breakInstantly());
     public static final Block SPRING_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).breakInstantly());
     public static final Block SUMMER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).breakInstantly());
@@ -77,7 +76,6 @@ public class ArsBlocks {
         registerBlock(AUTUMN_SYMBOL, "autumn_symbol_chalk");
         registerBlock(WINTER_SYMBOL, "winter_symbol_chalk");
         registerBlock(PAZUZU_FIGURINE, "pazuzu_figurine");
-        registerBlock(RITUALCENTER, "ritual_block");
         registerBlock(VELINHA, "velinha");
         registerBlock(FLOUR, "flour");
 
@@ -110,7 +108,6 @@ public class ArsBlocks {
         registerBlock(MUD_BLOCK_MINIBRICKS, "mud_block_minibricks");
         registerBlock(MUD_BLOCK_MINIBRICKS_SLAB, "mud_block_minibricks_slab");
 
-        RITUALBLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ritualblock"), BlockEntityType.Builder.create(RitualBlockEntity::new, RITUALCENTER).build(null));
         CERAMIC_ALTAR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ceramic_altar"), BlockEntityType.Builder.create(CeramicAltarBlockEntity::new, CERAMIC_ALTAR).build(null));
         TABLE_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("table"), BlockEntityType.Builder.create(TableBlockEntity::new, TABLE).build(null));
 

@@ -11,14 +11,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import team.comofas.arstheurgia.blocks.ritualblocktest.RitualBlock;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static net.minecraft.block.HorizontalFacingBlock.FACING;
 
-public class ChalkBlock extends RitualBlock {
+public class ChalkBlock extends Block {
 
     private static List<ChalkBlock> blocks = new ArrayList<ChalkBlock>();
 

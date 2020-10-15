@@ -17,7 +17,7 @@ import java.util.List;
 
 import static net.minecraft.block.HorizontalFacingBlock.FACING;
 
-public class MudFigureBlock extends RitualBlock {
+public class MudFigureBlock extends Block {
 
     private static List<MudFigureBlock> blocks = new ArrayList<MudFigureBlock>();
 

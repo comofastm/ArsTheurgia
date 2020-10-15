@@ -1,19 +1,14 @@
 package team.comofas.arstheurgia.gui;
 
-import com.google.common.collect.Lists;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.NarratorManager;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -23,8 +18,6 @@ import team.comofas.arstheurgia.ArsUtils;
 import team.comofas.arstheurgia.items.OpenableTablet;
 import team.comofas.arstheurgia.registry.ArsItems;
 import team.comofas.arstheurgia.ritual.Ritual;
-import team.comofas.arstheurgia.ritual.rituals.CreeperSummon;
-import team.comofas.arstheurgia.ritual.utils.RitualUtils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -136,7 +136,6 @@ public class ArsItems {
         registerItem(MUD_BLOCK_MINIBRICKS, "mud_block_minibricks");
         registerItem(MUD_BLOCK_MINIBRICKS_SLAB, "mud_block_minibricks_slab");
 
-        CreeperSummon.INSTANCE.registerItems();
         PazuzuBlessing.INSTANCE.registerItems();
         SamasPurification.INSTANCE.registerItems();
         UdugSummon.INSTANCE.registerItems();
