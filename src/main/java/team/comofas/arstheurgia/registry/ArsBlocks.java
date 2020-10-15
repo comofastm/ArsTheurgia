@@ -41,6 +41,7 @@ public class ArsBlocks {
     public static final Block MUD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block SMOOTH_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block MUD_BLOCK_BRICKS = new Block(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
+    public static final Block SMOOTH_MUD_BLOCK_SLAB = new SlabBlock(AbstractBlock.Settings.of(Material.STONE, MaterialColor.STONE).requiresTool().strength(2.0F, 6.0F));
 
     public static final Block TABLE = new TableBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block CERAMIC_ALTAR = new CeramicAltarBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
@@ -79,6 +80,7 @@ public class ArsBlocks {
         registerBlock(MUD_BLOCK_BRICKS_STAIRS, "mud_block_bricks_stairs");
         registerBlock(MUD_BLOCK, "mud_block");
         registerBlock(SMOOTH_MUD_BLOCK, "smooth_mud_block");
+        registerBlock(SMOOTH_MUD_BLOCK_SLAB, "smooth_mud_block_slab");
         registerBlock(MUD_BLOCK_BRICKS, "mud_block_bricks");
         registerBlock(MUD_BLOCK_BRICKS_SLAB, "mud_block_bricks_slab");
         registerBlock(MUD_BLOCK_RAW, "mud_block_raw");
