@@ -6,7 +6,7 @@
 		"entries": [
 			{
 				"type": "minecraft:item",
-				"name": "arstheurgia:date_leaves"
+				"name": "arstheurgia:mud_block"
 			}
 		],
 		"conditions": [
