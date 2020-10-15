@@ -34,7 +34,7 @@ public class ArsItems {
     public static final Item FLOUR = new BlockItem(ArsBlocks.FLOUR, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item BILE = new BileBottleItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(Items.GLASS_BOTTLE));
 
-    public static final Item SHARUR = new SharurItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
+    public static final Item SHARUR = new SharurItem(ToolMaterials.IRON, 9, -3.5F, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
     public static final Item IMHULLU = new ImhulluItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
     public static final Item DATES = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.APPLE));
     public static final Item HAND_FAN = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));

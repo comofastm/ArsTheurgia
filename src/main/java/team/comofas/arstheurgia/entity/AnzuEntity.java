@@ -123,7 +123,7 @@ public class AnzuEntity extends TameableEntity implements IAnimatedEntity {
     }
 
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        this.setOwner(player);
+        this.setSitting(!this.isSitting());
         return ActionResult.SUCCESS;
     }
 
