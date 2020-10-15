@@ -25,9 +25,9 @@ public class ImhulluItem extends Item {
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient()) {
-            if (world.getTime()- PlayerComponents.RITUALTIME.get(user).getInt("imhulluCooldown") >= 200) {
+            if (world.getTime()- PlayerComponents.RITUALTIME.get(user).getInt("imhulluCooldown") >= 100) {
                 ServerWorld server = (ServerWorld) world;
-                PlayerComponents.RITUALTIME.get(user).setInt("imhulluCooldown");
+                PlayerComponents.RITUALTIME.get(user).setIntTime("imhulluCooldown");
                 Box box = new Box(
                         user.getX() - 10,
                         user.getY(),
@@ -47,6 +47,7 @@ public class ImhulluItem extends Item {
                 }
                 return new TypedActionResult<>(ActionResult.SUCCESS, user.getStackInHand(hand));
             } else {
+                user.getEntityWorld().playSound(null, user.getBlockPos(), ArsSounds.RITUAL_FAIL, SoundCategory.PLAYERS, 1f, 1f);
                 return new TypedActionResult<>(ActionResult.FAIL, user.getStackInHand(hand));
             }
         } else {

@@ -20,8 +20,14 @@ public class RitualTime implements RitualTimeManager {
     }
 
     @Override
-    public void setInt(String key) {
+    public void setIntTime(String key) {
         this.ritualtime.putInt(key, (int) player.getEntityWorld().getTime());
+        sync();
+    }
+
+    @Override
+    public void setInt(String key, int value) {
+        this.ritualtime.putInt(key, value);
         sync();
     }
 

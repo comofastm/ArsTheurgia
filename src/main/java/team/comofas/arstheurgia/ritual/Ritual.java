@@ -6,14 +6,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import team.comofas.arstheurgia.ArsTheurgia;
 import team.comofas.arstheurgia.items.OpenableTablet;
 import team.comofas.arstheurgia.items.TabletPartItem;
 import team.comofas.arstheurgia.items.UncookedTabletItem;
@@ -93,7 +91,7 @@ public class Ritual {
         if (check) {
             if (world.getTime() - rt.oldTime > rt.cooldown) {
                 rt.onCall(hand);
-                PlayerComponents.RITUALTIME.get(player).setInt(rt.ritualName);
+                PlayerComponents.RITUALTIME.get(player).setIntTime(rt.ritualName);
             } else {
                 rt.onCooldownFail();
             }

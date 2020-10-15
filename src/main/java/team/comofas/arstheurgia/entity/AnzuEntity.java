@@ -12,7 +12,6 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.WaterFluid;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -82,7 +81,7 @@ public class AnzuEntity extends TameableEntity implements IAnimatedEntity {
             if (world.getTime() - lastUsage >= cooldown) {
                 System.out.println(PlayerComponents.DRY.get(this).getDry());
                 PlayerComponents.DRY.get(this).addDry();
-                PlayerComponents.RITUALTIME.get(this).setInt("lastWater");
+                PlayerComponents.RITUALTIME.get(this).setIntTime("lastWater");
             }
         }
     }

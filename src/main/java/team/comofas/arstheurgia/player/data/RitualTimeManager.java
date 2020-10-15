@@ -6,7 +6,8 @@ public interface RitualTimeManager extends AutoSyncedComponent {
 
     int getInt(String key);
 
-    void setInt(String key);
+    void setIntTime(String key);
 
+    void setInt(String key, int value);
     
 }

@@ -24,15 +24,26 @@ public class SharurItem extends Item {
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (world.isClient()) {
-            double x = user.getRotationVector().x;
-            double y = user.getRotationVector().y;
-            double z = user.getRotationVector().z;
-            user.addVelocity(1 * x, 1 * y, 1 * z);
-            return new TypedActionResult<>(ActionResult.SUCCESS, user.getStackInHand(hand));
+        if (world.getTime()-PlayerComponents.RITUALTIME.get(user).getInt("lastSharur") >= 100) {
+            int sharurCount = PlayerComponents.RITUALTIME.get(user).getInt("usedSharur");
+            if ((sharurCount)<8) {
+                PlayerComponents.RITUALTIME.get(user).setInt("usedSharur", sharurCount+1);
+                user.getEntityWorld().playSound(null, user.getBlockPos(), ArsSounds.MACE_PULL, SoundCategory.PLAYERS, 1f, 1f);
+                if (world.isClient()) {
+                    double x = user.getRotationVector().x;
+                    double y = user.getRotationVector().y;
+                    double z = user.getRotationVector().z;
+                    user.addVelocity(1 * x, 1 * y, 1 * z);
+                    return new TypedActionResult<>(ActionResult.SUCCESS, user.getStackInHand(hand));
+                }
+            } else {
+                PlayerComponents.RITUALTIME.get(user).setIntTime("lastSharur");
+                user.getEntityWorld().playSound(null, user.getBlockPos(), ArsSounds.RITUAL_FAIL, SoundCategory.PLAYERS, 1f, 1f);
+            }
         } else {
-            user.getEntityWorld().playSound(null, user.getBlockPos(), ArsSounds.MACE_PULL, SoundCategory.PLAYERS, 1f, 1f);
-            return new TypedActionResult<>(ActionResult.FAIL, user.getStackInHand(hand));
+            PlayerComponents.RITUALTIME.get(user).setInt("usedSharur", 0);
+            user.getEntityWorld().playSound(null, user.getBlockPos(), ArsSounds.RITUAL_FAIL, SoundCategory.PLAYERS, 1f, 1f);
         }
+        return new TypedActionResult<>(ActionResult.FAIL, user.getStackInHand(hand));
     }
 }
