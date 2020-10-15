@@ -7,11 +7,11 @@
   ],
   "key": {
     "M": {
-      "item": "arstheurgia:mud_block"
+      "item": "arstheurgia:mud_block_bricks"
     }
   },
   "result": {
-    "item": "arstheurgia:mud_block_bricks",
+    "item": "arstheurgia:mud_block_minibricks",
     "count": 4
   }
 }
