@@ -13,7 +13,6 @@ public class ArsItems {
 
     public static final Item CLAY_TABLET = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item DICTIONARY = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
-    public static final Item RITUAL_CENTER_ITEM = new BlockItem(ArsBlocks.RITUALCENTER, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
     public static final Item SMOOTH_MUD_BLOCK_STAIRS = new BlockItem(ArsBlocks.SMOOTH_MUD_BLOCK_STAIRS, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item MUD_BLOCK_BRICKS_STAIRS = new BlockItem(ArsBlocks.MUD_BLOCK_BRICKS_STAIRS, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
@@ -78,7 +77,6 @@ public class ArsItems {
     public static void registerAll() {
         registerItem(CLAY_TABLET, "clay_tablet");
         registerItem(DICTIONARY, "dictionary");
-        registerItem(RITUAL_CENTER_ITEM,"ritual_block");
 
         registerItem(CHALK_ITEM, "chalk");
         registerItem(GEBEL_KNIFE, "gebel_knife");

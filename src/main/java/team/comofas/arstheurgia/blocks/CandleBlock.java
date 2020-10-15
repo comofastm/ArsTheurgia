@@ -18,7 +18,6 @@ public class CandleBlock extends TorchBlock {
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         double d = (double)pos.getX() + 0.5D;
         double e = (double)pos.getY() + 0.6D;
