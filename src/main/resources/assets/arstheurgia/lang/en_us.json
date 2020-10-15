@@ -98,7 +98,7 @@
 
   "block.arstheurgia.flour": "Flour",
   "block.arstheurgia.ceramic_altar": "Ceramic Altar",
-  "block.arstheurgia.table": "Ritual Table",
+  "block.arstheurgia.table": "Ancient Table",
   "block.arstheurgia.smooth_mud_block_stairs": "Smooth Mud Block Stairs",
   "block.arstheurgia.mud_block_bricks_stairs": "Mud Block Bricks Stairs",
   "block.arstheurgia.mud_block": "Mud Block",
@@ -107,6 +107,14 @@
   "block.arstheurgia.smooth_mud_block_slab": "Smooth Mud Block Slab",
   "block.arstheurgia.mud_block_bricks": "Mud Block Bricks",
   "block.arstheurgia.mud_block_bricks_slab": "Mud Block Bricks Slab",
+  "block.arstheurgia.mud_block_minibricks": "Mud Block Minibricks",
+  "block.arstheurgia.mud_block_minibricks_slab": "Mud Block Minibricks Slab",
+  "block.arstheurgia.painted_mud_block": "Painted Mud Block",
+  "block.arstheurgia.lion_painted_mud_block": "Lion Painted Mud Block",
+  "block.arstheurgia.sun_painted_mud_block": "Sun Painted Mud Block",
+  "block.arstheurgia.witch_figure": "Witch Figure",
+  "block.arstheurgia.praying_figure": "Praying Figure",
+
 
   "effect.arstheurgia.pazuzu_blessing": "Pazuzu's Blessing"
 }

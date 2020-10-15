@@ -29,7 +29,6 @@ public class TormentedCreeperEntity extends HostileEntity implements IAnimatedEn
 
     private <E extends Entity> boolean animationPredicate(AnimationTestEvent<E> event) {
         if (this.isAttacking()) {
-            System.out.println("o jogo");
             this.controller.setAnimation(new AnimationBuilder().addAnimation("attack", true));
             return true;
         } else {

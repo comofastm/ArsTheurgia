@@ -159,7 +159,6 @@ public class AnzuSummon extends Ritual {
         }
 
         if (!(new HashSet<>(altarItems).equals(new HashSet<>(correctItems)))) {
-            System.out.println(altarItems);
             hasNecessaryItems = false;
         }
 

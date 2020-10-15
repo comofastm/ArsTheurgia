@@ -59,7 +59,7 @@ public class OpenTabletScreen extends Screen {
         drawTexture(matrices, i, 2, 0, 0, 438, 270, 438, 270);
 
         if (!this.client.player.inventory.contains(new ItemStack(ArsItems.DICTIONARY))) {
-            this.textRenderer.draw(matrices, new LiteralText("sekret"), (float) i, 32F, 0);
+            this.textRenderer.draw(matrices, new LiteralText("You can't read this! You also can't change this in the lang file!"), (float) i, 32F, 0);
         }
         else {
 

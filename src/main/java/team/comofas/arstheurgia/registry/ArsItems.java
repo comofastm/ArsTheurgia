@@ -61,10 +61,10 @@ public class ArsItems {
 
     public static final Item DATE_PASTE = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item MIRSU = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
-    public static final Item MORTAR = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item MORTAR = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(ArsItems.MORTAR));
     public static final Item PISTACHIO = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item PISTACHIO_POWDER = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
-    public static final Item SYRUP = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.HONEY_BOTTLE));
+    public static final Item SYRUP = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.HONEY_BOTTLE).recipeRemainder(Items.GLASS_BOTTLE));
 
     public static final Item MUD_BLOB = new MudBlobItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.HONEY_BOTTLE));
 
@@ -92,7 +92,7 @@ public class ArsItems {
 
         registerItem(PAZUZU_FIGURINE, "pazuzu_figurine");
         registerItem(PAZUZU_AMULET, "pazuzu_amulet");
-        registerItem(PAZUZU_AMULET_INFUSED, "pazuzu_amulet_infused");
+        registerItem(PAZUZU_AMULET_INFUSED, "infused_pazuzu_amulet");
 
         registerItem(SMOOTH_MUD_BLOCK_STAIRS, "smooth_mud_block_stairs");
         registerItem(MUD_BLOCK_BRICKS_STAIRS, "mud_block_bricks_stairs");

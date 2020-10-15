@@ -71,7 +71,6 @@ public class AnzuEntity extends TameableEntity implements IAnimatedEntity {
                             this.getEntityWorld().playSound(null, this.getBlockPos(), ArsSounds.RITUAL_FAIL, SoundCategory.PLAYERS, 1f, 1f);
                             PlayerComponents.DRY.get(this).removeDry();
                             fertilizable.grow((ServerWorld) world, world.random, pos, blockState);
-                            System.out.println(PlayerComponents.DRY.get(this).getDry());
                         }
                     }
                 }
@@ -81,7 +80,6 @@ public class AnzuEntity extends TameableEntity implements IAnimatedEntity {
         if (blockState.getBlock() == Blocks.WATER) {
             long lastUsage = PlayerComponents.RITUALTIME.get(this).getInt("lastWater");
             if (world.getTime() - lastUsage >= cooldown) {
-                System.out.println(PlayerComponents.DRY.get(this).getDry());
                 PlayerComponents.DRY.get(this).addDry();
                 PlayerComponents.RITUALTIME.get(this).setIntTime("lastWater");
             }

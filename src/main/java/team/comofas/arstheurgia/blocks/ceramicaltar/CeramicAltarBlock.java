@@ -47,7 +47,6 @@ public class CeramicAltarBlock extends Block implements BlockEntityProvider {
                     Ritual ritual = Ritual.ritualsByName.get(((OpenableTablet) heldItem).ritualName);
                     PlayerComponents.KNOWLEDGE.get(player).setKnowledge("block.arstheurgia.asyriel_sigil_chalk", true);
                     PlayerComponents.KNOWLEDGE.get(player).setKnowledge("block.arstheurgia.autumn_symbol_chalk", true);
-                    System.out.println("aa");
                     Ritual.callRitual(ritual, state, player, hand, hit);
                     return ActionResult.SUCCESS;
 
