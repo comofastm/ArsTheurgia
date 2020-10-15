@@ -2,6 +2,7 @@ package team.comofas.arstheurgia.events;
 
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.loot.ConstantLootTableRange;
@@ -24,15 +25,17 @@ public class LootTableEvent {
 
     public static void register() {
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
-            System.out.println(id);
 
             if (DESERT_PYRAMID_ID.equals(id)) {
-                FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                        .rolls(ConstantLootTableRange.create(1))
-                        .conditionally(RandomChanceLootCondition.builder(0.25F))
-                        .withEntry(ItemEntry.builder(Ritual.allTabletParts.get(0)).build());
+                for (Item item : Ritual.allTabletParts) {
+                    FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                            .rolls(ConstantLootTableRange.create(1))
+                            .conditionally(RandomChanceLootCondition.builder(0.25f/Ritual.allTabletParts.size()))
+                            .withEntry(ItemEntry.builder(item).build());
 
-                supplier.pool(poolBuilder);
+                    supplier.pool(poolBuilder);
+                }
+
             }
         });
     }

@@ -40,6 +40,7 @@ public class ArsItems {
 
     public static final Item PAZUZU_FIGURINE = new BlockItem(ArsBlocks.PAZUZU_FIGURINE, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item PAZUZU_AMULET = new ArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.CHEST, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    public static final Item PAZUZU_AMULET_INFUSED = new ArmorItem(ArmorMaterials.LEATHER, EquipmentSlot.CHEST, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
     public static final Item WATERSKIN = new WaterskinItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item WATERSKIN_FILLED = new FilledWaterskinItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
@@ -51,6 +52,7 @@ public class ArsItems {
     public static final Item DATE_SAPLING = new BlockItem(ArsBlocks.DATE_SAPLING, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item DATE_LEAVES = new BlockItem(ArsBlocks.DATE_LEAVES, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
+    public static final Item VELINHA = new BlockItem(ArsBlocks.VELINHA, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
     public static void registerAll() {
         registerItem(CLAY_TABLET, "clay_tablet");
@@ -69,6 +71,7 @@ public class ArsItems {
 
         registerItem(PAZUZU_FIGURINE, "pazuzu_figurine");
         registerItem(PAZUZU_AMULET, "pazuzu_amulet");
+        registerItem(PAZUZU_AMULET_INFUSED, "pazuzu_amulet_infused");
 
         registerItem(SMOOTH_MUD_BLOCK_STAIRS, "smooth_mud_block_stairs");
         registerItem(MUD_BLOCK_BRICKS_STAIRS, "mud_block_bricks_stairs");
@@ -93,12 +96,17 @@ public class ArsItems {
 
         registerItem(SAMAS_FIGURINE, "shamash");
         registerItem(MIRSU_BOWL, "mirsu_bowl");
+
+        registerItem(VELINHA, "velinha");
         
         CreeperSummon.INSTANCE.registerItems();
         PazuzuBlessing.INSTANCE.registerItems();
         SamasPurification.INSTANCE.registerItems();
         UdugSummon.INSTANCE.registerItems();
         SharurRitual.INSTANCE.registerItems();
+        ImhulluRitual.INSTANCE.registerItems();
+        BabySacrifice.INSTANCE.registerItems();
+        AnzuSummon.INSTANCE.registerItems();
 
 
     }

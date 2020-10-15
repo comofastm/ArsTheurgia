@@ -6,7 +6,9 @@ import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,7 +20,6 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import team.comofas.arstheurgia.ArsTheurgia;
-import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlockEntity;
 import team.comofas.arstheurgia.blocks.table.TableBlockEntity;
 import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.registry.ArsBlocks;
@@ -26,16 +27,17 @@ import team.comofas.arstheurgia.registry.ArsEffects;
 import team.comofas.arstheurgia.registry.ArsItems;
 import team.comofas.arstheurgia.registry.ArsSounds;
 import team.comofas.arstheurgia.ritual.Ritual;
+import team.comofas.arstheurgia.ritual.utils.RitualUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class SamasPurification extends Ritual {
+public class BabySacrifice extends Ritual {
 
-    public static SamasPurification INSTANCE = new SamasPurification("samas", 70);
+    public static BabySacrifice INSTANCE = new BabySacrifice("baby", 70);
 
-    public SamasPurification(String name, int cooldown) {
+    public BabySacrifice(String name, int cooldown) {
         super(name, cooldown);
 
         List<BlockPos> altarBlocks = new ArrayList<>();
@@ -44,15 +46,13 @@ public class SamasPurification extends Ritual {
             altarBlocks.add(new BlockPos(x, 0, 0));
         }
 
-        List<BlockPos> tableBlocks = new ArrayList<>();
+        List<BlockPos> figurineBlocks = new ArrayList<>();
+        figurineBlocks.add(new BlockPos(0,0,1));
 
-        for (int x = -1; x < 2; x++) {
-            tableBlocks.add(new BlockPos(x, 0, 1));
-        }
-
-
+        validBlocks.put(ArsBlocks.PAZUZU_FIGURINE, figurineBlocks);
         validBlocks.put(ArsBlocks.CERAMIC_ALTAR, altarBlocks);
-        validBlocks.put(ArsBlocks.TABLE, tableBlocks);
+        validBlocks.put(ArsBlocks.VELINHA, RitualUtils.FoldSquare(3, 4, new BlockPos(0,0,0)));
+        validBlocks.put(ArsBlocks.FLOUR, RitualUtils.SquareIterate(4, new BlockPos(0,0,0)));
 
     }
 
@@ -75,6 +75,11 @@ public class SamasPurification extends Ritual {
             return;
         }
 
+        if (player.world.getTime()-PlayerComponents.RITUALTIME.get(player).getInt("killBaby") > 200) {
+            player.sendMessage(new TranslatableText("ritual.baby.nosacrifice"), true);
+            return;
+        }
+
         BlockPos pos = hit.getBlockPos();
 
         Stream<PlayerEntity> watchingPlayers = PlayerStream.watching(player.world, pos);
@@ -82,19 +87,10 @@ public class SamasPurification extends Ritual {
 
         passedData.writeBlockPos(pos);
 
+
         for (BlockEntity entity : ritualBlocks) {
             if (entity != null)
-                if (!entity.getPos().equals(hit.getBlockPos()) && entity instanceof CeramicAltarBlockEntity) {
-                    if (((CeramicAltarBlockEntity)entity).getPlacedItem().getItem() == ArsItems.PAZUZU_AMULET) {
-                        ((CeramicAltarBlockEntity)entity).setPlacedItem(new ItemStack(ArsItems.PAZUZU_AMULET_INFUSED));
-                        ((CeramicAltarBlockEntity)entity).sync();
-                    }
-                } else {
-                    player.world.removeBlock(entity.getPos(), false);
-                }
-
-
-
+                player.world.removeBlock(entity.getPos(), false);
         }
 
         Entity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, this.player.world);
@@ -107,7 +103,20 @@ public class SamasPurification extends Ritual {
         watchingPlayers.forEach(player ->
                 ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, ArsTheurgia.CONSUME_ITEM_PARTICLE, passedData));
 
+        if (player.inventory.armor.get(EquipmentSlot.CHEST.getEntitySlotId()).getItem() != ArsItems.PAZUZU_AMULET_INFUSED) {
+            player.damage(DamageSource.MAGIC, 2000);
+            return;
+        }
+
         player.getEntityWorld().playSound(null, pos, ArsSounds.RITUAL_CHIME, SoundCategory.AMBIENT, 1f, 1f);
+
+
+        StatusEffectInstance lamashtuEffectInstance = new StatusEffectInstance(ArsEffects.LAMASHTU_BLESSING, 60, 0, true, false);
+
+        player.addStatusEffect(lamashtuEffectInstance);
+
+        PlayerComponents.KNOWLEDGE.get(player).setKnowledge("lamashtuBlessing", true);
+
 
     }
 
@@ -116,40 +125,30 @@ public class SamasPurification extends Ritual {
 
         for (BlockEntity entity : ritualBlocks) {
 
+            if (entity == null) {
+                continue;
+            }
+
             BlockPos pos = entity.getPos();
 
-            if (entity instanceof CeramicAltarBlockEntity) {
+            if (entity instanceof TableBlockEntity) {
 
-
-                CeramicAltarBlockEntity ritualBlockEntity = (CeramicAltarBlockEntity) entity;
+                TableBlockEntity ritualBlockEntity = (TableBlockEntity) entity;
 
                 if (ritualBlockEntity.getPlacedItem() != null && !ritualBlockEntity.getPlacedItem().isEmpty()) {
                     ItemStack placedItem = ritualBlockEntity.getPlacedItem();
                     if (pos.getZ() == hit.getBlockPos().getZ() && pos.getX() == hit.getBlockPos().getX()) {
-                        if (placedItem == null || placedItem.isEmpty() ) {
+                        if (placedItem.getItem() != ArsItems.BILE ) {
                             hasNecessaryItems = false;
                         }
                     } else {
-                        if (placedItem.getItem() != Items.HONEY_BOTTLE) {
+                        if (!placedItem.getItem().isFood()) {
                             hasNecessaryItems = false;
                         }
                     }
                 } else {
                     hasNecessaryItems = false;
                 }
-            } else if (entity instanceof TableBlockEntity) {
-
-                TableBlockEntity ritualBlockEntity = (TableBlockEntity) entity;
-                if (ritualBlockEntity.getPlacedItem() != null && !ritualBlockEntity.getPlacedItem().isEmpty()) {
-                    ItemStack placedItem = ritualBlockEntity.getPlacedItem();
-                    if (!placedItem.getItem().isFood()) {
-                        hasNecessaryItems = false;
-                    }
-                } else {
-                    hasNecessaryItems = false;
-                }
-
-
             }
 
         }
@@ -157,5 +156,7 @@ public class SamasPurification extends Ritual {
         return hasNecessaryItems;
 
     }
+
+
 
 }

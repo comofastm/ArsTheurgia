@@ -11,6 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
@@ -59,8 +60,24 @@ public abstract class LivingEntityMixin {
         }
     }
 
+    @Inject(method = "onDeath", at = @At("HEAD"))
+    public void getBabyKill(DamageSource source, CallbackInfo ci) {
+
+        LivingEntity livingEntity = (LivingEntity)(Object)this;
+
+        if (source.getAttacker() instanceof PlayerEntity) {
+
+            if (livingEntity.isBaby() && livingEntity instanceof AnimalEntity) {
+                PlayerEntity player = (PlayerEntity)source.getAttacker();
+
+                PlayerComponents.RITUALTIME.get(player).setIntTime("killBaby");
+            }
+
+        }
+    }
+
     @Inject(method = "tickStatusEffects", at = @At("TAIL"))
-    public void removeBlessingAtNight(CallbackInfo ci) {
+    public void applyBlessingAtNight(CallbackInfo ci) {
 
         if ((Entity)(Object)this instanceof PlayerEntity) {
 
@@ -83,6 +100,17 @@ public abstract class LivingEntityMixin {
                 } else {
                     PlayerComponents.ACTIVE_BLESSING.get(playerEntity).setBlessing(false);
                     PlayerComponents.KNOWLEDGE.maybeGet(playerEntity).ifPresent(value -> value.setKnowledge("activeUdug", false));
+                }
+            } else if (PlayerComponents.KNOWLEDGE.get(playerEntity).hasKnowledge("lamashtuBlessing")) {
+                if (!world.isDay()) {
+                    if (world.getTimeOfDay() % 60 == 0) {
+                        StatusEffectInstance lamashtuEffectInstance = new StatusEffectInstance(ArsEffects.LAMASHTU_BLESSING, 60, 0, true, false);
+                        playerEntity.addStatusEffect(lamashtuEffectInstance);
+
+                    }
+
+                } else {
+                    PlayerComponents.KNOWLEDGE.get(playerEntity).setKnowledge("lamashtuBlessing", false);
                 }
             }
 
