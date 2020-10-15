@@ -4,7 +4,7 @@
 	"textures": {
 		"0": "arstheurgia:item/flaps",
 		"1": "arstheurgia:item/imhullumain",
-		"particle": "texturas/flaps"
+		"particle": "arstheurgia:item/flaps"
 	},
 	"elements": [
 		{
