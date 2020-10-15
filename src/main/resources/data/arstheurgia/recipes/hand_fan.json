@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "SWS",
+    " S "
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:white_wool"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "arstheurgia:hand_fan"
+  }
+}

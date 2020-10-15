@@ -14,6 +14,6 @@ public class LamassuEntityRenderer extends MobEntityRenderer<LamassuEntity, Lama
 
     @Override
     public Identifier getTexture(LamassuEntity entity) {
-        return new Identifier("arstheurgia", "textures/entity/udug.png");
+        return new Identifier("arstheurgia", "textures/entity/lamassu.png");
     }
 }

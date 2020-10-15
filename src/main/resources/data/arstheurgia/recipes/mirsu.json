@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arstheurgia:syrup"
+    },
+    {
+      "item": "arstheurgia:date_paste"
+    },
+    {
+      "item": "arstheurgia:pistachio_powder"
+    }
+  ],
+  "result": {
+    "item": "arstheurgia:mirsu",
+    "count": 1
+  }
+}

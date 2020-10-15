@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "facing=north": { "model": "arstheurgia:block/praying_figure" },
+    "facing=east":  { "model": "arstheurgia:block/praying_figure", "y":  90},
+    "facing=south": { "model": "arstheurgia:block/praying_figure", "y": 180 },
+    "facing=west":  { "model": "arstheurgia:block/praying_figure", "y": 270 }
+  }
+}
+

@@ -34,13 +34,11 @@ public class LamassuEntity extends TameableEntity implements IAnimatedEntity {
 
     private final EntityAnimationManager manager;
     private final EntityAnimationController controller;
-    public float prevFlapProgress;
-    public float flapSpeed = 1.0F;
-    public float flapProgress;
+
 
     private <E extends Entity> boolean animationPredicate(AnimationTestEvent<E> event) {
-        if (event.isWalking()) {
-            this.controller.setAnimation(new AnimationBuilder().addAnimation("walk", true));
+        if (event.isWalking() || !event.getEntity().isOnGround()) {
+            this.controller.setAnimation(new AnimationBuilder().addAnimation("moving", true));
             return true;
         } else {
             return false;
@@ -59,23 +57,14 @@ public class LamassuEntity extends TameableEntity implements IAnimatedEntity {
         return EntityGroup.UNDEAD;
     }
 
-    @Override
-    public boolean damage(DamageSource source, float amount) {
-        this.playSound(ArsSounds.UDUG_AMBIENT, 0.15F, 1.0F);
-        return false;
-    }
-
-    public void baseTick() {
-        super.baseTick();
-    }
-
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(ArsSounds.UDUG_WALKING, 0.15F, 1.0F);
+        this.playSound(ArsSounds.LAMASSU_WINGFLAP, 0.15F, 1.0F);
     }
 
 
     public void tickMovement() {
         super.tickMovement();
+        this.fallDistance = 0.0F;
         Vec3d vec3d = this.getVelocity();
         if (!this.onGround && vec3d.y < 0.0D) {
             this.setVelocity(vec3d.multiply(1.0D, 0.6D, 1.0D));
@@ -92,16 +81,16 @@ public class LamassuEntity extends TameableEntity implements IAnimatedEntity {
 
     protected void initGoals() {
         this.goalSelector.add(1, new SwimGoal(this));
-        this.goalSelector.add(2, new MeleeAttackGoal(this, 1.0D, true));
-        this.goalSelector.add(3, new FollowOwnerGoal(this, 0.6D, 10.0F, 2.0F, false));
-        this.goalSelector.add(4, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.add(2, new SitGoal(this));
+        this.goalSelector.add(3, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.add(4, new FollowOwnerGoal(this, 0.6D, 10.0F, 2.0F, false));
+        this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.targetSelector.add(1, new TrackOwnerAttackerGoal(this));
         this.targetSelector.add(2, new AttackWithOwnerGoal(this));
     }
 
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        PlayerComponents.KNOWLEDGE.get(player).setKnowledge("activeLamassu", true);
-        this.setOwner(player);
+        this.setSitting(!this.isSitting());
         return ActionResult.SUCCESS;
     }
 

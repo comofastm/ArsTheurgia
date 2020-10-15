@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "arstheurgia:dates"
+    },
+    {
+      "item": "arstheurgia:mortar"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "item": "arstheurgia:date_paste",
+    "count": 1
+  }
+}

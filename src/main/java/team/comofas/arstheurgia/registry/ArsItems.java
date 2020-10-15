@@ -62,6 +62,8 @@ public class ArsItems {
     public static final Item PISTACHIO_POWDER = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item SYRUP = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.HONEY_BOTTLE));
 
+    public static final Item MUD_BLOB = new MudBlobItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.HONEY_BOTTLE));
+
 
     public static void registerAll() {
         registerItem(CLAY_TABLET, "clay_tablet");
@@ -97,6 +99,7 @@ public class ArsItems {
         registerItem(IMHULLU, "imhullu");
 
         registerItem(DATES, "dates");
+        registerItem(DATE_PASTE, "date_paste");
         registerItem(DATE_SAPLING, "date_sapling");
         registerItem(DATE_LEAVES, "date_leaves");
         registerItem(DATE_TREE_LOG, "date_logs");
@@ -114,6 +117,8 @@ public class ArsItems {
         registerItem(PISTACHIO, "pistachio");
         registerItem(PISTACHIO_POWDER, "pistachio_powder");
         registerItem(SYRUP, "syrup");
+
+        registerItem(MUD_BLOB, "mud_blob");
 
         CreeperSummon.INSTANCE.registerItems();
         PazuzuBlessing.INSTANCE.registerItems();

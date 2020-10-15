@@ -13,6 +13,7 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -34,12 +35,12 @@ public class AnzuEntity extends TameableEntity implements IAnimatedEntity {
     private long cooldown = 100;
 
     private <E extends Entity> boolean animationPredicate(AnimationTestEvent<E> event) {
-        if (event.isWalking()) {
-            this.controller.setAnimation(new AnimationBuilder().addAnimation("walk", true));
-            return true;
+        if (event.isWalking() || !event.getEntity().isOnGround()) {
+            this.controller.setAnimation(new AnimationBuilder().addAnimation("moving", true));
         } else {
-            return false;
+            this.controller.setAnimation(new AnimationBuilder().addAnimation("idle", true));
         }
+        return true;
     }
 
     public AnzuEntity(EntityType<AnzuEntity> entityType, World world) {
@@ -67,6 +68,7 @@ public class AnzuEntity extends TameableEntity implements IAnimatedEntity {
                 if (fertilizable.isFertilizable(world, pos, blockState, world.isClient)) {
                     if (world instanceof ServerWorld) {
                         if (fertilizable.canGrow(world, world.random, pos, blockState)) {
+                            this.getEntityWorld().playSound(null, this.getBlockPos(), ArsSounds.RITUAL_FAIL, SoundCategory.PLAYERS, 1f, 1f);
                             PlayerComponents.DRY.get(this).removeDry();
                             fertilizable.grow((ServerWorld) world, world.random, pos, blockState);
                             System.out.println(PlayerComponents.DRY.get(this).getDry());
@@ -87,7 +89,7 @@ public class AnzuEntity extends TameableEntity implements IAnimatedEntity {
     }
 
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(ArsSounds.UDUG_WALKING, 0.15F, 1.0F);
+        this.playSound(ArsSounds.ANZU_WINGFLAP, 0.15F, 1.0F);
     }
 
 

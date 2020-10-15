@@ -4,179 +4,158 @@
 // Blockbench plugin created by Gecko
 package team.comofas.arstheurgia.entity.lamassu;
 
+import software.bernie.geckolib.forgetofabric.ResourceLocation;
 import software.bernie.geckolib.animation.model.AnimatedEntityModel;
 import software.bernie.geckolib.animation.render.AnimatedModelRenderer;
-import software.bernie.geckolib.forgetofabric.ResourceLocation;
 import team.comofas.arstheurgia.entity.LamassuEntity;
-import team.comofas.arstheurgia.entity.UdugEntity;
 
 public class LamassuEntityModel extends AnimatedEntityModel<LamassuEntity> {
 
-    private final AnimatedModelRenderer MAIN;
-	private final AnimatedModelRenderer upperbody;
-	private final AnimatedModelRenderer body1;
-	private final AnimatedModelRenderer belly;
-	private final AnimatedModelRenderer arms;
-	private final AnimatedModelRenderer arm1;
-	private final AnimatedModelRenderer rightarm;
-	private final AnimatedModelRenderer righthand;
-	private final AnimatedModelRenderer arm2;
-	private final AnimatedModelRenderer leftarm;
-	private final AnimatedModelRenderer lefthand;
-	private final AnimatedModelRenderer belly2;
+    private final AnimatedModelRenderer main;
 	private final AnimatedModelRenderer head;
+	private final AnimatedModelRenderer body;
 	private final AnimatedModelRenderer rightleg;
-	private final AnimatedModelRenderer thigh2;
 	private final AnimatedModelRenderer leftleg;
-	private final AnimatedModelRenderer thigh;
+	private final AnimatedModelRenderer leftarm;
+	private final AnimatedModelRenderer rightarm;
+	private final AnimatedModelRenderer gpwingl;
+	private final AnimatedModelRenderer leftwing;
+	private final AnimatedModelRenderer leftwing2;
+	private final AnimatedModelRenderer gpwingr;
+	private final AnimatedModelRenderer rightwing2;
+	private final AnimatedModelRenderer rightwing1;
 
     public LamassuEntityModel()
     {
-        textureWidth = 64;
-    	textureHeight = 64;
-    	MAIN = new AnimatedModelRenderer(this);
-		MAIN.setRotationPoint(0.0F, 24.0F, 0.0F);
+        textureWidth = 128;
+    textureHeight = 128;
+    main = new AnimatedModelRenderer(this);
+		main.setRotationPoint(0.0F, 23.0F, 0.0F);
+		setRotationAngle(main, 0.0F, -1.5708F, 0.0F);
 		
-		MAIN.setModelRendererName("MAIN");
-		this.registerModelRenderer(MAIN);
-
-		upperbody = new AnimatedModelRenderer(this);
-		upperbody.setRotationPoint(-0.5F, -17.8F, -5.0F);
-		MAIN.addChild(upperbody);
-		setRotationAngle(upperbody, 0.0436F, 0.0F, 0.0F);
-		
-		upperbody.setModelRendererName("upperbody");
-		this.registerModelRenderer(upperbody);
-
-		body1 = new AnimatedModelRenderer(this);
-		body1.setRotationPoint(0.0F, 0.0F, 0.0F);
-		upperbody.addChild(body1);
-		body1.setTextureOffset(0, 16).addBox(-4.0F, -5.0F, 1.0F, 9.0F, 5.0F, 6.0F, 0.0F, false);
-		body1.setModelRendererName("body1");
-		this.registerModelRenderer(body1);
-
-		belly = new AnimatedModelRenderer(this);
-		belly.setRotationPoint(-2.3F, 5.8F, 4.6F);
-		upperbody.addChild(belly);
-		setRotationAngle(belly, 0.3491F, 0.0F, 0.0F);
-		belly.setTextureOffset(46, 38).addBox(3.5F, -1.0F, -4.0F, 3.0F, 4.0F, 4.0F, 0.0F, false);
-		belly.setTextureOffset(12, 34).addBox(-1.0F, -1.0F, -4.0F, 3.0F, 4.0F, 4.0F, 0.0F, false);
-		belly.setModelRendererName("belly");
-		this.registerModelRenderer(belly);
-
-		arms = new AnimatedModelRenderer(this);
-		arms.setRotationPoint(0.5F, 17.8F, 5.0F);
-		upperbody.addChild(arms);
-		
-		arms.setModelRendererName("arms");
-		this.registerModelRenderer(arms);
-
-		arm1 = new AnimatedModelRenderer(this);
-		arm1.setRotationPoint(-4.0F, -21.9641F, -1.0269F);
-		arms.addChild(arm1);
-		
-		arm1.setModelRendererName("arm1");
-		this.registerModelRenderer(arm1);
-
-		rightarm = new AnimatedModelRenderer(this);
-		rightarm.setRotationPoint(-1.5F, 2.0F, 0.0F);
-		arm1.addChild(rightarm);
-		setRotationAngle(rightarm, 0.2793F, 0.0F, 0.2443F);
-		rightarm.setTextureOffset(16, 42).addBox(-2.7754F, -2.9122F, -2.04F, 4.0F, 6.0F, 4.0F, 0.0F, false);
-		rightarm.setModelRendererName("rightarm");
-		this.registerModelRenderer(rightarm);
-
-		righthand = new AnimatedModelRenderer(this);
-		righthand.setRotationPoint(-2.8F, 7.2F, 0.4F);
-		arm1.addChild(righthand);
-		setRotationAngle(righthand, -0.0873F, 0.0F, 0.0F);
-		righthand.setTextureOffset(0, 27).addBox(-2.1F, -3.5F, -2.0F, 4.0F, 7.0F, 4.0F, 0.0F, false);
-		righthand.setTextureOffset(0, 16).addBox(-2.2F, 2.7782F, 0.9005F, 1.0F, 3.0F, 1.0F, 0.0F, false);
-		righthand.setTextureOffset(3, 3).addBox(-2.2F, 2.7782F, -0.4995F, 1.0F, 3.0F, 1.0F, 0.0F, false);
-		righthand.setTextureOffset(0, 0).addBox(-2.2F, 2.7782F, -1.8995F, 1.0F, 3.0F, 1.0F, 0.0F, false);
-		righthand.setModelRendererName("righthand");
-		this.registerModelRenderer(righthand);
-
-		arm2 = new AnimatedModelRenderer(this);
-		arm2.setRotationPoint(4.0F, -21.7789F, -1.1521F);
-		arms.addChild(arm2);
-		
-		arm2.setModelRendererName("arm2");
-		this.registerModelRenderer(arm2);
-
-		leftarm = new AnimatedModelRenderer(this);
-		leftarm.setRotationPoint(2.5F, 2.0F, 0.0F);
-		arm2.addChild(leftarm);
-		setRotationAngle(leftarm, 0.2956F, 0.0779F, -0.2502F);
-		leftarm.setTextureOffset(32, 42).addBox(-2.1932F, -3.0518F, -2.0F, 4.0F, 6.0F, 4.0F, 0.0F, false);
-		leftarm.setModelRendererName("leftarm");
-		this.registerModelRenderer(leftarm);
-
-		lefthand = new AnimatedModelRenderer(this);
-		lefthand.setRotationPoint(-1.8F, 7.2F, 0.4F);
-		arm2.addChild(lefthand);
-		setRotationAngle(lefthand, -0.0873F, 0.0F, 0.0F);
-		lefthand.setTextureOffset(30, 12).addBox(2.7F, -3.5F, -2.0F, 4.0F, 7.0F, 4.0F, 0.0F, false);
-		lefthand.setTextureOffset(24, 0).addBox(5.8F, 3.0779F, 0.8874F, 1.0F, 3.0F, 1.0F, 0.0F, false);
-		lefthand.setTextureOffset(24, 4).addBox(5.8F, 3.0779F, -0.5126F, 1.0F, 3.0F, 1.0F, 0.0F, false);
-		lefthand.setTextureOffset(24, 16).addBox(5.8F, 3.0779F, -1.9126F, 1.0F, 3.0F, 1.0F, 0.0F, false);
-		lefthand.setModelRendererName("lefthand");
-		this.registerModelRenderer(lefthand);
-
-		belly2 = new AnimatedModelRenderer(this);
-		belly2.setRotationPoint(4.5F, 6.8F, 1.4F);
-		upperbody.addChild(belly2);
-		setRotationAngle(belly2, -0.0873F, 0.0F, 0.0F);
-		belly2.setTextureOffset(26, 26).addBox(-8.0F, -12.0F, 0.0F, 8.0F, 12.0F, 4.0F, 0.0F, false);
-		belly2.setTextureOffset(16, 27).addBox(-6.0F, -6.0F, -0.6F, 4.0F, 6.0F, 1.0F, 0.0F, false);
-		belly2.setModelRendererName("belly2");
-		this.registerModelRenderer(belly2);
+		main.setModelRendererName("main");
+		this.registerModelRenderer(main);
 
 		head = new AnimatedModelRenderer(this);
-		head.setRotationPoint(0.5F, -9.2F, 3.0F);
-		upperbody.addChild(head);
-		setRotationAngle(head, 0.1309F, 0.0F, 0.0F);
-		head.setTextureOffset(0, 0).addBox(-4.0F, -3.8486F, -3.6165F, 8.0F, 8.0F, 8.0F, 0.0F, false);
+		head.setRotationPoint(-6.0F, -18.2F, 0.0F);
+		main.addChild(head);
+		head.setTextureOffset(46, 44).addBox(-3.9F, 0.2F, -1.0F, 1.0F, 5.0F, 2.0F, 0.0F, false);
+		head.setTextureOffset(35, 0).addBox(-1.5F, -2.8F, -1.5F, 3.0F, 3.0F, 3.0F, 0.0F, false);
+		head.setTextureOffset(43, 18).addBox(-3.5F, -8.8F, -3.0F, 6.0F, 6.0F, 6.0F, 0.0F, false);
+		head.setTextureOffset(0, 15).addBox(-4.5F, -7.3F, -0.5F, 1.0F, 2.0F, 1.0F, 0.0F, false);
+		head.setTextureOffset(6, 34).addBox(-4.2F, -3.8F, -2.5F, 2.0F, 4.0F, 5.0F, 0.0F, false);
+		head.setTextureOffset(29, 66).addBox(-3.5F, -12.8F, -3.0F, 6.0F, 3.0F, 6.0F, 0.0F, false);
+		head.setTextureOffset(9, 27).addBox(-3.5F, -13.9F, -1.0F, 6.0F, 2.0F, 2.0F, 0.0F, false);
+		head.setTextureOffset(0, 24).addBox(-4.0F, -9.8F, -3.3F, 7.0F, 1.0F, 7.0F, 0.0F, false);
+		head.setTextureOffset(0, 24).addBox(-4.0F, -11.8F, -3.3F, 7.0F, 1.0F, 7.0F, 0.0F, false);
 		head.setModelRendererName("head");
 		this.registerModelRenderer(head);
 
+		body = new AnimatedModelRenderer(this);
+		body.setRotationPoint(0.0F, 0.0F, 0.0F);
+		main.addChild(body);
+		body.setTextureOffset(0, 51).addBox(-7.0F, -18.0F, -4.0F, 14.0F, 7.0F, 8.0F, 0.0F, false);
+		body.setTextureOffset(0, 19).addBox(-7.0F, -11.4F, -2.0F, 10.0F, 1.0F, 4.0F, 0.0F, false);
+		body.setTextureOffset(34, 5).addBox(-7.7F, -18.0F, -3.0F, 1.0F, 7.0F, 6.0F, 0.0F, false);
+		body.setTextureOffset(28, 35).addBox(8.1F, -17.0F, -1.5F, 1.0F, 11.0F, 3.0F, 0.0F, false);
+		body.setTextureOffset(7, 66).addBox(7.0F, -13.5F, -4.0F, 1.0F, 3.0F, 8.0F, 0.0F, false);
+		body.setTextureOffset(28, 56).addBox(6.1F, -17.9F, -1.5F, 2.0F, 3.0F, 3.0F, 0.0F, false);
+		body.setModelRendererName("body");
+		this.registerModelRenderer(body);
+
 		rightleg = new AnimatedModelRenderer(this);
-		rightleg.setRotationPoint(-3.0F, -10.7F, -2.7F);
-		MAIN.addChild(rightleg);
-		rightleg.setTextureOffset(46, 16).addBox(-2.0F, 5.7F, 0.6F, 4.0F, 5.0F, 4.0F, 0.0F, false);
+		rightleg.setRotationPoint(6.0F, -10.5F, 3.0F);
+		main.addChild(rightleg);
+		rightleg.setTextureOffset(31, 25).addBox(-1.5F, 2.5F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		rightleg.setTextureOffset(31, 25).addBox(-1.5F, 7.5F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		rightleg.setTextureOffset(7, 77).addBox(-1.5F, 10.5F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		rightleg.setTextureOffset(58, 0).addBox(-1.0F, -0.5F, -1.0F, 2.0F, 12.0F, 2.0F, 0.0F, false);
 		rightleg.setModelRendererName("rightleg");
 		this.registerModelRenderer(rightleg);
 
-		thigh2 = new AnimatedModelRenderer(this);
-		thigh2.setRotationPoint(-1.0F, 5.7F, 4.7F);
-		rightleg.addChild(thigh2);
-		setRotationAngle(thigh2, 0.3491F, 0.0F, 0.0F);
-		thigh2.setTextureOffset(32, 0).addBox(-1.0F, -6.7182F, -3.9734F, 4.0F, 7.0F, 4.0F, 0.0F, false);
-		thigh2.setModelRendererName("thigh2");
-		this.registerModelRenderer(thigh2);
-
 		leftleg = new AnimatedModelRenderer(this);
-		leftleg.setRotationPoint(3.0F, -10.7F, -2.7F);
-		MAIN.addChild(leftleg);
-		leftleg.setTextureOffset(44, 7).addBox(-2.0F, 5.7F, 0.8F, 4.0F, 5.0F, 4.0F, 0.0F, false);
+		leftleg.setRotationPoint(6.0F, -10.5F, -3.0F);
+		main.addChild(leftleg);
+		leftleg.setTextureOffset(58, 0).addBox(-1.0F, -0.5F, -1.0F, 2.0F, 12.0F, 2.0F, 0.0F, false);
+		leftleg.setTextureOffset(31, 25).addBox(-1.5F, 2.5F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		leftleg.setTextureOffset(31, 25).addBox(-1.5F, 7.5F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		leftleg.setTextureOffset(7, 77).addBox(-1.5F, 10.5F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
 		leftleg.setModelRendererName("leftleg");
 		this.registerModelRenderer(leftleg);
 
-		thigh = new AnimatedModelRenderer(this);
-		thigh.setRotationPoint(0.0F, 5.7F, 4.7F);
-		leftleg.addChild(thigh);
-		setRotationAngle(thigh, 0.3491F, 0.0F, 0.0F);
-		thigh.setTextureOffset(0, 38).addBox(-2.0F, -6.6498F, -3.7854F, 4.0F, 7.0F, 4.0F, 0.0F, false);
-		thigh.setModelRendererName("thigh");
-		this.registerModelRenderer(thigh);
+		leftarm = new AnimatedModelRenderer(this);
+		leftarm.setRotationPoint(-5.0F, -10.5F, -3.0F);
+		main.addChild(leftarm);
+		leftarm.setTextureOffset(31, 25).addBox(-1.5F, 2.5F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		leftarm.setTextureOffset(58, 0).addBox(-1.0F, -0.5F, -1.0F, 2.0F, 12.0F, 2.0F, 0.0F, false);
+		leftarm.setTextureOffset(31, 25).addBox(-1.5F, 7.5F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		leftarm.setTextureOffset(7, 77).addBox(-1.5F, 10.5F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		leftarm.setModelRendererName("leftarm");
+		this.registerModelRenderer(leftarm);
 
-    this.rootBones.add(MAIN);
+		rightarm = new AnimatedModelRenderer(this);
+		rightarm.setRotationPoint(-5.0F, -10.5F, 3.0F);
+		main.addChild(rightarm);
+		rightarm.setTextureOffset(31, 25).addBox(-1.5F, 2.5F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		rightarm.setTextureOffset(31, 25).addBox(-1.5F, 7.5F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		rightarm.setTextureOffset(7, 77).addBox(-1.5F, 10.5F, -1.5F, 3.0F, 1.0F, 3.0F, 0.0F, false);
+		rightarm.setTextureOffset(58, 0).addBox(-1.0F, -0.5F, -1.0F, 2.0F, 12.0F, 2.0F, 0.0F, false);
+		rightarm.setModelRendererName("rightarm");
+		this.registerModelRenderer(rightarm);
+
+		gpwingl = new AnimatedModelRenderer(this);
+		gpwingl.setRotationPoint(-1.4F, -17.0F, -4.0F);
+		main.addChild(gpwingl);
+		
+		gpwingl.setModelRendererName("gpwingl");
+		this.registerModelRenderer(gpwingl);
+
+		leftwing = new AnimatedModelRenderer(this);
+		leftwing.setRotationPoint(-2.6F, -1.0F, 0.0F);
+		gpwingl.addChild(leftwing);
+		setRotationAngle(leftwing, 0.0F, 0.0F, 0.48F);
+		leftwing.setTextureOffset(0, 0).addBox(-1.0F, -8.0F, -1.1F, 7.0F, 8.0F, 1.0F, 0.0F, false);
+		leftwing.setModelRendererName("leftwing");
+		this.registerModelRenderer(leftwing);
+
+		leftwing2 = new AnimatedModelRenderer(this);
+		leftwing2.setRotationPoint(1.4F, 17.0F, 4.0F);
+		gpwingl.addChild(leftwing2);
+		setRotationAngle(leftwing2, 0.0F, 0.0F, 1.1083F);
+		leftwing2.setTextureOffset(51, 34).addBox(-23.429F, -24.354F, -5.0F, 8.0F, 14.0F, 1.0F, 0.0F, false);
+		leftwing2.setModelRendererName("leftwing2");
+		this.registerModelRenderer(leftwing2);
+
+		gpwingr = new AnimatedModelRenderer(this);
+		gpwingr.setRotationPoint(-1.4F, -17.0F, 4.0F);
+		main.addChild(gpwingr);
+		
+		gpwingr.setModelRendererName("gpwingr");
+		this.registerModelRenderer(gpwingr);
+
+		rightwing2 = new AnimatedModelRenderer(this);
+		rightwing2.setRotationPoint(0.6F, -7.6F, -0.9F);
+		gpwingr.addChild(rightwing2);
+		setRotationAngle(rightwing2, 0.0F, 0.0F, 1.0908F);
+		rightwing2.setTextureOffset(51, 34).addBox(-1.0F, -14.0F, 0.8F, 8.0F, 14.0F, 1.0F, 0.0F, false);
+		rightwing2.setModelRendererName("rightwing2");
+		this.registerModelRenderer(rightwing2);
+
+		rightwing1 = new AnimatedModelRenderer(this);
+		rightwing1.setRotationPoint(-2.6F, -1.0F, 0.0F);
+		gpwingr.addChild(rightwing1);
+		setRotationAngle(rightwing1, 0.0F, 0.0F, 0.48F);
+		rightwing1.setTextureOffset(0, 0).addBox(-1.0F, -8.0F, 0.0F, 7.0F, 8.0F, 1.0F, 0.0F, false);
+		rightwing1.setModelRendererName("rightwing1");
+		this.registerModelRenderer(rightwing1);
+
+    this.rootBones.add(main);
   }
 
 
     @Override
     public ResourceLocation getAnimationFileLocation()
     {
-        return new ResourceLocation("arstheurgia", "animations/udug.json");
+        return new ResourceLocation("arstheurgia", "animations/lamassu.json");
     }
 }

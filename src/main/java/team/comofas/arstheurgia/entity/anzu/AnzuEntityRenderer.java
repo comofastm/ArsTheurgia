@@ -14,6 +14,6 @@ public class AnzuEntityRenderer extends MobEntityRenderer<AnzuEntity, AnzuEntity
 
     @Override
     public Identifier getTexture(AnzuEntity entity) {
-        return new Identifier("arstheurgia", "textures/entity/udug.png");
+        return new Identifier("arstheurgia", "textures/entity/anzu.png");
     }
 }

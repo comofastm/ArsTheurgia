@@ -32,7 +32,7 @@ public class LootTableEvent {
                 for (Item item : Ritual.allTabletParts) {
                     FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
                             .rolls(ConstantLootTableRange.create(1))
-                            .conditionally(RandomChanceLootCondition.builder(0.25f/Ritual.allTabletParts.size()))
+                            .conditionally(RandomChanceLootCondition.builder(0.65f/Ritual.allTabletParts.size()))
                             .withEntry(ItemEntry.builder(item).build());
 
                     supplier.pool(poolBuilder);

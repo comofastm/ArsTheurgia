@@ -56,6 +56,9 @@ public class ArsBlocks {
     public static final Block SAMAS_FIGURINE = new SamasFigurineBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
     public static final Block MIRSU_BOWL = new MirsuBowlBlock(FabricBlockSettings.of(Material.WOOD).hardness(1.0f));
 
+    public static final Block WITCH_FIGURE = new MudFigureBlock(FabricBlockSettings.of(Material.SOIL).hardness(1.0f));
+    public static final Block PRAYING_FIGURE = new MudFigureBlock(FabricBlockSettings.of(Material.SOIL).hardness(1.0f));
+
 
     public static BlockEntityType<RitualBlockEntity> RITUALBLOCK_ENTITY;
     public static BlockEntityType<CeramicAltarBlockEntity> CERAMIC_ALTAR_ENTITY;
@@ -92,6 +95,9 @@ public class ArsBlocks {
 
         registerBlock(SAMAS_FIGURINE, "shamash");
         registerBlock(MIRSU_BOWL, "mirsu_bowl");
+
+        registerBlock(PRAYING_FIGURE, "praying_figure");
+        registerBlock(WITCH_FIGURE, "witch_figure");
 
         RITUALBLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ritualblock"), BlockEntityType.Builder.create(RitualBlockEntity::new, RITUALCENTER).build(null));
         CERAMIC_ALTAR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ceramic_altar"), BlockEntityType.Builder.create(CeramicAltarBlockEntity::new, CERAMIC_ALTAR).build(null));
