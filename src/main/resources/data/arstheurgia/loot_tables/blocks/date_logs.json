@@ -6,7 +6,7 @@
 		"entries": [
 			{
 				"type": "minecraft:item",
-				"name": "arstheurgia:date_tree_log"
+				"name": "arstheurgia:date_logs"
 			}
 		],
 		"conditions": [

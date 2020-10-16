@@ -40,7 +40,7 @@ public class OpenableTablet extends Item {
         if (world.isClient) {
             GuiUtils.openTabletScreen(itemStack);
         } else {
-            if (itemStack.getItem().getName().getString().startsWith("item.arstheurgia.cooked_clay_tablet_")) {
+            if (itemStack.getItem().getTranslationKey().startsWith("item.arstheurgia.cooked_clay_tablet_")) {
 
                 PlayerComponents.KNOWLEDGE.get(user).setKnowledge(this.ritualName, true);
 
