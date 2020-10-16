@@ -32,7 +32,7 @@ public class ArsBlocks {
     public static final Block WINTER_SYMBOL = new ChalkBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).breakInstantly());
     public static final Block VELINHA = new CandleBlock(FabricBlockSettings.of(Material.METAL).breakInstantly().luminance((state) -> 12).sounds(BlockSoundGroup.WOOD).breakInstantly(), ParticleTypes.FLAME);
     public static final Block FLOUR = new FlourBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).breakInstantly());
-    public static final Block PAZUZU_FIGURINE = new FlourBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).sounds(BlockSoundGroup.ANVIL));
+    public static final Block PAZUZU_FIGURINE = new PazuzuFigurineBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).sounds(BlockSoundGroup.ANVIL));
 
     public static final Block SMOOTH_MUD_BLOCK_STAIRS = new ATStairsBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));
     public static final Block MUD_BLOCK_BRICKS_STAIRS = new ATStairsBlock(Blocks.ACACIA_PLANKS.getDefaultState(),FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));
@@ -90,7 +90,7 @@ public class ArsBlocks {
         registerBlock(MUD_BLOCK_BRICKS_SLAB, "mud_block_bricks_slab");
         registerBlock(MUD_BLOCK_RAW, "mud_block_raw");
 
-        registerBlock(DATE_TREE_LOG, "date_tree_log");
+        registerBlock(DATE_TREE_LOG, "date_logs");
         registerBlock(DATE_LEAVES, "date_leaves");
         registerBlock(DATE_SAPLING, "date_sapling");
         BlockRenderLayerMap.INSTANCE.putBlock(DATE_SAPLING, RenderLayer.getCutout());

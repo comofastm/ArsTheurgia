@@ -95,7 +95,16 @@
   "item.arstheurgia.mirsu": "Mirsu",
   "item.arstheurgia.mortar": "Mortar and Pestle",
   "item.arstheurgia.date_logs": "Date Logs",
+  "item.arstheurgia.date_paste": "Date Paste",
+  "item.arstheurgia.pazuzu_amulet": "Pazuzu's Amulet",
+  "item.arstheurgia.infused_pazuzu_amulet": "Infused Pazuzu's Amulet",
 
+  "block.arstheurgia.date_sapling": "Date Sapling",
+  "block.arstheurgia.date_leaves": "Date Leaves",
+  "block.arstheurgia.date_logs": "Date Logs",
+
+  "block.arstheurgia.pazuzu_figurine": "Pazuzu's Figurine",
+  "block.arstheurgia.shamash": "Samas' Figurine",
   "block.arstheurgia.flour": "Flour",
   "block.arstheurgia.ceramic_altar": "Ceramic Altar",
   "block.arstheurgia.table": "Ancient Table",
