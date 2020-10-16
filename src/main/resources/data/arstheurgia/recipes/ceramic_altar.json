@@ -7,10 +7,10 @@
   ],
   "key": {
     "M": {
-      "item": "arstheurgia:mud_block"
+      "item": "arstheurgia:smooth_mud_block"
     },
     "S": {
-      "item": "arstheurgia:mud_block_slab"
+      "item": "arstheurgia:smooth_mud_block_slab"
     }
   },
   "result": {
