@@ -12,12 +12,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FallingArcheologicalBlock extends FallingBlock {
     public static final BooleanProperty NATURAL = BooleanProperty.of("natural");
+    private static List<FallingArcheologicalBlock> blocks = new ArrayList<FallingArcheologicalBlock>();
 
     public FallingArcheologicalBlock(Settings settings) {
         super(settings);
         setDefaultState(getStateManager().getDefaultState().with(NATURAL, false));
+        blocks.add(this);
     }
 
     @Override
@@ -26,11 +31,17 @@ public class FallingArcheologicalBlock extends FallingBlock {
     }
 
     public void onLanding(World world, BlockPos pos, BlockState fallingBlockState, BlockState currentStateInPos, FallingBlockEntity fallingBlockEntity) {
-        world.setBlockState(pos, fallingBlockState.with(NATURAL, false));
+        if (blocks.contains(fallingBlockState.getBlock())) {
+            world.setBlockState(pos, fallingBlockState.with(NATURAL, false));
+        }
     }
 
     public static boolean isNatural(BlockState blockState) {
-        return blockState.get(NATURAL);
+        if (blocks.contains(blockState.getBlock())) {
+            return blockState.get(NATURAL);
+        } else {
+            return false;
+        }
     }
 
 }
