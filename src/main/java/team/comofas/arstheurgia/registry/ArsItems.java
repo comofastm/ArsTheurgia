@@ -63,7 +63,7 @@ public class ArsItems {
     public static final Item MORTAR = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(ArsItems.MORTAR));
     public static final Item PISTACHIO = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item PISTACHIO_POWDER = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
-    public static final Item SYRUP = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.HONEY_BOTTLE).recipeRemainder(Items.GLASS_BOTTLE));
+    public static final Item SYRUP = new HoneyBottleItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(Items.GLASS_BOTTLE));
 
     public static final Item MUD_BLOB = new MudBlobItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.HONEY_BOTTLE));
 
