@@ -59,6 +59,7 @@ public class TableBlockEntity extends BlockEntity implements BlockEntityClientSe
     public void setPlacedItem(ItemStack placedItem) {
         this.placedItem = placedItem;
         markDirty();
+        sync();
     }
 
     @Override

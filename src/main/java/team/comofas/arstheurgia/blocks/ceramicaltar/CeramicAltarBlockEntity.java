@@ -37,6 +37,8 @@ public class CeramicAltarBlockEntity extends BlockEntity implements BlockEntityC
 
         setPlacedItem(ItemStack.fromTag(tag.getCompound("item")));
 
+        sync();
+
     }
 
     public ItemStack getPlacedItem() {
