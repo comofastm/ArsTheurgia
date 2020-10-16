@@ -52,7 +52,7 @@ public class AnzuEntity extends TameableEntity implements IAnimatedEntity {
     }
 
     public EntityGroup getGroup() {
-        return EntityGroup.DEFAULT;
+        return EntityGroup.UNDEAD;
     }
 
     public void baseTick() {
