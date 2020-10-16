@@ -1,5 +1,9 @@
 {
   "variants": {
-    "": { "model": "arstheurgia:block/pazuzu_figurine" }
+    "facing=north": { "model": "arstheurgia:block/pazuzu_figurine" },
+    "facing=east":  { "model": "arstheurgia:block/pazuzu_figurine", "y":  90},
+    "facing=south": { "model": "arstheurgia:block/pazuzu_figurine", "y": 180 },
+    "facing=west":  { "model": "arstheurgia:block/pazuzu_figurine", "y": 270 }
   }
 }
+

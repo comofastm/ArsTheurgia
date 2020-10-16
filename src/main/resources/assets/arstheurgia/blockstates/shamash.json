@@ -1,6 +1,11 @@
 {
 	"variants": {
-		"": { "model": "arstheurgia:block/shamash" }
+		"facing=north": { "model": "arstheurgia:block/shanmash" },
+		"facing=east":  { "model": "arstheurgia:block/shanmash", "y":  90},
+		"facing=south": { "model": "arstheurgia:block/shanmash", "y": 180 },
+		"facing=west":  { "model": "arstheurgia:block/shanmash", "y": 270 }
 	}
 }
+
+
 
