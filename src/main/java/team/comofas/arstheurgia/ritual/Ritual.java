@@ -101,6 +101,8 @@ public class Ritual {
 
     public boolean checkRitualWithRotation() {
 
+        ritualBlocks = new ArrayList<>();
+
         for (Map.Entry<Block, List<BlockPos>> entry: this.validBlocks.entrySet()) {
 
             List<BlockPos> blocks =  entry.getValue();
@@ -114,11 +116,14 @@ public class Ritual {
 
                     BlockState blockState = world.getBlockState(p.add(hit.getBlockPos()));
 
+
                     if (!blockState.isOf(entry.getKey())) {
                         isValid = false;
                         break;
                     } else {
-                        ritualBlocks.add(world.getBlockEntity(p.add(hit.getBlockPos())));
+                        if (world.getBlockEntity(p.add(hit.getBlockPos())) != null) {
+                            ritualBlocks.add(world.getBlockEntity(p.add(hit.getBlockPos())));
+                        }
                     }
 
                 }

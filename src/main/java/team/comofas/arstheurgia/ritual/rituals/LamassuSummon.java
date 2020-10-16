@@ -160,12 +160,7 @@ public class LamassuSummon extends Ritual {
                         hasNecessaryItems = false;
                     }
 
-                } else {
-                    hasNecessaryItems = false;
                 }
-
-
-
             }
 
         }
