@@ -19,11 +19,15 @@ import team.comofas.arstheurgia.ArsUtils;
 import team.comofas.arstheurgia.registry.ArsItems;
 import team.comofas.arstheurgia.ritual.Ritual;
 
+import java.util.List;
+
 public class LootTableEvent {
 
     private static final Identifier DESERT_PYRAMID_ID = new Identifier("minecraft", "chests/desert_pyramid");
 
     private static final Identifier GRASS_ID = new Identifier("minecraft", "blocks/grass");
+
+    private static Item[] treasure = {ArsItems.SAMAS_FIGURINE, ArsItems.PAZUZU_FIGURINE, ArsItems.PAZUZU_AMULET, ArsItems.CHALK_ITEM};
 
     public static void register() {
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
@@ -33,6 +37,14 @@ public class LootTableEvent {
                     FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
                             .rolls(ConstantLootTableRange.create(1))
                             .conditionally(RandomChanceLootCondition.builder(0.65f/Ritual.allTabletParts.size()))
+                            .withEntry(ItemEntry.builder(item).build());
+
+                    supplier.pool(poolBuilder);
+                }
+                for (Item item : treasure) {
+                    FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                            .rolls(ConstantLootTableRange.create(1))
+                            .conditionally(RandomChanceLootCondition.builder(0.65f/treasure.length))
                             .withEntry(ItemEntry.builder(item).build());
 
                     supplier.pool(poolBuilder);

@@ -22,7 +22,10 @@ public class SpadeItem extends ShovelItem {
         if (!world.isClient) {
             if (FallingArcheologicalBlock.isNatural(state)) {
                 PlayerEntity player = (PlayerEntity) miner;
-                if (player.getRandom().nextDouble()>0.5) {
+                if (player.getRandom().nextDouble()>0.3) {
+                    player.inventory.insertStack(new ItemStack(ArsItems.DICTIONARY));
+                    stack.damage(1, player.getRandom(), (ServerPlayerEntity) player);
+                } else if (player.getRandom().nextDouble()>0.3) {
                     player.inventory.insertStack(new ItemStack(ArsItems.DICTIONARY));
                     stack.damage(1, player.getRandom(), (ServerPlayerEntity) player);
                 }
