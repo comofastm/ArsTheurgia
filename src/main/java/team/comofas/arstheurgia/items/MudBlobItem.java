@@ -9,6 +9,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -73,6 +74,7 @@ public class MudBlobItem extends Item {
             if (hitResult.getType() == HitResult.Type.BLOCK) {
                 if (!(world.getBlockState(blockPos).isAir())) {
                     if (world.getBlockState(blockPos.offset(hitResult.getSide())).isAir()) {
+                        user.getStackInHand(hand).setCount(user.getStackInHand(hand).getCount()-1);
                         this.place(blockPos, user, world, true, user.getStackInHand(hand), hitResult);
                     } else {
                         return new TypedActionResult<>(ActionResult.FAIL, user.getStackInHand(hand));
@@ -93,7 +95,7 @@ public class MudBlobItem extends Item {
             world.playSound(null, placePos, SoundEvents.BLOCK_SOUL_SOIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
         } else {
             cycle(compoundTag, player.isSneaking());
-            player.sendMessage(Text.of(""+ChalkList.get(compoundTag.getInt("index"))), true);
+            player.sendMessage(new TranslatableText(((Block) ChalkList.get(compoundTag.getInt("index"))).getTranslationKey()), true);
         }
 
     }
