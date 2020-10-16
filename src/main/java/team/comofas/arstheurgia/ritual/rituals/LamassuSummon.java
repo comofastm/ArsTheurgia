@@ -158,8 +158,6 @@ public class LamassuSummon extends Ritual {
 
                     if (placedItem.getItem() != Items.BEEF) {
                         hasNecessaryItems = false;
-                    } else if (placedItem.getCount() < 15) {
-                        hasNecessaryItems = false;
                     }
 
                 } else {

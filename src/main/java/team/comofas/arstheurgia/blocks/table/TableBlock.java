@@ -51,8 +51,6 @@ public class TableBlock extends Block implements BlockEntityProvider {
                     Ritual.callRitual(ritual, state, player, hand, hit);
                     return ActionResult.SUCCESS;
 
-                } else {
-                    player.sendMessage(new LiteralText("first " + PlayerComponents.KNOWLEDGE.get(player).hasKnowledge("creeper") + " " + player.getEntityId()), false);
                 }
             }
         }
