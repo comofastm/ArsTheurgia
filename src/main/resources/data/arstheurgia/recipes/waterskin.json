@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  L",
+    " GL",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "G": {
+      "item": "arstheurgia:gebel_knife"
+    }
+  },
+  "result": {
+    "item": "arstheurgia:waterskin"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "SSS",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "arstheurgia:mud_block"
+    },
+    "S": {
+      "item": "arstheurgia:mud_block_slab"
+    }
+  },
+  "result": {
+    "item": "arstheurgia:ceramic_altar"
+  }
+}
