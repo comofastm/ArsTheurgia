@@ -96,8 +96,12 @@ public class SharurRitual extends Ritual {
 
                 if (entity.getPos().equals(pos)) {
                     tableBlockEntity.setPlacedItem(new ItemStack(ArsItems.SHARUR));
+                    if (!player.world.isClient())
+                        ((TableBlockEntity)entity).sync();
                 } else {
                     tableBlockEntity.setPlacedItem(null);
+                    if (!player.world.isClient())
+                        ((TableBlockEntity)entity).sync();
                 }
 
                 tableBlockEntity.sync();

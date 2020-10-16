@@ -50,6 +50,8 @@ public class TableBlockEntity extends BlockEntity implements BlockEntityClientSe
 
         setPlacedItem(ItemStack.fromTag(tag.getCompound("item")));
 
+        sync();
+
     }
 
     public ItemStack getPlacedItem() {
@@ -59,7 +61,6 @@ public class TableBlockEntity extends BlockEntity implements BlockEntityClientSe
     public void setPlacedItem(ItemStack placedItem) {
         this.placedItem = placedItem;
         markDirty();
-        sync();
     }
 
     @Override
