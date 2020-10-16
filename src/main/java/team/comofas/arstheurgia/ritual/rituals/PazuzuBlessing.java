@@ -129,7 +129,6 @@ public class PazuzuBlessing extends Ritual {
 
 
         for (BlockEntity entity : ritualBlocks) {
-            System.out.println(ritualBlocks);
             if (entity instanceof CeramicAltarBlockEntity) {
                 BlockPos pos = entity.getPos();
 
@@ -139,17 +138,14 @@ public class PazuzuBlessing extends Ritual {
                     ItemStack placedItem = ritualBlockEntity.getPlacedItem();
                     if (pos.getZ() == hit.getBlockPos().getZ() && pos.getX() == hit.getBlockPos().getX()) {
                         if (placedItem.getItem() != Items.GOLD_INGOT) {
-                            //System.out.println(placedItem.getItem());
                             hasNecessaryItems = false;
                         }
                     } else {
                         if (!placedItem.isFood()) {
-                            //System.out.println(placedItem.getItem());
                             hasNecessaryItems = false;
                         }
                     }
                 } else {
-                    //System.out.println("sim");
                     hasNecessaryItems = false;
                 }
             }
