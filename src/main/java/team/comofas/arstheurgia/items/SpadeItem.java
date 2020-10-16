@@ -20,14 +20,13 @@ public class SpadeItem extends ShovelItem {
 
     public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
         if (!world.isClient) {
+            PlayerEntity player = (PlayerEntity) miner;
+            stack.damage(1, player.getRandom(), (ServerPlayerEntity) player);
             if (FallingArcheologicalBlock.isNatural(state)) {
-                PlayerEntity player = (PlayerEntity) miner;
                 if (player.getRandom().nextDouble()>0.3) {
                     player.inventory.insertStack(new ItemStack(ArsItems.DICTIONARY));
-                    stack.damage(1, player.getRandom(), (ServerPlayerEntity) player);
-                } else if (player.getRandom().nextDouble()>0.3) {
-                    player.inventory.insertStack(new ItemStack(ArsItems.DICTIONARY));
-                    stack.damage(1, player.getRandom(), (ServerPlayerEntity) player);
+                } else if (player.getRandom().nextDouble()>0.7) {
+                    player.inventory.insertStack(new ItemStack(ArsItems.TABLE));
                 }
             }
         }
