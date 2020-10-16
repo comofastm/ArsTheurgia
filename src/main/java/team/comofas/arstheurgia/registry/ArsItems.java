@@ -32,7 +32,7 @@ public class ArsItems {
     public static final Item MACE = new SwordItem(ToolMaterials.IRON, 9, -3.5F, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
     public static final Item TROWEL = new SpadeItem(ToolMaterials.IRON, 3, -2.4F, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(250));
     public static final Item FLOUR = new BlockItem(ArsBlocks.FLOUR, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
-    public static final Item BILE = new BileBottleItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(Items.GLASS_BOTTLE));
+    public static final Item BILE = new BileBottleItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(Items.GLASS_BOTTLE).maxCount(16));
 
     public static final Item SHARUR = new SharurItem(ToolMaterials.IRON, 9, -3.5F, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
     public static final Item IMHULLU = new ImhulluItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).maxDamage(59));
@@ -63,7 +63,7 @@ public class ArsItems {
     public static final Item MORTAR = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(ArsItems.MORTAR));
     public static final Item PISTACHIO = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item PISTACHIO_POWDER = new Item(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
-    public static final Item SYRUP = new HoneyBottleItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(Items.GLASS_BOTTLE));
+    public static final Item SYRUP = new HoneyBottleItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).recipeRemainder(Items.GLASS_BOTTLE).maxCount(16).food(FoodComponents.HONEY_BOTTLE));
 
     public static final Item MUD_BLOB = new MudBlobItem(new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP).food(FoodComponents.HONEY_BOTTLE));
 
