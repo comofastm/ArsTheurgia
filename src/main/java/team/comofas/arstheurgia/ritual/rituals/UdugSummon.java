@@ -135,16 +135,14 @@ public class UdugSummon extends Ritual {
 
                 TableBlockEntity ritualBlockEntity = (TableBlockEntity) entity;
 
-                if (ritualBlockEntity.getPlacedItem() != null) {
-                    ItemStack placedItem = ritualBlockEntity.getPlacedItem();
-                    if (pos.getZ() == hit.getBlockPos().getZ() && pos.getX() == hit.getBlockPos().getX()) {
-                        if (ritualBlockEntity.getPlacedItem() != null && !ritualBlockEntity.getPlacedItem().isEmpty()) {
-                            hasNecessaryItems = false;
-                        }
-                    } else {
-                        if (placedItem.getItem() != ArsItems.BILE) {
-                            hasNecessaryItems = false;
-                        }
+                ItemStack placedItem = ritualBlockEntity.getPlacedItem();
+                if (pos.getZ() == hit.getBlockPos().getZ() && pos.getX() == hit.getBlockPos().getX()) {
+                    if (ritualBlockEntity.getPlacedItem() != null && !ritualBlockEntity.getPlacedItem().isEmpty()) {
+                        hasNecessaryItems = false;
+                    }
+                } else if (ritualBlockEntity.getPlacedItem() != null) {
+                    if (placedItem.getItem() != ArsItems.BILE) {
+                        hasNecessaryItems = false;
                     }
                 } else {
                     hasNecessaryItems = false;
