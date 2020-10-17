@@ -49,7 +49,7 @@ public class ArsBlocks {
 
     public static final Block DATE_TREE_LOG = new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F).sounds(BlockSoundGroup.WOOD));
     public static final Block DATE_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).sounds(BlockSoundGroup.GRASS).nonOpaque().suffocates(ArsBlocks::never).blockVision(ArsBlocks::never));
-    public static final Block DATE_SAPLING = new ATSaplingBlock(new DateTreeSaplingGenerator(), FabricBlockSettings.of(Material.LEAVES));
+    public static final Block DATE_SAPLING = new ATSaplingBlock(new DateTreeSaplingGenerator(), FabricBlockSettings.of(Material.LEAVES).sounds(BlockSoundGroup.GRASS));
 
     public static final Block SAMAS_FIGURINE = new SamasFigurineBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).sounds(BlockSoundGroup.ANVIL));
     public static final Block MIRSU_BOWL = new MirsuBowlBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).hardness(1.0f));
