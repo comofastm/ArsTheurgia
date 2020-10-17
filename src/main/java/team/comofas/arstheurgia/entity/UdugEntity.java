@@ -66,7 +66,7 @@ public class UdugEntity extends TameableEntity implements IAnimatedEntity {
             if (this.world.getAmbientDarkness() < 4) {
                 if (this.isAlive()) {
                     if (world.getTimeOfDay() % 60 == 0) {
-                        PlayerComponents.KNOWLEDGE.maybeGet(this.getOwner()).ifPresent(value -> {
+                        PlayerComponents.KNOWLEDGE.maybeGet((PlayerEntity) this.getOwner()).ifPresent(value -> {
                             value.setKnowledge("activeUdug", false);
                         });
                         this.playSound(ArsSounds.UDUG_DISAPPEAR, 0.5F, 1.0F);
@@ -95,13 +95,6 @@ public class UdugEntity extends TameableEntity implements IAnimatedEntity {
         this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
 
     }
-
-    public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        PlayerComponents.KNOWLEDGE.get(player).setKnowledge("activeUdug", true);
-        this.setOwner(player);
-        return ActionResult.SUCCESS;
-    }
-
 
     @Override
     public @Nullable PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
