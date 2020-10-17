@@ -96,7 +96,8 @@ public class ImhulluRitual extends Ritual {
                         player.world.removeBlock(entity.getPos(), false);
                     } else if (entity instanceof TableBlockEntity) {
                         ((TableBlockEntity)entity).setPlacedItem(new ItemStack(ArsItems.IMHULLU));
-                        ((TableBlockEntity)entity).sync();
+                        if (!player.world.isClient())
+                            ((TableBlockEntity)entity).sync();
                     }
             }
 

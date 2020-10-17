@@ -103,10 +103,12 @@ public class LamassuSummon extends Ritual {
             if (entity != null)
                 if (entity instanceof TableBlockEntity) {
                     ((TableBlockEntity)entity).setPlacedItem(null);
-                    ((TableBlockEntity)entity).sync();
+                    if (!player.world.isClient())
+                        ((TableBlockEntity)entity).sync();
                 } else if (entity instanceof CeramicAltarBlockEntity) {
                     ((CeramicAltarBlockEntity)entity).setPlacedItem(null);
-                    ((CeramicAltarBlockEntity)entity).sync();
+                    if (!player.world.isClient())
+                        ((CeramicAltarBlockEntity)entity).sync();
                 }
         }
 
@@ -136,21 +138,20 @@ public class LamassuSummon extends Ritual {
 
                 TableBlockEntity ritualBlockEntity = (TableBlockEntity) entity;
 
-                if (ritualBlockEntity.getPlacedItem() != null) {
                     ItemStack placedItem = ritualBlockEntity.getPlacedItem();
                     if (pos.getZ() == hit.getBlockPos().getZ() && pos.getX() == hit.getBlockPos().getX()) {
                         if (ritualBlockEntity.getPlacedItem() != null && !ritualBlockEntity.getPlacedItem().isEmpty()) {
                             hasNecessaryItems = false;
                         }
-                    } else {
+                    } else if (ritualBlockEntity.getPlacedItem() != null) {
                         if (!placedItem.getItem().isFood()) {
                             hasNecessaryItems = false;
                         }
+                    } else {
+                        hasNecessaryItems = false;
                     }
-                } else {
-                    hasNecessaryItems = false;
                 }
-            } else if (entity instanceof CeramicAltarBlockEntity) {
+            else if (entity instanceof CeramicAltarBlockEntity) {
 
                 CeramicAltarBlockEntity ritualBlockEntity = (CeramicAltarBlockEntity) entity;
                 if (ritualBlockEntity.getPlacedItem() != null) {

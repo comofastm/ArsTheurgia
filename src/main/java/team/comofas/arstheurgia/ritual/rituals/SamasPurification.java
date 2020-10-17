@@ -84,10 +84,11 @@ public class SamasPurification extends Ritual {
 
         for (BlockEntity entity : ritualBlocks) {
             if (entity != null)
-                if (!entity.getPos().equals(hit.getBlockPos()) && entity instanceof CeramicAltarBlockEntity) {
+                if (entity.getPos().equals(hit.getBlockPos()) && entity instanceof CeramicAltarBlockEntity) {
                     if (((CeramicAltarBlockEntity)entity).getPlacedItem().getItem() == ArsItems.PAZUZU_AMULET) {
                         ((CeramicAltarBlockEntity)entity).setPlacedItem(new ItemStack(ArsItems.PAZUZU_AMULET_INFUSED));
-                        ((CeramicAltarBlockEntity)entity).sync();
+                        if (!player.world.isClient())
+                            ((CeramicAltarBlockEntity)entity).sync();
                     }
                 } else {
                     player.world.removeBlock(entity.getPos(), false);

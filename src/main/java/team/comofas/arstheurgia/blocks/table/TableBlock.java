@@ -63,12 +63,15 @@ public class TableBlock extends Block implements BlockEntityProvider {
 
             if (heldItem.asItem() != Items.AIR && (blockentity.getPlacedItem() == null || blockentity.getPlacedItem().isEmpty())) {
                 blockentity.setPlacedItem(player.getStackInHand(hand));
+                if (!world.isClient())
+                    blockentity.sync();
                 player.inventory.removeOne(player.getStackInHand(hand));
                 return ActionResult.CONSUME;
             } else if (placedItem != null && placedItem != ItemStack.EMPTY) {
                 player.inventory.insertStack(placedItem);
-
                 blockentity.setPlacedItem(null);
+                if (!world.isClient())
+                    blockentity.sync();
                 return ActionResult.SUCCESS;
             }
 
