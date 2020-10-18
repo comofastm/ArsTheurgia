@@ -93,7 +93,6 @@ public class ArsBlocks {
         registerBlock(DATE_TREE_LOG, "date_logs");
         registerBlock(DATE_LEAVES, "date_leaves");
         registerBlock(DATE_SAPLING, "date_sapling");
-        BlockRenderLayerMap.INSTANCE.putBlock(DATE_SAPLING, RenderLayer.getCutout());
 
         registerBlock(SAMAS_FIGURINE, "shamash");
         registerBlock(MIRSU_BOWL, "mirsu_bowl");
