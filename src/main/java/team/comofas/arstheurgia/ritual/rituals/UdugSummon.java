@@ -91,10 +91,15 @@ public class UdugSummon extends Ritual {
                     player.world.removeBlock(entity.getPos(), false);
         }
 
-        Entity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, this.player.world);
-        lightningEntity.teleport(pos.getX(), pos.getY(), pos.getZ());
 
-        player.world.spawnEntity(lightningEntity);
+
+        if (!player.world.isClient()) {
+            Entity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, this.player.world);
+            lightningEntity.teleport(pos.getX(), pos.getY(), pos.getZ());
+            player.world.spawnEntity(lightningEntity);
+        }
+
+
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 3, false, false));
 
 
@@ -108,15 +113,20 @@ public class UdugSummon extends Ritual {
 
         player.getEntityWorld().playSound(null, pos, ArsSounds.RITUAL_CHIME, SoundCategory.AMBIENT, 1f, 1f);
 
-        UdugEntity udug = new UdugEntity(ArsTheurgia.UDUG, player.world);
-        udug.teleport(pos.getX(), pos.getY(), pos.getZ());
 
         PlayerComponents.KNOWLEDGE.get(player).setKnowledge("activeUdug", true);
-        udug.setOwner(player);
 
         player.getEntityWorld().playSound(null, pos, ArsSounds.CLAWS_GROW, SoundCategory.AMBIENT, 1f, 1f);
 
-        player.world.spawnEntity(udug);
+        if (!player.world.isClient()) {
+
+            UdugEntity udug = new UdugEntity(ArsTheurgia.UDUG, player.world);
+            udug.teleport(pos.getX(), pos.getY(), pos.getZ());
+
+            udug.setOwner(player);
+            player.world.spawnEntity(udug);
+
+        }
 
         PlayerComponents.EVIL.get(player).setEvil(PlayerComponents.EVIL.get(player).getEvil() + 2);
 

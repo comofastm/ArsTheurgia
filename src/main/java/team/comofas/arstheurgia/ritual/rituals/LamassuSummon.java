@@ -120,11 +120,13 @@ public class LamassuSummon extends Ritual {
 
         player.getEntityWorld().playSound(null, pos, ArsSounds.RITUAL_CHIME, SoundCategory.AMBIENT, 1f, 1f);
 
+        if (!player.world.isClient()) {
+            LamassuEntity entity = new LamassuEntity(ArsTheurgia.LAMASSU, player.world);
+            entity.teleport(pos.getX(), pos.getY(), pos.getZ());
+            entity.setOwner(player);
+            player.world.spawnEntity(entity);
+        }
 
-        LamassuEntity entity = new LamassuEntity(ArsTheurgia.LAMASSU, player.world);
-        entity.teleport(pos.getX(), pos.getY(), pos.getZ());
-        entity.setOwner(player);
-        player.world.spawnEntity(entity);
 
     }
 

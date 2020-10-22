@@ -14,6 +14,7 @@ import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
@@ -43,15 +44,22 @@ public abstract class LivingEntityMixin {
     public void dropBile(DamageSource source, boolean causedByPlayer, CallbackInfo ci) {
         if (source.getAttacker() instanceof PlayerEntity) {
             PlayerEntity attacker = (PlayerEntity) source.getAttacker();
-            Item item = attacker.inventory.getMainHandStack().getItem();
+
+            Item item = attacker.getStackInHand(Hand.MAIN_HAND).getItem();
 
             if (!((LivingEntity)(Object)this).world.isClient()) {
                 if (item == ArsItems.GEBEL_KNIFE && ((LivingEntity)(Object)this) instanceof AnimalEntity) {
                     ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
                     if (attacker.inventory.contains(bottle)) {
-                        attacker.inventory.getStack(attacker.inventory.getSlotWithStack(bottle)).decrement(1);
-                        ((LivingEntity)(Object)this).world.playSound(attacker, attacker.getX(), attacker.getY(), attacker.getZ(), ArsSounds.COLLECT_BILE, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                        attacker.inventory.insertStack(new ItemStack(ArsItems.BILE));
+                        for (ItemStack itemStack : attacker.inventory.main) {
+                            if (itemStack.getItem() == Items.GLASS_BOTTLE) {
+                                itemStack.decrement(1);
+                                ((LivingEntity)(Object)this).world.playSound(attacker, attacker.getX(), attacker.getY(), attacker.getZ(), ArsSounds.COLLECT_BILE, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                                attacker.inventory.insertStack(new ItemStack(ArsItems.BILE));
+                                break;
+                            }
+
+                        }
                     }
                 }
             }

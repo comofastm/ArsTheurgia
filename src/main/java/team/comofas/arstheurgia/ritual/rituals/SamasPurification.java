@@ -97,11 +97,13 @@ public class SamasPurification extends Ritual {
 
 
         }
+        if (!player.world.isClient()) {
+            Entity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, this.player.world);
+            lightningEntity.teleport(pos.getX(), pos.getY(), pos.getZ());
 
-        Entity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, this.player.world);
-        lightningEntity.teleport(pos.getX(), pos.getY(), pos.getZ());
+            player.world.spawnEntity(lightningEntity);
+        }
 
-        player.world.spawnEntity(lightningEntity);
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 3, false, false));
 
 

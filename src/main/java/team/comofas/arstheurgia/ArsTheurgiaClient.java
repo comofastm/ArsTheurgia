@@ -3,17 +3,19 @@ package team.comofas.arstheurgia;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
-import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlockEntityRenderer;
 import team.comofas.arstheurgia.blocks.RitualBlockEntityRenderer;
-import team.comofas.arstheurgia.blocks.table.TableBlockEntity;
+import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlockEntityRenderer;
 import team.comofas.arstheurgia.blocks.table.TableBlockEntityRenderer;
+import team.comofas.arstheurgia.entity.anzu.AnzuEntityRenderer;
+import team.comofas.arstheurgia.entity.lamassu.LamassuEntityRenderer;
+import team.comofas.arstheurgia.entity.tormentedcreeper.TormentedCreeperEntityRenderer;
+import team.comofas.arstheurgia.entity.udug.UdugEntityRenderer;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
 public class ArsTheurgiaClient implements ClientModInitializer {
@@ -21,8 +23,9 @@ public class ArsTheurgiaClient implements ClientModInitializer {
     public void onInitializeClient() {
         BlockEntityRendererRegistry.INSTANCE.register(ArsBlocks.RITUALBLOCK_ENTITY, RitualBlockEntityRenderer::new);
         BlockEntityRendererRegistry.INSTANCE.register(ArsBlocks.CERAMIC_ALTAR_ENTITY, CeramicAltarBlockEntityRenderer::new);
-
         BlockEntityRendererRegistry.INSTANCE.register(ArsBlocks.TABLE_BLOCK_ENTITY, TableBlockEntityRenderer::new);
+
+        // Setup block render layers
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.ASYRIEL_SIGIL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.AUTUMN_SYMBOL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.SPRING_SYMBOL, RenderLayer.getCutout());
@@ -30,6 +33,13 @@ public class ArsTheurgiaClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.WINTER_SYMBOL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.FLOUR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.MIRSU_BOWL, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.DATE_SAPLING, RenderLayer.getCutout());
+
+        // Register Entity Renderers
+        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.UDUG, (dispatcher, context) -> new UdugEntityRenderer(dispatcher));
+        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.LAMASSU, (dispatcher, context) -> new LamassuEntityRenderer(dispatcher));
+        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.ANZU, (dispatcher, context) -> new AnzuEntityRenderer(dispatcher));
+        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.TORMENTEDCREEPER, (dispatcher, context) -> new TormentedCreeperEntityRenderer(dispatcher));
 
         ClientSidePacketRegistry.INSTANCE.register(ArsTheurgia.CONSUME_ITEM_PARTICLE,
                 (packetContext, attachedData) -> {
@@ -44,7 +54,5 @@ public class ArsTheurgiaClient implements ClientModInitializer {
 
                     });
                 });
-
-
     }
 }

@@ -106,11 +106,14 @@ public class AnzuSummon extends Ritual {
 
         player.getEntityWorld().playSound(null, pos, ArsSounds.RITUAL_CHIME, SoundCategory.AMBIENT, 1f, 1f);
 
-        AnzuEntity anzu = new AnzuEntity(ArsTheurgia.ANZU, player.world);
-        anzu.teleport(pos.getX(), pos.getY(), pos.getZ());
-        anzu.setOwner(player);
 
-        player.world.spawnEntity(anzu);
+        if (!player.world.isClient()) {
+            AnzuEntity anzu = new AnzuEntity(ArsTheurgia.ANZU, player.world);
+            anzu.teleport(pos.getX(), pos.getY(), pos.getZ());
+            anzu.setOwner(player);
+
+            player.world.spawnEntity(anzu);
+        }
 
         PlayerComponents.EVIL.get(player).setEvil(PlayerComponents.EVIL.get(player).getEvil() + 2);
 

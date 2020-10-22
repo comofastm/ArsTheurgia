@@ -1,7 +1,6 @@
 package team.comofas.arstheurgia;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
@@ -13,10 +12,6 @@ import team.comofas.arstheurgia.entity.AnzuEntity;
 import team.comofas.arstheurgia.entity.LamassuEntity;
 import team.comofas.arstheurgia.entity.TormentedCreeperEntity;
 import team.comofas.arstheurgia.entity.UdugEntity;
-import team.comofas.arstheurgia.entity.anzu.AnzuEntityRenderer;
-import team.comofas.arstheurgia.entity.lamassu.LamassuEntityRenderer;
-import team.comofas.arstheurgia.entity.tormentedcreeper.TormentedCreeperEntityRenderer;
-import team.comofas.arstheurgia.entity.udug.UdugEntityRenderer;
 import team.comofas.arstheurgia.events.LootTableEvent;
 import team.comofas.arstheurgia.registry.*;
 
@@ -47,12 +42,11 @@ public class ArsTheurgia implements ModInitializer {
     );
 
     public static final Identifier CONSUME_ITEM_PARTICLE = ArsUtils.getIdentifier("consume_item");
-    public static final Identifier UPDATE_BLOCK_ENTITY = ArsUtils.getIdentifier("update_block_entity");
 
     @Override
     public void onInitialize() {
 
-        ArsSounds.registerAll();
+        ArsSounds.init();
         ArsBlocks.registerAll();
         ArsItems.registerAll();
         ArsEffects.registerAll();
@@ -66,14 +60,5 @@ public class ArsTheurgia implements ModInitializer {
         FabricDefaultAttributeRegistry.register(ANZU, AnzuEntity.createMobAttributes());
 
         FabricDefaultAttributeRegistry.register(TORMENTEDCREEPER, TormentedCreeperEntity.createAttributes());
-
-        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.UDUG, (dispatcher, context) -> new UdugEntityRenderer(dispatcher));
-
-        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.LAMASSU, (dispatcher, context) -> new LamassuEntityRenderer(dispatcher));
-
-        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.ANZU, (dispatcher, context) -> new AnzuEntityRenderer(dispatcher));
-
-        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.TORMENTEDCREEPER, (dispatcher, context) -> new TormentedCreeperEntityRenderer(dispatcher));
-
     }
 }

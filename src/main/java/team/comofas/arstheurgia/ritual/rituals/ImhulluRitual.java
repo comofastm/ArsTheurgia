@@ -101,10 +101,14 @@ public class ImhulluRitual extends Ritual {
                     }
             }
 
-            Entity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, this.player.world);
-            lightningEntity.teleport(pos.getX(), pos.getY(), pos.getZ());
+            if (!player.world.isClient()) {
 
-            player.world.spawnEntity(lightningEntity);
+                Entity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, this.player.world);
+                lightningEntity.teleport(pos.getX(), pos.getY(), pos.getZ());
+
+                player.world.spawnEntity(lightningEntity);
+
+            }
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 3, false, false));
 
 
