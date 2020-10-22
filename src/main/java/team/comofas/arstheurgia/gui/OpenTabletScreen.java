@@ -49,7 +49,7 @@ public class OpenTabletScreen extends Screen {
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.client.getTextureManager().bindTexture(BOOK_TEXTURE);
         int i = (this.width - (438)) / 2;
-        drawTexture(matrices, i, 2, 0, 0, 438, 270, 438, 270);
+        drawTexture(matrices, i, 2, 0, 0, 438, 350, 438, 350);
 
         if (!this.client.player.inventory.contains(new ItemStack(ArsItems.DICTIONARY))) {
             this.textRenderer.draw(matrices, new LiteralText("All the words in this tablet are meaningless to you."), (float) i + 16, 32F, 0);

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "arstheurgia",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "name": "Ars Theurgia",
   "description": "",
   "authors": [
@@ -39,6 +39,7 @@
   },
   "depends": {
     "fabricloader": ">=0.10.0+build.208",
+    "geckolib": "*",
     "fabric": "*",
     "minecraft": "1.16.3"
   }
