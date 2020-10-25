@@ -137,7 +137,7 @@ public class ImhulluRitual extends Ritual {
                     if (ritualBlockEntity.getPlacedItem() != null && !ritualBlockEntity.getPlacedItem().isEmpty()) {
                         ItemStack placedItem = ritualBlockEntity.getPlacedItem();
                         if (pos.getZ() == hit.getBlockPos().getZ() && pos.getX() == hit.getBlockPos().getX()) {
-                            if (placedItem.getItem() != Items.STICK ) {
+                            if (placedItem.getItem() != ArsItems.HAND_FAN || placedItem.getCount() < 2 ) {
                                 hasNecessaryItems = false;
                             }
                         } else {
