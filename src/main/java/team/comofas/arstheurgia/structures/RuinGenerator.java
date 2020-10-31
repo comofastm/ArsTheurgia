@@ -3,7 +3,6 @@ package team.comofas.arstheurgia.structures;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.loot.LootTables;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.*;
@@ -20,26 +19,26 @@ import java.util.List;
 import java.util.Random;
 
 public class RuinGenerator {
-    private static final Identifier RUIN_HOUSE = new Identifier("arstheurgia:house");;
 
-    public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, List<StructurePiece> pieces) {
-        HousePiece piece = new HousePiece(manager, pos, RUIN_HOUSE, rotation);
+    public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, List<StructurePiece> pieces, Identifier name) {
+        StructurePiece piece;
+        piece = new RuinPiece(manager, pos, name, rotation, ArsStructures.StructureList.get(name));
         pieces.add(piece);
     }
 
-    public static class HousePiece extends SimpleStructurePiece {
+    public static class RuinPiece extends SimpleStructurePiece {
         private final BlockRotation rotation;
         private final Identifier template;
 
-        public HousePiece(StructureManager structureManager, CompoundTag compoundTag) {
-            super(ArsStructures.HOUSE_RUIN, compoundTag);
+        public RuinPiece(StructureManager structureManager, CompoundTag compoundTag) {
+            super(ArsStructures.StructureList.get(new Identifier(compoundTag.getString("Template"))), compoundTag);
             this.template = new Identifier(compoundTag.getString("Template"));
             this.rotation = BlockRotation.valueOf(compoundTag.getString("Rot"));
             this.initializeStructureData(structureManager);
         }
 
-        public HousePiece(StructureManager structureManager, BlockPos pos, Identifier template, BlockRotation rotation) {
-            super(ArsStructures.HOUSE_RUIN, 0);
+        public RuinPiece(StructureManager structureManager, BlockPos pos, Identifier template, BlockRotation rotation, StructurePieceType pieceType) {
+            super(pieceType, 0);
             this.pos = pos;
             this.rotation = rotation;
             this.template = template;
@@ -75,5 +74,4 @@ public class RuinGenerator {
             }
         }
     }
-
 }

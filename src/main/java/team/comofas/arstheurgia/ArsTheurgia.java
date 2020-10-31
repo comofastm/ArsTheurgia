@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import team.comofas.arstheurgia.entity.AnzuEntity;
@@ -16,6 +17,7 @@ import team.comofas.arstheurgia.events.LootTableEvent;
 import team.comofas.arstheurgia.registry.*;
 
 public class ArsTheurgia implements ModInitializer {
+
 
     public static final EntityType<UdugEntity> UDUG = Registry.register(
             Registry.ENTITY_TYPE,
