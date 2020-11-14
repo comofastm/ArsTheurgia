@@ -10,7 +10,7 @@
       "arstheurgia:ritual_fail"
     ]
   },
-  "magic_chime": {
+  "ritual_chime": {
     "sounds": [
       "arstheurgia:magic_chime",
       "arstheurgia:magic_chime2"
@@ -72,6 +72,11 @@
   "udug_disappear": {
     "sounds": [
       "arstheurgia:udug_disappear"
+    ]
+  },
+  "collect_bile": {
+    "sounds": [
+      "arstheurgia:collect_bile"
     ]
   }
 }

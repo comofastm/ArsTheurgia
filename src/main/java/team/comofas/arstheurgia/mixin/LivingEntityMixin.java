@@ -56,6 +56,7 @@ public abstract class LivingEntityMixin {
                                 itemStack.decrement(1);
                                 ((LivingEntity)(Object)this).world.playSound(attacker, attacker.getX(), attacker.getY(), attacker.getZ(), ArsSounds.COLLECT_BILE, SoundCategory.NEUTRAL, 1.0F, 1.0F);
                                 attacker.inventory.insertStack(new ItemStack(ArsItems.BILE));
+                                break;
                             }
 
                         }
