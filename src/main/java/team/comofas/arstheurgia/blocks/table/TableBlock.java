@@ -69,7 +69,7 @@ public class TableBlock extends Block implements BlockEntityProvider {
                 return ActionResult.CONSUME;
             } else if (placedItem != null && placedItem != ItemStack.EMPTY) {
                 player.inventory.insertStack(placedItem);
-                blockentity.setPlacedItem(null);
+                blockentity.setPlacedItem(ItemStack.EMPTY);
                 if (!world.isClient())
                     blockentity.sync();
                 return ActionResult.SUCCESS;

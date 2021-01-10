@@ -24,6 +24,7 @@ public class TableBlockEntity extends BlockEntity implements BlockEntityClientSe
 
     public TableBlockEntity() {
         super(ArsBlocks.TABLE_BLOCK_ENTITY);
+        placedItem = ItemStack.EMPTY;
         markDirty();
     }
 
