@@ -3,14 +3,16 @@ package team.comofas.arstheurgia.entity.anzu;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
+import software.bernie.geckolib3.renderer.geo.GeoEntityRenderer;
 import team.comofas.arstheurgia.entity.AnzuEntity;
 import team.comofas.arstheurgia.entity.LamassuEntity;
 import team.comofas.arstheurgia.player.PlayerComponents;
 
-public class AnzuEntityRenderer extends MobEntityRenderer<AnzuEntity, AnzuEntityModel> {
+public class AnzuEntityRenderer extends GeoEntityRenderer<AnzuEntity> {
 
     public AnzuEntityRenderer(EntityRenderDispatcher entityRenderDispatcher) {
-        super(entityRenderDispatcher, new AnzuEntityModel(), 0.5f);
+        super(entityRenderDispatcher, new AnzuEntityModel());
+        this.shadowRadius = 0.5f;
     }
 
     @Override

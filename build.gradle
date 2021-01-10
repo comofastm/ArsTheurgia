@@ -27,7 +27,6 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     //APIs
@@ -37,7 +36,9 @@ dependencies {
     modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cardinal_version}"
     include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cardinal_version}"
 
-    modImplementation "software.bernie.geckolib:fabric-1.16.2-geckolib:2.0.0:dev"
+
+    modImplementation 'software.bernie.geckolib:fabric-1.16.4-geckolib:3.0.3:dev'
+    include 'software.bernie.geckolib:fabric-1.16.4-geckolib:3.0.3:dev'
 }
 
 processResources {

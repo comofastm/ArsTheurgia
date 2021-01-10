@@ -20,35 +20,35 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.animation.builder.AnimationBuilder;
-import software.bernie.geckolib.animation.controller.EntityAnimationController;
-import software.bernie.geckolib.entity.IAnimatedEntity;
-import software.bernie.geckolib.event.AnimationTestEvent;
-import software.bernie.geckolib.manager.EntityAnimationManager;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.registry.ArsSounds;
 
-public class AnzuEntity extends TameableEntity implements IAnimatedEntity {
+public class AnzuEntity extends TameableEntity implements IAnimatable {
 
-    private final EntityAnimationManager manager;
-    private final EntityAnimationController controller;
     private long cooldown = 100;
+    private final AnimationFactory animationFactory;
 
-    private <E extends Entity> boolean animationPredicate(AnimationTestEvent<E> event) {
-        if (event.isWalking() || !event.getEntity().isOnGround()) {
-            this.controller.setAnimation(new AnimationBuilder().addAnimation("moving", true));
+    private <E extends IAnimatable> PlayState animationPredicate(AnimationEvent<E> event) {
+        if (event.isMoving() || !((Entity)event.getAnimatable()).isOnGround()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("moving", true));
         } else {
-            this.controller.setAnimation(new AnimationBuilder().addAnimation("idle", true));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
         }
-        return true;
+        return PlayState.CONTINUE;
     }
 
     public AnzuEntity(EntityType<AnzuEntity> entityType, World world) {
         super(entityType, world);
         this.setTamed(true);
-        this.manager = new EntityAnimationManager();
-        this.controller = new EntityAnimationController(this, "walkController", 20, this::animationPredicate);
-        this.manager.addAnimationController(controller);
+        this.animationFactory = new AnimationFactory(this);
+
     }
 
     public EntityGroup getGroup() {
@@ -137,7 +137,12 @@ public class AnzuEntity extends TameableEntity implements IAnimatedEntity {
 
 
     @Override
-    public EntityAnimationManager getAnimationManager() {
-        return this.manager;
+    public void registerControllers(AnimationData animationData) {
+        animationData.addAnimationController(new AnimationController<>(this, "walkController", 20, this::animationPredicate));
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return this.animationFactory;
     }
 }

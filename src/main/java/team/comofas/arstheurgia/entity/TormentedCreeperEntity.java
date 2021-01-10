@@ -7,39 +7,36 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import software.bernie.geckolib.animation.builder.AnimationBuilder;
-import software.bernie.geckolib.animation.controller.EntityAnimationController;
-import software.bernie.geckolib.entity.IAnimatedEntity;
-import software.bernie.geckolib.event.AnimationTestEvent;
-import software.bernie.geckolib.manager.EntityAnimationManager;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 import team.comofas.arstheurgia.registry.ArsSounds;
 
-public class TormentedCreeperEntity extends HostileEntity implements IAnimatedEntity {
-    private final EntityAnimationManager manager;
-    private final EntityAnimationController controller;
+public class TormentedCreeperEntity extends HostileEntity implements IAnimatable {
 
-    private <E extends Entity> boolean animationPredicate(AnimationTestEvent<E> event) {
+    private final AnimationFactory animationFactory;
+
+    private <E extends IAnimatable> PlayState animationPredicate(AnimationEvent<E> event) {
         if (this.isAttacking()) {
-            this.controller.setAnimation(new AnimationBuilder().addAnimation("attack", true));
-            return true;
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", true));
         } else {
-            if (event.isWalking()) {
-                this.controller.setAnimation(new AnimationBuilder().addAnimation("walk", true));
-                return true;
+            if (event.isMoving()) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
             } else {
-                this.controller.setAnimation(new AnimationBuilder().addAnimation("idle", true));
-                return true;
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
             }
         }
+        return PlayState.CONTINUE;
     }
 
     protected void initGoals() {
@@ -82,13 +79,18 @@ public class TormentedCreeperEntity extends HostileEntity implements IAnimatedEn
 
     public TormentedCreeperEntity(EntityType<TormentedCreeperEntity> entityType, World world) {
         super(entityType, world);
-        this.manager = new EntityAnimationManager();
-        this.controller = new EntityAnimationController(this, "walkController", 20, this::animationPredicate);
-        this.manager.addAnimationController(controller);
+        this.animationFactory = new AnimationFactory(this);
+
+    }
+
+
+    @Override
+    public void registerControllers(AnimationData animationData) {
+       animationData.addAnimationController(new AnimationController<>(this, "walkController", 20, this::animationPredicate));
     }
 
     @Override
-    public EntityAnimationManager getAnimationManager() {
-        return this.manager;
+    public AnimationFactory getFactory() {
+        return this.animationFactory;
     }
 }
