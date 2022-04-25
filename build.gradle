@@ -1,10 +1,10 @@
 plugins {
-    id 'fabric-loom' version '0.5-SNAPSHOT'
+    id 'fabric-loom' version '0.11-SNAPSHOT'
     id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -16,7 +16,7 @@ repositories {
     }
     maven {
         name = "Ladysnake Libs"
-        url = "https://dl.bintray.com/ladysnake/libs"
+        url = "https://ladysnake.jfrog.io/artifactory/mods"
     }
     maven {
         url = "https://www.cursemaven.com"
@@ -35,13 +35,11 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     //APIs
-    modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${cardinal_version}"
-    include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${cardinal_version}"
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${cardinal_version}"
+    include "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${cardinal_version}"
 
-    modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cardinal_version}"
-    include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cardinal_version}"
-
-
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${cardinal_version}"
+    include "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${cardinal_version}"
 
     modImplementation(include("curse.maven:geckolib-398667:3157816"))
 }
@@ -57,6 +55,11 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude "fabric.mod.json"
     }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    // Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
+    it.options.release = 17
 }
 
 // ensure that the encoding is set to UTF-8, no matter what the system default is
