@@ -1,12 +1,12 @@
 package team.comofas.arstheurgia.player.data;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import team.comofas.arstheurgia.player.PlayerComponents;
 
 public class Knowledge implements KnowledgeManager {
 
-    CompoundTag knowledge = new CompoundTag();
+    NbtCompound knowledge = new NbtCompound();
 
     private final PlayerEntity player;
 
@@ -28,13 +28,13 @@ public class Knowledge implements KnowledgeManager {
     }
 
     @Override
-    public void readFromNbt(CompoundTag tag) {
+    public void readFromNbt(NbtCompound tag) {
         knowledge = tag.getCompound("knowledge");
         sync();
     }
 
     @Override
-    public void writeToNbt(CompoundTag tag) {
+    public void writeToNbt(NbtCompound tag) {
         tag.put("knowledge", knowledge);
     }
 

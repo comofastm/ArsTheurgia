@@ -5,11 +5,11 @@ import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
-import net.minecraft.loot.ConstantLootTableRange;
 import net.minecraft.loot.condition.EntityPropertiesLootCondition;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.PlayerPredicate;
 import net.minecraft.predicate.entity.EntityEquipmentPredicate;
 import net.minecraft.predicate.entity.EntityPredicate;
@@ -35,7 +35,7 @@ public class LootTableEvent {
             if (DESERT_PYRAMID_ID.equals(id)) {
                 for (Item item : Ritual.allTabletParts) {
                     FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                            .rolls(ConstantLootTableRange.create(1))
+                            .rolls(ConstantLootNumberProvider.create(1))
                             .conditionally(RandomChanceLootCondition.builder(0.65f/Ritual.allTabletParts.size()))
                             .withEntry(ItemEntry.builder(item).build());
 
@@ -43,7 +43,7 @@ public class LootTableEvent {
                 }
                 for (Item item : treasure) {
                     FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                            .rolls(ConstantLootTableRange.create(1))
+                            .rolls(ConstantLootNumberProvider.create(1))
                             .conditionally(RandomChanceLootCondition.builder(0.65f/treasure.length))
                             .withEntry(ItemEntry.builder(item).build());
 
@@ -51,7 +51,7 @@ public class LootTableEvent {
                 }
             } else if (GRASS_ID.equals(id)) {
                 FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                        .rolls(ConstantLootTableRange.create(1))
+                        .rolls(ConstantLootNumberProvider.create(1))
                         .conditionally(RandomChanceLootCondition.builder(0.05F))
                         .withEntry(ItemEntry.builder(ArsItems.PISTACHIO).build());
 

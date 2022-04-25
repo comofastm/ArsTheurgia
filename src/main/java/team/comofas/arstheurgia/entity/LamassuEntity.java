@@ -66,7 +66,7 @@ public class LamassuEntity extends TameableEntity implements IAnimatable {
     public boolean tryAttack(Entity target) {
         boolean bl = target.damage(DamageSource.mob(this), 3);
         if (bl) {
-            this.dealDamage(this, target);
+            this.applyDamageEffects(this, target);
         }
         return bl;
     }

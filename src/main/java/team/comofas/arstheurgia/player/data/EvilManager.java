@@ -1,8 +1,8 @@
 package team.comofas.arstheurgia.player.data;
 
-import dev.onyxstudios.cca.api.v3.component.AutoSyncedComponent;
+import dev.onyxstudios.cca.api.v3.component.Component;
 
-public interface EvilManager extends AutoSyncedComponent {
+public interface EvilManager extends Component {
 
     int getEvil();
 

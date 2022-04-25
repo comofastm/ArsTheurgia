@@ -106,7 +106,7 @@ public class BabySacrifice extends Ritual {
         watchingPlayers.forEach(player ->
                 ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, ArsTheurgia.CONSUME_ITEM_PARTICLE, passedData));
 
-        if (player.inventory.armor.get(EquipmentSlot.CHEST.getEntitySlotId()).getItem() != ArsItems.PAZUZU_AMULET_INFUSED) {
+        if (player.getInventory().armor.get(EquipmentSlot.CHEST.getEntitySlotId()).getItem() != ArsItems.PAZUZU_AMULET_INFUSED) {
             player.damage(DamageSource.MAGIC, 2000);
             return;
         }

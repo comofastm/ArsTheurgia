@@ -40,8 +40,8 @@ public class TormentedCreeperEntity extends HostileEntity implements IAnimatable
     }
 
     protected void initGoals() {
-        this.targetSelector.add(1, new FollowTargetGoal(this, PlayerEntity.class, true));
-        this.targetSelector.add(2, new FollowTargetGoal(this, IronGolemEntity.class, true));
+        this.targetSelector.add(1, new ActiveTargetGoal(this, PlayerEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal(this, IronGolemEntity.class, true));
         this.goalSelector.add(3, new MeleeAttackGoal(this, 1D, false));
         this.goalSelector.add(5, new WanderAroundFarGoal(this, 0.8D));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
@@ -72,7 +72,7 @@ public class TormentedCreeperEntity extends HostileEntity implements IAnimatable
     public boolean tryAttack(Entity target) {
         boolean bl = target.damage(DamageSource.mob(this), 3);
         if (bl) {
-            this.dealDamage(this, target);
+            this.applyDamageEffects(this, target);
         }
         return bl;
     }

@@ -63,15 +63,15 @@ public class TableBlock extends Block implements BlockEntityProvider {
 
             if (heldItem.asItem() != Items.AIR && (blockentity.getPlacedItem() == null || blockentity.getPlacedItem().isEmpty())) {
                 blockentity.setPlacedItem(player.getStackInHand(hand));
-                if (!world.isClient())
-                    blockentity.sync();
-                player.inventory.removeOne(player.getStackInHand(hand));
+                /*if (!world.isClient())
+                    blockentity.sync();*/
+                player.getInventory().removeOne(player.getStackInHand(hand));
                 return ActionResult.CONSUME;
             } else if (placedItem != null && placedItem != ItemStack.EMPTY) {
-                player.inventory.insertStack(placedItem);
+                player.getInventory().insertStack(placedItem);
                 blockentity.setPlacedItem(ItemStack.EMPTY);
-                if (!world.isClient())
-                    blockentity.sync();
+                /*if (!world.isClient())
+                    blockentity.sync();*/
                 return ActionResult.SUCCESS;
             }
 
@@ -83,7 +83,7 @@ public class TableBlock extends Block implements BlockEntityProvider {
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-        player.inventory.insertStack(((TableBlockEntity)blockEntity).getPlacedItem());
+        player.getInventory().insertStack(((TableBlockEntity)blockEntity).getPlacedItem());
         super.afterBreak(world, player, pos, state, blockEntity, stack);
 
     }
@@ -94,7 +94,7 @@ public class TableBlock extends Block implements BlockEntityProvider {
     }
 
     @Override
-    public @Nullable BlockEntity createBlockEntity(BlockView world) {
-        return new TableBlockEntity();
+    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new TableBlockEntity(pos, state);
     }
 }

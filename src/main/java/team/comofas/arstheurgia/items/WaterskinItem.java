@@ -51,10 +51,10 @@ public class WaterskinItem extends Item {
     }
 
     public ItemStack fill(PlayerEntity playerEntity, ItemStack itemToFill, ItemStack filledItem) {
-        boolean isCreative = playerEntity.abilities.creativeMode;
+        boolean isCreative = playerEntity.getAbilities().creativeMode;
         if (isCreative) {
-            if (!playerEntity.inventory.contains(filledItem)) {
-                playerEntity.inventory.insertStack(filledItem);
+            if (!playerEntity.getInventory().contains(filledItem)) {
+                playerEntity.getInventory().insertStack(filledItem);
             }
 
             return itemToFill;
@@ -64,7 +64,7 @@ public class WaterskinItem extends Item {
             if (itemToFill.isEmpty()) {
                 return filledItem;
             } else {
-                if (!playerEntity.inventory.insertStack(filledItem)) {
+                if (!playerEntity.getInventory().insertStack(filledItem)) {
                     playerEntity.dropItem(filledItem, false);
                 }
 

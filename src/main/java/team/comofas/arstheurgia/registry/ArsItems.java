@@ -53,7 +53,7 @@ public class ArsItems {
     public static final Item MIRSU_BOWL = new BlockItem(ArsBlocks.MIRSU_BOWL, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
     public static final Item DATE_TREE_LOG = new BlockItem(ArsBlocks.DATE_TREE_LOG, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
-    public static final Item DATE_SAPLING = new BlockItem(ArsBlocks.DATE_SAPLING, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
+    //public static final Item DATE_SAPLING = new BlockItem(ArsBlocks.DATE_SAPLING, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
     public static final Item DATE_LEAVES = new BlockItem(ArsBlocks.DATE_LEAVES, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
 
     public static final Item VELINHA = new BlockItem(ArsBlocks.VELINHA, new FabricItemSettings().group(ArsItemGroup.ARS_ITEM_GROUP));
@@ -108,7 +108,7 @@ public class ArsItems {
 
         registerItem(DATES, "dates");
         registerItem(DATE_PASTE, "date_paste");
-        registerItem(DATE_SAPLING, "date_sapling");
+        //registerItem(DATE_SAPLING, "date_sapling");
         registerItem(DATE_LEAVES, "date_leaves");
         registerItem(DATE_TREE_LOG, "date_logs");
 

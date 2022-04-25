@@ -3,7 +3,7 @@ package team.comofas.arstheurgia;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
@@ -33,13 +33,13 @@ public class ArsTheurgiaClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.WINTER_SYMBOL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.FLOUR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.MIRSU_BOWL, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.DATE_SAPLING, RenderLayer.getCutout());
+        //BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.DATE_SAPLING, RenderLayer.getCutout());
 
         // Register Entity Renderers
-        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.UDUG, (dispatcher, context) -> new UdugEntityRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.LAMASSU, (dispatcher, context) -> new LamassuEntityRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.ANZU, (dispatcher, context) -> new AnzuEntityRenderer(dispatcher));
-        EntityRendererRegistry.INSTANCE.register(ArsTheurgia.TORMENTEDCREEPER, (dispatcher, context) -> new TormentedCreeperEntityRenderer(dispatcher));
+        EntityRendererRegistry.register(ArsTheurgia.UDUG, (context) -> new UdugEntityRenderer(context.getRenderDispatcher()));
+        EntityRendererRegistry.register(ArsTheurgia.LAMASSU, (context) -> new LamassuEntityRenderer(context.getRenderDispatcher()));
+        EntityRendererRegistry.register(ArsTheurgia.ANZU, (context) -> new AnzuEntityRenderer(context.getRenderDispatcher()));
+        EntityRendererRegistry.register(ArsTheurgia.TORMENTEDCREEPER, (context) -> new TormentedCreeperEntityRenderer(context.getRenderDispatcher()));
 
         ClientSidePacketRegistry.INSTANCE.register(ArsTheurgia.CONSUME_ITEM_PARTICLE,
                 (packetContext, attachedData) -> {

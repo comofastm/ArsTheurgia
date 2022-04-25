@@ -4,7 +4,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.loot.LootTables;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.structure.*;
 import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
 import net.minecraft.util.BlockMirror;
@@ -30,7 +30,7 @@ public class RuinGenerator {
         private final BlockRotation rotation;
         private final Identifier template;
 
-        public RuinPiece(StructureManager structureManager, CompoundTag compoundTag) {
+        public RuinPiece(StructureManager structureManager, NbtCompound compoundTag) {
             super(ArsStructures.StructureList.get(new Identifier(compoundTag.getString("Template"))), compoundTag);
             this.template = new Identifier(compoundTag.getString("Template"));
             this.rotation = BlockRotation.valueOf(compoundTag.getString("Rot"));
@@ -55,8 +55,8 @@ public class RuinGenerator {
             this.setStructureData(structure, this.pos, placementData);
         }
 
-        protected void toNbt(CompoundTag tag) {
-            super.toNbt(tag);
+        protected void writeNbt(NbtCompound tag) {
+            super.writeNbt(tag);
             tag.putString("Template", this.template.toString());
             tag.putString("Rot", this.rotation.name());
 

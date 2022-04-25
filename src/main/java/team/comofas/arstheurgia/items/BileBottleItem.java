@@ -29,7 +29,7 @@ public class BileBottleItem extends Item {
             serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
         }
 
-        if (user instanceof PlayerEntity && !((PlayerEntity)user).abilities.creativeMode) {
+        if (user instanceof PlayerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
             stack.decrement(1);
         }
 

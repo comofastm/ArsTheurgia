@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 public class GuiUtils {
 
     public static void openTabletScreen(ItemStack itemStack) {
-        MinecraftClient.getInstance().openScreen(new OpenTabletScreen(itemStack));
+        MinecraftClient.getInstance().setScreen(new OpenTabletScreen(itemStack));
     }
 
 }

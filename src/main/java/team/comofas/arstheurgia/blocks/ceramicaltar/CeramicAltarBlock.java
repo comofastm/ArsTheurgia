@@ -57,15 +57,19 @@ public class CeramicAltarBlock extends Block implements BlockEntityProvider {
         if (!(heldItem instanceof OpenableTablet)) {
             if (heldItem.asItem() != Items.AIR && (blockentity.getPlacedItem() == null || blockentity.getPlacedItem().isEmpty())) {
                 blockentity.setPlacedItem(player.getStackInHand(hand));
-                if (!world.isClient())
+                /*if (!world.isClient())
                     blockentity.sync();
-                player.inventory.removeOne(player.getStackInHand(hand));
+
+                 */
+                player.getInventory().removeOne(player.getStackInHand(hand));
                 return ActionResult.CONSUME;
             } else if (placedItem != null && placedItem != ItemStack.EMPTY) {
-                player.inventory.insertStack(placedItem);
+                player.getInventory().insertStack(placedItem);
                 blockentity.setPlacedItem(null);
-                if (!world.isClient())
+                /*if (!world.isClient())
                     blockentity.sync();
+
+                 */
                 return ActionResult.SUCCESS;
             }
 
@@ -77,13 +81,13 @@ public class CeramicAltarBlock extends Block implements BlockEntityProvider {
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-        player.inventory.insertStack(((RitualBlockEntity)blockEntity).getPlacedItem());
+        player.getInventory().insertStack(((RitualBlockEntity)blockEntity).getPlacedItem());
         super.afterBreak(world, player, pos, state, blockEntity, stack);
 
     }
 
     @Override
-    public @Nullable BlockEntity createBlockEntity(BlockView world) {
-        return new CeramicAltarBlockEntity();
+    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new CeramicAltarBlockEntity(pos, state);
     }
 }

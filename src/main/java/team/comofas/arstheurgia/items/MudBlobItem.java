@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -47,7 +47,7 @@ public class MudBlobItem extends Item {
         return (Block) ChalkList.get(index);
     }
 
-    private void cycle(CompoundTag current, boolean inverse) {
+    private void cycle(NbtCompound current, boolean inverse) {
         int index = current.getInt("index");
         int length = ChalkList.size();
         if (length != 0) {
@@ -89,7 +89,7 @@ public class MudBlobItem extends Item {
     }
 
     private void place(BlockPos placePos, PlayerEntity player, WorldAccess world, boolean update, ItemStack stack, @Nullable BlockHitResult hit) {
-        CompoundTag compoundTag = stack.getOrCreateSubTag("Index");
+        NbtCompound compoundTag = stack.getOrCreateSubNbt("Index");
         if (update) {
             world.setBlockState(placePos.offset(hit.getSide()), getBlockItem(compoundTag.getInt("index")).getDefaultState().with(FACING, player.getHorizontalFacing()), 3);
             world.playSound(null, placePos, SoundEvents.BLOCK_SOUL_SOIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);

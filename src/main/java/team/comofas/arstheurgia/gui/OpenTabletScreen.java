@@ -51,13 +51,13 @@ public class OpenTabletScreen extends Screen {
         int i = (this.width - (438)) / 2;
         drawTexture(matrices, i, 2, 0, 0, 438, 350, 438, 350);
 
-        if (!this.client.player.inventory.contains(new ItemStack(ArsItems.DICTIONARY))) {
+        if (!this.client.player.getInventory().contains(new ItemStack(ArsItems.DICTIONARY))) {
             this.textRenderer.draw(matrices, new LiteralText("All the words in this tablet are meaningless to you."), (float) i + 16, 32F, 0);
         }
         else {
 
-            RenderSystem.pushMatrix();
-            RenderSystem.multMatrix(matrices.peek().getModel());
+            matrices.push();
+            matrices.multiplyPositionMatrix(matrices.peek().getPositionMatrix());
 
             ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
 
@@ -69,7 +69,7 @@ public class OpenTabletScreen extends Screen {
                 }
             }
 
-            RenderSystem.popMatrix();
+            matrices.pop();
 
             this.textRenderer.draw(matrices, new TranslatableText("ritual.text.configuration"), (float) i + 16 + 204, (float)(32 + 9), 0);
 

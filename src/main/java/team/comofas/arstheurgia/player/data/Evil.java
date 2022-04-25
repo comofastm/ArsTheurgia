@@ -1,7 +1,7 @@
 package team.comofas.arstheurgia.player.data;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import team.comofas.arstheurgia.player.PlayerComponents;
 
 public class Evil implements EvilManager {
@@ -28,14 +28,14 @@ public class Evil implements EvilManager {
     }
 
     @Override
-    public void readFromNbt(CompoundTag tag) {
+    public void readFromNbt(NbtCompound tag) {
         evil = tag.getInt("evil");
 
         sync();
     }
 
     @Override
-    public void writeToNbt(CompoundTag tag) {
+    public void writeToNbt(NbtCompound tag) {
         tag.putInt("evil", evil);
     }
 

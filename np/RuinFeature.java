@@ -42,7 +42,7 @@ public class RuinFeature extends StructureFeature<DefaultFeatureConfig> {
             BlockPos pos = new BlockPos(x, y, z);
             BlockRotation rotation = BlockRotation.random(this.random);
             RuinGenerator.addPieces(manager, pos, rotation, this.children, name);
-            this.setBoundingBoxFromChildren();
+            this.getBoundingBox();
         }
     }
 }

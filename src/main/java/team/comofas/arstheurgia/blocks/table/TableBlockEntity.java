@@ -1,7 +1,6 @@
 package team.comofas.arstheurgia.blocks.table;
 
 import io.netty.buffer.Unpooled;
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
 import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.block.BlockState;
@@ -9,47 +8,47 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.util.math.BlockPos;
 import team.comofas.arstheurgia.ArsTheurgia;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
+import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
-public class TableBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
+public class TableBlockEntity extends BlockEntity {
     private ItemStack placedItem;
 
-    public TableBlockEntity() {
-        super(ArsBlocks.TABLE_BLOCK_ENTITY);
+    public TableBlockEntity(BlockPos pos, BlockState state) {
+        super(ArsBlocks.TABLE_BLOCK_ENTITY, pos, state);
         placedItem = ItemStack.EMPTY;
         markDirty();
     }
 
 
     @Override
-    public CompoundTag toTag(CompoundTag tag) {
-        super.toTag(tag);
+    public void writeNbt(NbtCompound tag) {
+        super.writeNbt(tag);
         if (placedItem == null) {
-            tag.put("item", ItemStack.EMPTY.toTag(new CompoundTag()));
+            tag.put("item", ItemStack.EMPTY.writeNbt(new NbtCompound()));
         } else {
-            tag.put("item", placedItem.toTag(new CompoundTag()));
+            tag.put("item", placedItem.writeNbt(new NbtCompound()));
         }
-
-
-        return tag;
     }
 
     @Override
-    public void fromTag(BlockState state, CompoundTag tag) {
-        super.fromTag(state, tag);
+    public void readNbt(NbtCompound tag) {
+        super.readNbt(tag);
         if (tag.getCompound("item").isEmpty()) {
             return;
         }
 
-        setPlacedItem(ItemStack.fromTag(tag.getCompound("item")));
+        setPlacedItem(ItemStack.fromNbt(tag.getCompound("item")));
 
     }
 
@@ -62,13 +61,14 @@ public class TableBlockEntity extends BlockEntity implements BlockEntityClientSe
         markDirty();
     }
 
+    @Nullable
     @Override
-    public void fromClientTag(CompoundTag compoundTag) {
-        fromTag(this.world.getBlockState(this.pos), compoundTag);
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
     }
 
     @Override
-    public CompoundTag toClientTag(CompoundTag compoundTag) {
-        return toTag(compoundTag);
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
     }
 }

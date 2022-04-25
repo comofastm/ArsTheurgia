@@ -1,41 +1,44 @@
 package team.comofas.arstheurgia.blocks.ceramicaltar;
 
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.util.math.BlockPos;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
-public class CeramicAltarBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
+import javax.annotation.Nullable;
+
+public class CeramicAltarBlockEntity extends BlockEntity {
 
     private ItemStack placedItem;
 
-    public CeramicAltarBlockEntity() {
-        super(ArsBlocks.CERAMIC_ALTAR_ENTITY);
+    public CeramicAltarBlockEntity(BlockPos pos, BlockState state) {
+
+        super(ArsBlocks.CERAMIC_ALTAR_ENTITY, pos, state);
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag tag) {
-        super.toTag(tag);
+    public void writeNbt(NbtCompound tag) {
+        super.writeNbt(tag);
         if (placedItem == null) {
-            tag.put("item", ItemStack.EMPTY.toTag(new CompoundTag()));
+            tag.put("item", ItemStack.EMPTY.writeNbt(new NbtCompound()));
         } else {
-            tag.put("item", placedItem.toTag(new CompoundTag()));
+            tag.put("item", placedItem.writeNbt(new NbtCompound()));
         }
-
-
-        return tag;
     }
 
     @Override
-    public void fromTag(BlockState state, CompoundTag tag) {
-        super.fromTag(state, tag);
+    public void readNbt(NbtCompound tag) {
+        super.readNbt(tag);
         if (tag.getCompound("item").isEmpty()) {
             return;
         }
 
-        setPlacedItem(ItemStack.fromTag(tag.getCompound("item")));
+        setPlacedItem(ItemStack.fromNbt(tag.getCompound("item")));
 
     }
 
@@ -48,14 +51,27 @@ public class CeramicAltarBlockEntity extends BlockEntity implements BlockEntityC
         markDirty();
     }
 
-
+    @Nullable
     @Override
-    public void fromClientTag(CompoundTag compoundTag) {
-        fromTag(this.world.getBlockState(this.pos), compoundTag);
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
     }
 
     @Override
-    public CompoundTag toClientTag(CompoundTag compoundTag) {
-        return toTag(compoundTag);
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
     }
+
+/*
+    @Override
+    public void fromClientTag(NbtCompound compoundTag) {
+        readNbt(this.world.getBlockState(this.pos), compoundTag);
+    }
+
+    @Override
+    public NbtCompound toClientTag(NbtCompound compoundTag) {
+        return writeNbt(compoundTag);
+    }
+
+ */
 }

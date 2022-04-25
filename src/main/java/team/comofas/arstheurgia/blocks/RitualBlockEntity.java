@@ -3,7 +3,8 @@ package team.comofas.arstheurgia.blocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.math.BlockPos;
 import team.comofas.arstheurgia.registry.ArsBlocks;
 
 
@@ -13,24 +14,22 @@ public class  RitualBlockEntity extends BlockEntity {
     private int index = 0;
     private ItemStack placedItem;
 
-    public RitualBlockEntity() {
-        super(ArsBlocks.RITUALBLOCK_ENTITY);
+    public RitualBlockEntity(BlockPos pos, BlockState state) {
+        super(ArsBlocks.RITUALBLOCK_ENTITY, pos, state);
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag tag) {
-        super.toTag(tag);
+    public void writeNbt(NbtCompound tag) {
+        super.writeNbt(tag);
         tag.putInt("index", index);
-        tag.put("item", placedItem.toTag(new CompoundTag()));
-
-        return tag;
+        tag.put("item", placedItem.writeNbt(new NbtCompound()));
     }
 
     @Override
-    public void fromTag(BlockState state, CompoundTag tag) {
-        super.fromTag(state, tag);
+    public void readNbt(NbtCompound tag) {
+        super.readNbt(tag);
         index = tag.getInt("index");
-        placedItem = ItemStack.fromTag(tag.getCompound("item"));
+        placedItem = ItemStack.fromNbt(tag.getCompound("item"));
     }
 
     public ItemStack getPlacedItem() {

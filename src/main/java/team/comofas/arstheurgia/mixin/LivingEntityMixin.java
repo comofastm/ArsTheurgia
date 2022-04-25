@@ -50,12 +50,12 @@ public abstract class LivingEntityMixin {
             if (!((LivingEntity)(Object)this).world.isClient()) {
                 if (item == ArsItems.GEBEL_KNIFE && ((LivingEntity)(Object)this) instanceof AnimalEntity) {
                     ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
-                    if (attacker.inventory.contains(bottle)) {
-                        for (ItemStack itemStack : attacker.inventory.main) {
+                    if (attacker.getInventory().contains(bottle)) {
+                        for (ItemStack itemStack : attacker.getInventory().main) {
                             if (itemStack.getItem() == Items.GLASS_BOTTLE) {
                                 itemStack.decrement(1);
                                 ((LivingEntity)(Object)this).world.playSound(attacker, attacker.getX(), attacker.getY(), attacker.getZ(), ArsSounds.COLLECT_BILE, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                                attacker.inventory.insertStack(new ItemStack(ArsItems.BILE));
+                                attacker.getInventory().insertStack(new ItemStack(ArsItems.BILE));
                                 break;
                             }
 

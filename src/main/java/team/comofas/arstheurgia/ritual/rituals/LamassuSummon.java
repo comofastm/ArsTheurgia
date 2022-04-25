@@ -103,12 +103,12 @@ public class LamassuSummon extends Ritual {
             if (entity != null)
                 if (entity instanceof TableBlockEntity) {
                     ((TableBlockEntity)entity).setPlacedItem(null);
-                    if (!player.world.isClient())
-                        ((TableBlockEntity)entity).sync();
+                    /*if (!player.world.isClient())
+                        ((TableBlockEntity)entity).sync();*/
                 } else if (entity instanceof CeramicAltarBlockEntity) {
                     ((CeramicAltarBlockEntity)entity).setPlacedItem(null);
-                    if (!player.world.isClient())
-                        ((CeramicAltarBlockEntity)entity).sync();
+                    /*if (!player.world.isClient())
+                        ((CeramicAltarBlockEntity)entity).sync();*/
                 }
         }
 

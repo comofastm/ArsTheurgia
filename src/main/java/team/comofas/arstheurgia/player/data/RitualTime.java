@@ -2,12 +2,12 @@ package team.comofas.arstheurgia.player.data;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import team.comofas.arstheurgia.player.PlayerComponents;
 
 public class RitualTime implements RitualTimeManager {
 
-    CompoundTag ritualtime = new CompoundTag();
+    NbtCompound ritualtime = new NbtCompound();
 
     private final Entity player;
 
@@ -36,13 +36,13 @@ public class RitualTime implements RitualTimeManager {
     }
 
     @Override
-    public void readFromNbt(CompoundTag tag) {
+    public void readFromNbt(NbtCompound tag) {
         ritualtime = tag.getCompound("ritual_time");
         sync();
     }
 
     @Override
-    public void writeToNbt(CompoundTag tag) {
+    public void writeToNbt(NbtCompound tag) {
         tag.put("ritual_time", ritualtime);
     }
 

@@ -52,7 +52,7 @@ public class ArsTheurgia implements ModInitializer {
         ArsBlocks.registerAll();
         ArsItems.registerAll();
         ArsEffects.registerAll();
-        ArsStructures.registerAll();
+        //ArsStructures.registerAll();
         LootTableEvent.register();
 
         FabricDefaultAttributeRegistry.register(UDUG, UdugEntity.createMobAttributes());

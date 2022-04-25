@@ -69,7 +69,7 @@ public class UdugEntity extends TameableEntity implements IAnimatable {
                             value.setKnowledge("activeUdug", false);
                         });
                         this.playSound(ArsSounds.UDUG_DISAPPEAR, 0.5F, 1.0F);
-                        this.remove();
+                        this.remove(RemovalReason.KILLED);
                     }
                 }
             }

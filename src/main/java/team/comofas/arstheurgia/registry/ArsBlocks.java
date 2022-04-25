@@ -2,6 +2,7 @@ package team.comofas.arstheurgia.registry;
 
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
@@ -11,13 +12,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 import team.comofas.arstheurgia.blocks.*;
+import team.comofas.arstheurgia.blocks.CandleBlock;
 import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlock;
 import team.comofas.arstheurgia.blocks.ceramicaltar.CeramicAltarBlockEntity;
 import team.comofas.arstheurgia.ArsUtils;
 import team.comofas.arstheurgia.blocks.table.TableBlock;
 import team.comofas.arstheurgia.blocks.table.TableBlockEntity;
-import team.comofas.arstheurgia.structures.DateTreeSaplingGenerator;
-
 
 public class ArsBlocks {
 
@@ -39,17 +39,17 @@ public class ArsBlocks {
     public static final Block MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));
     public static final Block SMOOTH_MUD_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));
     public static final Block MUD_BLOCK_BRICKS = new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));
-    public static final Block SMOOTH_MUD_BLOCK_SLAB = new SlabBlock(AbstractBlock.Settings.of(Material.STONE, MaterialColor.STONE).requiresTool().strength(2.0F, 6.0F));
+    public static final Block SMOOTH_MUD_BLOCK_SLAB = new SlabBlock(AbstractBlock.Settings.of(Material.STONE, MapColor.STONE_GRAY).requiresTool().strength(2.0F, 6.0F));
 
     public static final Block TABLE = new TableBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(1.0f));
     public static final Block CERAMIC_ALTAR = new CeramicAltarBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f));
 
-    public static final Block MUD_BLOCK_BRICKS_SLAB = new SlabBlock(AbstractBlock.Settings.of(Material.STONE, MaterialColor.STONE).requiresTool().strength(2.0F, 6.0F));
+    public static final Block MUD_BLOCK_BRICKS_SLAB = new SlabBlock(AbstractBlock.Settings.of(Material.STONE, MapColor.STONE_GRAY).requiresTool().strength(2.0F, 6.0F));
     public static final Block MUD_BLOCK_RAW = new FallingArcheologicalBlock(FabricBlockSettings.of(Material.SOIL).hardness(1.0f));
 
     public static final Block DATE_TREE_LOG = new PillarBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0F).sounds(BlockSoundGroup.WOOD));
     public static final Block DATE_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).sounds(BlockSoundGroup.GRASS).nonOpaque().suffocates(ArsBlocks::never).blockVision(ArsBlocks::never));
-    public static final Block DATE_SAPLING = new ATSaplingBlock(new DateTreeSaplingGenerator(), FabricBlockSettings.of(Material.LEAVES).sounds(BlockSoundGroup.GRASS));
+    //public static final Block DATE_SAPLING = new ATSaplingBlock(new DateTreeSaplingGenerator(), FabricBlockSettings.of(Material.LEAVES).sounds(BlockSoundGroup.GRASS));
 
     public static final Block SAMAS_FIGURINE = new SamasFigurineBlock(FabricBlockSettings.of(Material.METAL).hardness(1.0f).sounds(BlockSoundGroup.ANVIL));
     public static final Block MIRSU_BOWL = new MirsuBowlBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).hardness(1.0f));
@@ -92,7 +92,7 @@ public class ArsBlocks {
 
         registerBlock(DATE_TREE_LOG, "date_logs");
         registerBlock(DATE_LEAVES, "date_leaves");
-        registerBlock(DATE_SAPLING, "date_sapling");
+        //registerBlock(DATE_SAPLING, "date_sapling");
 
         registerBlock(SAMAS_FIGURINE, "shamash");
         registerBlock(MIRSU_BOWL, "mirsu_bowl");
@@ -106,8 +106,8 @@ public class ArsBlocks {
         registerBlock(MUD_BLOCK_MINIBRICKS, "mud_block_minibricks");
         registerBlock(MUD_BLOCK_MINIBRICKS_SLAB, "mud_block_minibricks_slab");
 
-        CERAMIC_ALTAR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ceramic_altar"), BlockEntityType.Builder.create(CeramicAltarBlockEntity::new, CERAMIC_ALTAR).build(null));
-        TABLE_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("table"), BlockEntityType.Builder.create(TableBlockEntity::new, TABLE).build(null));
+        CERAMIC_ALTAR_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("ceramic_altar"), FabricBlockEntityTypeBuilder.create(CeramicAltarBlockEntity::new, CERAMIC_ALTAR).build(null));
+        TABLE_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, ArsUtils.getIdentifier("table"), FabricBlockEntityTypeBuilder.create(TableBlockEntity::new, TABLE).build(null));
 
     }
     public static Block registerBlock(Block block, String name) {

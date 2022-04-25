@@ -1,7 +1,7 @@
 package team.comofas.arstheurgia.player.data;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import team.comofas.arstheurgia.player.PlayerComponents;
 
 public class DryIntComponent implements DryIntManager {
@@ -41,13 +41,13 @@ public class DryIntComponent implements DryIntManager {
     }
 
     @Override
-    public void readFromNbt(CompoundTag tag) {
+    public void readFromNbt(NbtCompound tag) {
         value = tag.getInt("dry");
         sync();
     }
 
     @Override
-    public void writeToNbt(CompoundTag tag) {
+    public void writeToNbt(NbtCompound tag) {
         tag.putInt("dry", value);
     }
 }

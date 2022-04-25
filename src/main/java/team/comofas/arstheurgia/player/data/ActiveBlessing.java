@@ -1,7 +1,7 @@
 package team.comofas.arstheurgia.player.data;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import team.comofas.arstheurgia.player.PlayerComponents;
 
 public class ActiveBlessing implements ActiveBlessingManager {
@@ -29,14 +29,14 @@ public class ActiveBlessing implements ActiveBlessingManager {
     }
 
     @Override
-    public void readFromNbt(CompoundTag tag) {
+    public void readFromNbt(NbtCompound tag) {
         hasActiveBlessing = tag.getBoolean("blessing");
 
         sync();
     }
 
     @Override
-    public void writeToNbt(CompoundTag tag) {
+    public void writeToNbt(NbtCompound tag) {
         tag.putBoolean("blessing", hasActiveBlessing);
     }
 

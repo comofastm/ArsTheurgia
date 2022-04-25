@@ -24,9 +24,9 @@ public class SpadeItem extends ShovelItem {
             stack.damage(1, player.getRandom(), (ServerPlayerEntity) player);
             if (FallingArcheologicalBlock.isNatural(state)) {
                 if (player.getRandom().nextDouble()>0.3) {
-                    player.inventory.insertStack(new ItemStack(ArsItems.DICTIONARY));
+                    player.getInventory().insertStack(new ItemStack(ArsItems.DICTIONARY));
                 } else if (player.getRandom().nextDouble()>0.7) {
-                    player.inventory.insertStack(new ItemStack(ArsItems.TABLE));
+                    player.getInventory().insertStack(new ItemStack(ArsItems.TABLE));
                 }
             }
         }

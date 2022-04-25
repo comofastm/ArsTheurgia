@@ -14,7 +14,7 @@ public class DateTreeSaplingGenerator extends SaplingGenerator {
     }
 
     @Nullable
-    protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean bl) {
+    protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean bl) {
         return ArsStructures.DATE_TREE;
     }
 }
