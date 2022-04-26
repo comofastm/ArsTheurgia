@@ -18,12 +18,8 @@ repositories {
         name = "Ladysnake Libs"
         url = "https://ladysnake.jfrog.io/artifactory/mods"
     }
-    maven {
-        url = "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
+
+    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 }
 
 dependencies {
@@ -41,7 +37,7 @@ dependencies {
     modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${cardinal_version}"
     include "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${cardinal_version}"
 
-    modImplementation(include("curse.maven:geckolib-398667:3157816"))
+    modImplementation 'software.bernie.geckolib:geckolib-fabric-1.18:3.0.38'
 }
 
 processResources {

@@ -36,10 +36,10 @@ public class ArsTheurgiaClient implements ClientModInitializer {
         //BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.DATE_SAPLING, RenderLayer.getCutout());
 
         // Register Entity Renderers
-        EntityRendererRegistry.register(ArsTheurgia.UDUG, (context) -> new UdugEntityRenderer(context.getRenderDispatcher()));
-        EntityRendererRegistry.register(ArsTheurgia.LAMASSU, (context) -> new LamassuEntityRenderer(context.getRenderDispatcher()));
-        EntityRendererRegistry.register(ArsTheurgia.ANZU, (context) -> new AnzuEntityRenderer(context.getRenderDispatcher()));
-        EntityRendererRegistry.register(ArsTheurgia.TORMENTEDCREEPER, (context) -> new TormentedCreeperEntityRenderer(context.getRenderDispatcher()));
+        EntityRendererRegistry.register(ArsTheurgia.UDUG, (context) -> new UdugEntityRenderer(context));
+        EntityRendererRegistry.register(ArsTheurgia.LAMASSU, (context) -> new LamassuEntityRenderer(context));
+        EntityRendererRegistry.register(ArsTheurgia.ANZU, (context) -> new AnzuEntityRenderer(context));
+        EntityRendererRegistry.register(ArsTheurgia.TORMENTEDCREEPER, (context) -> new TormentedCreeperEntityRenderer(context));
 
         ClientSidePacketRegistry.INSTANCE.register(ArsTheurgia.CONSUME_ITEM_PARTICLE,
                 (packetContext, attachedData) -> {
