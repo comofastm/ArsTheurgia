@@ -2,7 +2,7 @@ package team.comofas.arstheurgia;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
 import net.minecraft.client.MinecraftClient;
@@ -21,9 +21,9 @@ import team.comofas.arstheurgia.registry.ArsBlocks;
 public class ArsTheurgiaClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        BlockEntityRendererRegistry.INSTANCE.register(ArsBlocks.RITUALBLOCK_ENTITY, RitualBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(ArsBlocks.CERAMIC_ALTAR_ENTITY, CeramicAltarBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.INSTANCE.register(ArsBlocks.TABLE_BLOCK_ENTITY, TableBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(ArsBlocks.RITUALBLOCK_ENTITY, RitualBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(ArsBlocks.CERAMIC_ALTAR_ENTITY, CeramicAltarBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(ArsBlocks.TABLE_BLOCK_ENTITY, TableBlockEntityRenderer::new);
 
         // Setup block render layers
         BlockRenderLayerMap.INSTANCE.putBlock(ArsBlocks.ASYRIEL_SIGIL, RenderLayer.getCutout());
