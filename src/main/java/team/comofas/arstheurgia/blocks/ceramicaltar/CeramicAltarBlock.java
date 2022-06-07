@@ -15,7 +15,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import team.comofas.arstheurgia.blocks.RitualBlockEntity;
 import team.comofas.arstheurgia.items.OpenableTablet;
 import team.comofas.arstheurgia.player.PlayerComponents;
 import team.comofas.arstheurgia.ritual.Ritual;
@@ -81,7 +80,7 @@ public class CeramicAltarBlock extends Block implements BlockEntityProvider {
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-        player.getInventory().insertStack(((RitualBlockEntity)blockEntity).getPlacedItem());
+        player.getInventory().insertStack(((CeramicAltarBlockEntity)blockEntity).getPlacedItem());
         super.afterBreak(world, player, pos, state, blockEntity, stack);
 
     }
