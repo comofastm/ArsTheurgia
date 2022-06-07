@@ -19,7 +19,7 @@ import static net.minecraft.block.HorizontalFacingBlock.FACING;
 
 public class ChalkBlock extends Block {
 
-    private static List<ChalkBlock> blocks = new ArrayList<ChalkBlock>();
+    private static final List<ChalkBlock> blocks = new ArrayList<ChalkBlock>();
 
     public ChalkBlock(Settings settings) {
         super(settings);

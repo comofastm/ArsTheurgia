@@ -15,7 +15,7 @@ import java.util.List;
 
 public class FallingArcheologicalBlock extends FallingBlock {
     public static final BooleanProperty NATURAL = BooleanProperty.of("natural");
-    private static List<FallingArcheologicalBlock> blocks = new ArrayList<FallingArcheologicalBlock>();
+    private static final List<FallingArcheologicalBlock> blocks = new ArrayList<FallingArcheologicalBlock>();
 
     public FallingArcheologicalBlock(Settings settings) {
         super(settings);
