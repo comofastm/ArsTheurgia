@@ -63,7 +63,6 @@ public class ArsBlocks {
     public static final Block MUD_BLOCK_MINIBRICKS = new Block(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));;
     public static final Block MUD_BLOCK_MINIBRICKS_SLAB = new SlabBlock(FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.STONE).hardness(4.0f));;
 
-    public static BlockEntityType<RitualBlockEntity> RITUALBLOCK_ENTITY;
     public static BlockEntityType<CeramicAltarBlockEntity> CERAMIC_ALTAR_ENTITY;
 
     public static BlockEntityType<TableBlockEntity> TABLE_BLOCK_ENTITY;
